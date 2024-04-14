@@ -21,12 +21,12 @@
             <div class="col-auto">
                 <ul class="qa-top-nav">
                     <li>
-                        <a href="register.html"
+                        <a href="{{route('main.auth.register')}}"
                             >Đăng Ký</a
                         >
                     </li>
                     <li>
-                        <a href="login.html"
+                        <a href="{{route('main.auth.login')}}"
                             >Đăng nhập</a
                         >
                     </li>
@@ -51,12 +51,12 @@
             <div class="col-auto ms-auto">
                 <ul class="">
                     <li>
-                        <a href="register.html"
+                        <a href="{{route('main.auth.register')}}"
                             >Đăng Ký</a
                         >
                     </li>
                     <li>
-                        <a href="login.html"
+                        <a href="{{route('main.auth.login')}}"
                             >Đăng nhập</a
                         >
                     </li>

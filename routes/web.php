@@ -25,3 +25,8 @@ Route::get('/login',function(){
 Route::get('/register',function(){
     return view('main.auth.register');
 })->name('main.auth.register');
+
+Route::get('/products/show',function(){
+    return view('main.products.show');
+})->name('main.products.show');
+

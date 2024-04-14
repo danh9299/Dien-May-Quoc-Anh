@@ -100,15 +100,18 @@
                         <div
                             class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
                         >
+                        <a href="{{route('main.products.show')}}">
                             <img
                                 src="https://product.hstatic.net/200000632093/product/smart-tivi-qled-4k-55-inch-samsung-qa55q80c-1-180x120_-_copy_29bea3df638846b6a5cbb41802242082_large.jpg"
                                 class="img-thumbnail"
                                 alt="..."
-                            />
+                            /></a>
+                            
                             <div class="card-body">
+                            <a href="{{route('main.products.show')}}">
                                 <h5 class="card-title">
                                     Smart Tivi QLED 4K 98 inch Samsung QA98Q80C
-                                </h5>
+                                </h5></a>
                                 <span class="product-price-old">
                                     99.000.000đ
                                 </span>

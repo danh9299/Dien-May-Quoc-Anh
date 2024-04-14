@@ -29,7 +29,22 @@ body {
 .qa-top-nav li a:hover, .qa-top-nav li a:focus {
     color: purple;
 }
-
+.qa-top-nav-mobile ul{
+    list-style:none;
+    
+}
+.qa-top-nav-mobile  a{
+    font-size: 9px;
+    text-decoration: none;
+    color:white;
+    
+}
+.qa-top-nav-mobile li a{
+    font-size: 9px;
+    text-decoration: none;
+    color:white;
+    
+}
 
 /*css cho logo header*/
 .qa-logo img {
@@ -55,16 +70,25 @@ body {
     color:red;
 }
 
-.sticky{
-    position: fixed; /*giữ cho header tại vị trí cố định*/
-    top: 0;
-    width: 100%
+
+
+/*css cho navbar item*/
+@media  (min-width: 1024px){
+    .sticky{
+        position: fixed; /*giữ cho header tại vị trí cố định*/
+        top: 0;
+        width: 100%
+    }
 }
 #category-to-sticky{
     z-index: 1000; /* Đảm bảo rằng phần nội dung có z-index cao hơn so với nội dung */
 }
 
-/*css cho navbar item*/
+@media  (max-width: 768px){
+    .qa-navbar-categories{
+        font-size: 25px;
+    }
+}
 
 .nav-item {
     margin-right: 5px;
@@ -209,26 +233,37 @@ footer{
 }
 
 .home-product .product-price-old{
-    font-size:23px;
+    font-size:16px;
 }
 .home-product .product-price{
-    font-size:23px;
+    font-size:18px;
     color:red;
 }
+.home-product .card-title{
+    font-size: 15px;
+}
+
 @media  (max-width: 767.98px){
     .home-product .product-price-old{
-    font-size: 19px;}
+    font-size: 12px;}
 
     .home-product .product-price{
-        font-size:22px;
-        
-}}
+        font-size:15px;
+    }
+    .home-product .card-title{
+        font-size: 13px;
+    }
+
+}
 @media (max-width: 500.98px){
     .home-product .product-price-old{
-    font-size: 15px;}
+    font-size: 11px;}
     .home-product .product-price{
-        font-size:19px;
+        font-size:13px;
         color:red;
+    }
+    .home-product .card-title{
+        font-size: 10px;
     }
 }
 
@@ -238,6 +273,9 @@ footer{
     .home-product .product-price{
         font-size:13px;
         color:red;
+    }
+    .home-product .btn{
+        font-size: 10px;
     }
 }
 

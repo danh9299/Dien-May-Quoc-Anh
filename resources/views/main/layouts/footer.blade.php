@@ -2,7 +2,7 @@
 <footer class="container-fluid">
     <div class="col-12 bg-dark text-white pb-3 pt-5">
         <div class="row">
-            <div class="col-lg-4 col-sm-4 text-sm-left mb-sm-0 mb-3">
+            <div class="col-lg-6 col-sm-6 text-sm-left mb-sm-0 mb-3">
                 <div class="row">
                     <div class="col-12">
                         <div class="qa-footer-address text-center">
@@ -13,7 +13,7 @@
                         <ul>
                             <li>
                                 Địa chỉ: 
-                                <a href="#">158 Phan Trọng Tuệ, Thanh Liệt, Thanh Trì</a>
+                                <a href="#">158 Phan Trọng Tuệ, Thanh Trì</a>
                             </li>
                             <li>
                                 Email:
@@ -33,7 +33,7 @@
             </div>
             
             <div
-                class="col-lg-2 col-sm-3 col-5 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3"
+                class="col-lg-2 col-sm-2 col-5 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3"
             >
                 <div class="row">
                 <div class="qa-footer-policy text-center">
@@ -60,6 +60,9 @@
                     </div>
                 </div>
             </div>
+
+            
+
             <div class="col-lg-2 col-sm-2 col-4 me-auto mb-sm-0 mb-3">
                 <div class="row">
                 <div class="qa-social text-center">

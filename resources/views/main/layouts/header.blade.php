@@ -6,25 +6,21 @@
                 <ul class="qa-top-nav">
                     <li>
                         <a href="tel:0903283996"
-                            ><i class="fa fa-phone-square me-2"></i
                             >090.328.3996</a
                         >
                     </li>
                     <li>
                         <a href="tel:0962538373"
-                            ><i class="fa fa-phone-square me-2"></i
                             >096.253.8373</a
                         >
                     </li>
                     <li>
                         <a href="tel:0913047388"
-                            ><i class="fa fa-phone-square me-2"></i
                             >091.304.7388</a
                         >
                     </li>
                     <li>
                         <a href="tel:0338093232"
-                            ><i class="fa fa-phone-square me-2"></i
                             >033.809.3232</a
                         >
                     </li>
@@ -32,6 +28,44 @@
             </div>
             <div class="col-auto">
                 <ul class="qa-top-nav">
+                    <li>
+                        <a href="register.html"
+                            ><i class="fas fa-user-edit me-2"></i>Đăng Ký</a
+                        >
+                    </li>
+                    <li>
+                        <a href="login.html"
+                            ><i class="fas fa-sign-in-alt me-2"></i>Đăng nhập</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Top Nav -->
+
+    <!-- Top Nav Mobile-->
+
+    <div class="container-fluid qa-top-nav-mobile bg-danger  d-lg-none d-md-none d-sm-block">
+        <div class="row">
+            <div class="col-auto me-auto">
+                
+                        <a href="tel:0903283996"
+                            >090.328.3996</a
+                        >
+                        <a href="tel:0962538373"
+                            >096.253.8373</a
+                        ><br>
+                        <a href="tel:0913047388"
+                            >091.304.7388</a
+                        >
+                        <a href="tel:0338093232"
+                            >033.809.3232</a
+                        >
+                   
+            </div>
+            <div class="col-auto ms-auto">
+                <ul class="">
                     <li>
                         <a href="register.html"
                             ><i class="fas fa-user-edit me-2"></i>Đăng Ký</a
@@ -100,11 +134,21 @@
                 </svg>     
                 </a>
             </div>
+
+          
+
         </div>
 
         <!-- Nav -->
         <div class="row qa-navbar-categories" id="category-to-sticky">
             <nav class="navbar navbar-expand-lg  bg-danger-subtle col-12">
+
+                 <!-- Navbar toggler button -->
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
                 <div class="collapse navbar-collapse" id="mainNav">
                     <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
@@ -296,6 +340,10 @@
             </nav>
         </div>
         <!-- Nav -->
+
+       
+
+
     </div>
     <!-- Header -->
 </header>

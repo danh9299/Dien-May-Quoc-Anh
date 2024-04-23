@@ -16,12 +16,21 @@
 </head>
 
 <body>
-    
-
+    <div class="d-flex">
+        <div class="bg-danger admin-sidebar">
+            <div class="d-lg-none d-block">
+                <button class="openbtn" id="openSidebar" onclick="openSidebar()">&#9776;</button>
+            </div>
+            <!--Sidebar-->
+            @include('admin.layouts.sidebar')
+        </div>
         <div class="admin-content">
             <!-- Main content -->
             @yield('content')
         </div>
+    </div>
+
+
 
     <!--Mobile Sidebar-->
     <script src="{{asset('js/mobile-sidebar.js')}}"></script>

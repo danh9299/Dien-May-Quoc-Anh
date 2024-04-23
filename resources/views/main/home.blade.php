@@ -101,11 +101,12 @@
                             class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
                         >
                         <a href="{{route('main.products.show')}}">
-                            <img
+                        <div class="text-center mt-1 "> 
+                        <img
                                 src="https://product.hstatic.net/200000632093/product/smart-tivi-qled-4k-55-inch-samsung-qa55q80c-1-180x120_-_copy_29bea3df638846b6a5cbb41802242082_large.jpg"
-                                class="img-thumbnail"
+                                class="img-thumbnail border-0"
                                 alt="..."
-                            /></a>
+                            /></div>   </a>
                             
                             <div class="card-body">
                             <a href="{{route('main.products.show')}}">
@@ -157,11 +158,12 @@
                         <div
                             class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
                         >
+                        <div class="text-center mt-1 "> 
                             <img
                                 src="https://product.hstatic.net/200000632093/product/10025649-tl-sharp-sj-fx630v-st-01_62073da735fc4ec6a0481d6ad1f95271_large.jpg"
-                                class="img-thumbnail"
+                                class="img-thumbnail border-0"
                                 alt="..."
-                            />
+                            /></div>
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Tủ lạnh Sharp 4 cánh 626 Lít SJ-FX630V-ST
@@ -210,12 +212,12 @@
                         <!-- Product -->
                         <div
                             class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
-                        >
+                        ><div class="text-center mt-1 "> 
                             <img
                                 src="https://product.hstatic.net/200000632093/product/may-giat-midea-mfg70-1000-7-kg_ac7b2b4c9af548af90444dc6e1b38672_large.jpg"
-                                class="img-thumbnail"
+                                class="img-thumbnail border-0"
                                 alt="..."
-                            />
+                            /></div>
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Máy giặt 7 Kg Midea MFG70-1000
@@ -267,7 +269,7 @@
                         >
                             <img
                                 src="https://product.hstatic.net/200000632093/product/may-lanh-electrolux-inverter-1-5hp-esv12cro-c1-sl_eccd0dc1f07d40bb959557a6576f87c9_large.jpg"
-                                class="img-thumbnail"
+                                class="img-thumbnail border-0"
                                 alt="..."
                             />
                             <div class="card-body">

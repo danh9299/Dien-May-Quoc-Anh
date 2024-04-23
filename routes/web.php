@@ -34,3 +34,16 @@ Route::get('/products/show',function(){
 Route::get('/admin',function(){
     return view('admin.dashboard');
 })->name('admin.dashboard');
+
+
+
+Route::get('/admin/products',function(){
+    return view('admin.products.index');
+})->name('admin.products.index');
+
+
+
+
+Route::get('/admin/articles',function(){
+    return view('admin.articles.index');
+})->name('admin.articles.index');

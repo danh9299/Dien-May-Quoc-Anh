@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+//Main pages
+Route::get('/',function(){
     return view('main.home');
 })->name('main.home');
-
 
 Route::get('/login',function(){
     return view('main.auth.login');
@@ -30,3 +30,7 @@ Route::get('/products/show',function(){
     return view('main.products.show');
 })->name('main.products.show');
 
+//Admin pages
+Route::get('/admin',function(){
+    return view('admin.dashboard');
+})->name('admin.dashboard');

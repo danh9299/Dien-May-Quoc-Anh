@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\HTTP\Controllers\AdminRegisterController;
 use App\HTTP\Controllers\AdminLoginController;
+use App\HTTP\Controllers\CatalogController;
 use App\HTTP\Controllers\AdminForgotPasswordController;
 
 /*
@@ -47,8 +48,15 @@ Route::group(['middleware' => 'check.admin'], function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-
-
+    //Catalog
+    Route::get('/admin/catalogs',[CatalogController::class, 'index'])->name('admin.catalogs.index');
+    Route::get('/admin/catalogs/search',[CatalogController::class, 'search'])->name('admin.catalogs.search');
+    Route::get('/admin/catalogs/create', [CatalogController::class, 'create'])->name('admin.catalogs.create');
+    Route::post('/admin/catalogs/store', [CatalogController::class, 'store'])->name('admin.catalogs.store');
+    Route::get('admin/catalogs/{catalog}/edit', [CatalogController::class, 'edit'])->name('admin.catalogs.edit');
+    Route::put('admin/catalogs/{catalog}/update', [CatalogController::class, 'update'])->name('admin.catalogs.update');
+    Route::get('admin/catalogs/{catalog}/delete', [CatalogController::class, 'delete'])->name('admin.catalogs.delete');
+    Route::delete('admin/catalogs/{catalog}/destroy', [CatalogController::class, 'destroy'])->name('admin.catalogs.destroy');
     //Products
     Route::get('/admin/products', function () {
         return view('admin.products.index');

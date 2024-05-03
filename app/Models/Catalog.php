@@ -13,4 +13,12 @@ class Catalog extends Model
     {
         return $this->hasMany(Product::class);
     }
+    public function parent()
+{
+    return $this->belongsTo(Catalog::class, 'parent_id');
+}
+public function children()
+    {
+        return $this->hasMany(Catalog::class, 'parent_id');
+    }
 }

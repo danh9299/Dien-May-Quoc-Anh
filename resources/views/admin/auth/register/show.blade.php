@@ -69,7 +69,7 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Cấp quyền</label>
-                    <select name="role" class="form-select">
+                    <select name="role" class="form-select @error('role') is-invalid @enderror">
                         <option value="2">Quyền quản trị giới hạn</option>
                         <option value="1">Toàn quyền quản trị</option>
                     </select>

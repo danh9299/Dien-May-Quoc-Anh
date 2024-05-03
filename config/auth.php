@@ -2,6 +2,10 @@
 
 return [
 
+
+
+
+    
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -40,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [ // Đặt tên cho guard admin
+            'driver' => 'session',
+            'provider' => 'admins', // Sử dụng provider mới cho guard admin
+        ],
     ],
 
     /*
@@ -64,7 +72,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        'admins' => [ // Đặt tên cho provider admin
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class, // Sử dụng model Admin
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

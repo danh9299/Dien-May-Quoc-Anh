@@ -11,6 +11,21 @@ class Product extends Model
     //1 product thuộc về 1 danh mục
     public function catalog()
     {
-        return $this->belongsTo(Catalog::class);
+        return $this->belongsTo(Catalog::class, 'catalog_id');
+    }
+    //1 product thuộc về 1 thương hiệu
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
+    //1 product thuộc về 1 tính năng
+    public function feature()
+    {
+        return $this->belongsTo(Feature::class, 'feature_id');
+    }
+    //1 product thuộc về 1 phân loại
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
     }
 }

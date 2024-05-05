@@ -13,6 +13,17 @@
 
     <!--Favicon thay logo trên tab-->
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/QA.png') }}" />
+    <!--Tiny MCE-->
+    <script src="https://cdn.tiny.cloud/1/6dn912idv9vs62u74uqn6ngifxnt4cs9u8meho1uga5aj5yt/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+    tinymce.init({
+        selector: '#contenteditor', 
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes mergetags autocorrect typography inlinecss mark',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
+       
+    });
+    </script>
 </head>
 
 <body>

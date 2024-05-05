@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="row">
-    <h3 class="mt-2 px-5">Danh mục sản phẩm</h3>
+    <h3 class="mt-2 px-5">Thiết kế</h3>
     <div class="container mt-2 px-5  mb-2">
         <!--All Posts-->
         @if($message = Session::get('success'))
@@ -15,14 +15,14 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <a href="{{route('admin.catalogs.create')}}" class="btn btn-primary">Thêm mới</a>
+                        <a href="{{route('admin.features.create')}}" class="btn btn-primary">Thêm mới</a>
                     </div>
                     <div class="col">
-                        <form method="GET" action="{{ route('admin.catalogs.search') }}">
+                        <form method="GET" action="{{ route('admin.features.search') }}">
                             <div class="input-group flex-nowrap">
                                 <button type="submit" class="btn btn-dark">Tìm kiếm</button>
                                 <input type="text" class="form-control" name="search"
-                                    placeholder="Nhập tên danh mục bạn muốn tìm.." aria-label="Tìm kiếm"
+                                    placeholder="Nhập tên Thiết kế bạn muốn tìm.." aria-label="Tìm kiếm"
                                     aria-describedby="addon-wrapping">
                             </div>
                         </form>
@@ -32,25 +32,21 @@
             <div class="card-body">
                
                 <table class="table">
-                @if(!empty($catalogs) && count($catalogs)>0)
+                @if(!empty($features) && count($features)>0)
                     <thead>
                         <tr>
-                          
-                            <th scope="col">Tên danh mục</th>
-                            <th scope="col">Danh mục cha</th>
+                            
+                            <th scope="col">Tên Thiết kế</th>
                             <th scope="col">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach($catalogs as $catalog)
-                        @if($catalog->id !=0)
+                        @foreach($features as $feature)
                         <tr>
-                           
-                            <td>{{ $catalog->catalog_name }}</td>
-                            <td>{{ $catalog->parent->catalog_name }}</td>
-
-                            <td><a href="{{route('admin.catalogs.edit', $catalog->id)}}" class="btn btn-warning"><svg
+                            
+                            <td>{{ $feature->name }}</td>
+                            <td><a href="{{route('admin.features.edit', $feature->id)}}" class="btn btn-warning"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path
@@ -58,7 +54,7 @@
                                         <path fill-rule="evenodd"
                                             d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                     </svg></a>
-                                <a href="{{route('admin.catalogs.delete', $catalog->id)}}" class="btn btn-danger"><svg
+                                <a href="{{route('admin.features.delete', $feature->id)}}" class="btn btn-danger"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-trash" viewBox="0 0 16 16">
                                         <path
@@ -68,13 +64,13 @@
                                     </svg></a>
                             </td>
                         </tr>
-                        @endif
+                       
                         @endforeach
 
                     </tbody>
                     @else
                     <tr>
-                        <td colspan="5" class="text-center">Hiện chưa có danh mục nào được tạo!</td>
+                        <td colspan="5" class="text-center">Hiện chưa có Thiết kế nào được tạo!</td>
                     </tr>
                     @endif
 
@@ -82,22 +78,22 @@
 
                 <nav class="">
                     <ul class="mt-4 pagination justify-content-center">
-                        @if ($catalogs->onFirstPage())
+                        @if ($features->onFirstPage())
                         <!-- Không có trang trước đó -->
                         @else
-                        <li class="page-item"><a class="text-dark page-link" href="{{ $catalogs->previousPageUrl() }}">
+                        <li class="page-item"><a class="text-dark page-link" href="{{ $features->previousPageUrl() }}">
                                 < Trước</a>
                         </li>
                         @endif
-                        @for ($i = 1; $i <= $catalogs->lastPage(); $i++)
+                        @for ($i = 1; $i <= $features->lastPage(); $i++)
                             <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $catalogs->url($i) }}">{{$i}}</a></li>
+                                    href="{{ $features->url($i) }}">{{$i}}</a></li>
                             @endfor
 
-                            @if ($catalogs->hasMorePages())
+                            @if ($features->hasMorePages())
                             <!-- Có trang kế tiếp -->
                             <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $catalogs->nextPageUrl() }}">Sau ></a>
+                                    href="{{ $features->nextPageUrl() }}">Sau ></a>
                             </li>
                             @else
                             <!-- Không trang kế tiếp -->

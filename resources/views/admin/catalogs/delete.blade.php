@@ -7,7 +7,7 @@
     <h3 class="mt-2 px-5">Xóa danh mục</h3>
 
     <div class="container mt-2 px-5  mb-2">
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
                 Xóa danh mục {{$catalog->catalog_name}}..
             </div>
@@ -19,14 +19,14 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Mã danh mục</label>
                         <div class="col-sm-10">
-                            <input type="text" name="id" value="{{$catalog->id}}" class="form-control" readonly />
+                            <input type="text" name="id" value="{{$catalog->id}}" class="shadow form-control" readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Tên danh mục</label>
                         <div class="col-sm-10">
                             <input type="text" name="catalog_name" value="{{$catalog->catalog_name}}"
-                                class="form-control" readonly />
+                                class="shadow form-control" readonly />
                         </div>
                     </div>
 
@@ -35,9 +35,9 @@
                         <div class="col-sm-10">
 
                             @if($catalog->parent_id !=0)
-                            <input class="form-control"  type="text" value="{{$catalog->parent->catalog_name}}" readonly>
+                            <input class="form-control shadow"  type="text" value="{{$catalog->parent->catalog_name}}" readonly>
                             @else
-                            <input class="form-control" value="Không có danh mục cha" readonly />
+                            <input class="form-control shadow" value="Không có danh mục cha" readonly />
                             @endif
                         </div>
                     </div>

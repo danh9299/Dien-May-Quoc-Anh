@@ -13,14 +13,14 @@ class CatalogController extends Controller
     public function index()
     {
         //
-        $catalogs = Catalog::all();
-
+        $catalogs =  Catalog::orderBy('id', 'desc')->paginate(6);
         return view('admin.catalogs.index', ['catalogs' => $catalogs]);
     }
     public function search(Request $request)
     {
         $searchText = $request->input('search');
-        $catalogs = Catalog::where('catalog_name', 'LIKE', '%' . $searchText . '%')->get();
+        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
+        $catalogs = Catalog::whereRaw("REPLACE(catalog_name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->paginate(6);
         return view('admin.catalogs.index', ['catalogs' => $catalogs]);
     }
 

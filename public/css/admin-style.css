@@ -123,3 +123,16 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+
+
+
+/*admin product content editor*/
+
+.product-content-editor{
+  height: 1000px; 
+  border: 1px solid black;
+}
+.product-specs-editor{
+  height: 700px;
+}

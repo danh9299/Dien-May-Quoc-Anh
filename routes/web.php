@@ -94,6 +94,7 @@ Route::group(['middleware' => 'check.admin'], function () {
 
     //Products
     Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products.index');
+    Route::get('/admin/products/search',[ProductController::class, 'search'])->name('admin.products.search');
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products/store', [ProductController::class, 'store'])->name('admin.products.store');
 

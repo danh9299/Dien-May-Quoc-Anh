@@ -35,7 +35,6 @@
                 @if(!empty($catalogs) && count($catalogs)>0)
                     <thead>
                         <tr>
-                          
                             <th scope="col">Tên danh mục</th>
                             <th scope="col">Danh mục cha</th>
                             <th scope="col">Hành động</th>
@@ -80,30 +79,39 @@
 
                 </table>
 
-                <nav class="">
-                    <ul class="mt-4 pagination justify-content-center">
-                        @if ($catalogs->onFirstPage())
-                        <!-- Không có trang trước đó -->
-                        @else
-                        <li class="page-item"><a class="text-dark page-link" href="{{ $catalogs->previousPageUrl() }}">
-                                < Trước</a>
-                        </li>
-                        @endif
-                        @for ($i = 1; $i <= $catalogs->lastPage(); $i++)
-                            <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $catalogs->url($i) }}">{{$i}}</a></li>
-                            @endfor
+                <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {{-- Nút Trang trước --}}
+        @if ($catalogs->onFirstPage())
+            <li class="page-item disabled">
+                <span class="page-link">&laquo; Trước</span>
+            </li>
+        @else
+            <li class="page-item">
+                <a class="page-link" href="{{ $catalogs->previousPageUrl() }}" aria-label="Trang trước">&laquo; Trước</a>
+            </li>
+        @endif
 
-                            @if ($catalogs->hasMorePages())
-                            <!-- Có trang kế tiếp -->
-                            <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $catalogs->nextPageUrl() }}">Sau ></a>
-                            </li>
-                            @else
-                            <!-- Không trang kế tiếp -->
-                            @endif
-                    </ul>
-                </nav>
+        {{-- Hiển thị trang hiện tại và các trang gần đó --}}
+        @for ($i = max(1, $catalogs->currentPage() - 3); $i <= min($catalogs->lastPage(), $catalogs->currentPage() + 3); $i++)
+            <li class="page-item {{ $i == $catalogs->currentPage() ? 'active' : '' }}">
+                <a class="page-link" href="{{ $catalogs->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+
+        {{-- Nút Trang kế tiếp --}}
+        @if ($catalogs->hasMorePages())
+            <li class="page-item">
+                <a class="page-link" href="{{ $catalogs->nextPageUrl() }}" aria-label="Trang tiếp">Sau &raquo;</a>
+            </li>
+        @else
+            <li class="page-item disabled">
+                <span class="page-link">Sau &raquo;</span>
+            </li>
+        @endif
+    </ul>
+</nav>
+
 
 
             </div>

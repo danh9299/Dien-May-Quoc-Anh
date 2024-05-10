@@ -30,12 +30,12 @@
                 </div>
             </div>
             <div class="card-body">
-               
+
                 <table class="table">
-                @if(!empty($types) && count($types)>0)
+                    @if(!empty($types) && count($types)>0)
                     <thead>
                         <tr>
-                            
+
                             <th scope="col">Tên phân loại</th>
                             <th scope="col">Hành động</th>
                         </tr>
@@ -43,8 +43,9 @@
                     <tbody>
 
                         @foreach($types as $type)
+                        @if($type->id !=0)
                         <tr>
-                           
+
                             <td>{{ $type->name }}</td>
                             <td><a href="{{route('admin.types.edit', $type->id)}}" class="btn btn-warning"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -64,7 +65,7 @@
                                     </svg></a>
                             </td>
                         </tr>
-                       
+                        @endif
                         @endforeach
 
                     </tbody>
@@ -76,30 +77,42 @@
 
                 </table>
 
-                <nav class="">
-                    <ul class="mt-4 pagination justify-content-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {{-- Nút Trang trước --}}
                         @if ($types->onFirstPage())
-                        <!-- Không có trang trước đó -->
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo; Trước</span>
+                        </li>
                         @else
-                        <li class="page-item"><a class="text-dark page-link" href="{{ $types->previousPageUrl() }}">
-                                < Trước</a>
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $types->previousPageUrl() }}"
+                                aria-label="Trang trước">&laquo; Trước</a>
                         </li>
                         @endif
-                        @for ($i = 1; $i <= $types->lastPage(); $i++)
-                            <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $types->url($i) }}">{{$i}}</a></li>
+
+                        {{-- Hiển thị trang hiện tại và các trang gần đó --}}
+                        @for ($i = max(1, $types->currentPage() - 3); $i <= min($types->lastPage(),
+                            $types->currentPage() + 3); $i++)
+                            <li class="page-item {{ $i == $types->currentPage() ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $types->url($i) }}">{{ $i }}</a>
+                            </li>
                             @endfor
 
+                            {{-- Nút Trang kế tiếp --}}
                             @if ($types->hasMorePages())
-                            <!-- Có trang kế tiếp -->
-                            <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $types->nextPageUrl() }}">Sau ></a>
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $types->nextPageUrl() }}" aria-label="Trang tiếp">Sau
+                                    &raquo;</a>
                             </li>
                             @else
-                            <!-- Không trang kế tiếp -->
+                            <li class="page-item disabled">
+                                <span class="page-link">Sau &raquo;</span>
+                            </li>
                             @endif
                     </ul>
                 </nav>
+
 
 
             </div>

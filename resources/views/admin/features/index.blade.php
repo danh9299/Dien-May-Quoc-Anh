@@ -30,12 +30,12 @@
                 </div>
             </div>
             <div class="card-body">
-               
+
                 <table class="table">
-                @if(!empty($features) && count($features)>0)
+                    @if(!empty($features) && count($features)>0)
                     <thead>
                         <tr>
-                            
+
                             <th scope="col">Tên Thiết kế</th>
                             <th scope="col">Hành động</th>
                         </tr>
@@ -43,8 +43,9 @@
                     <tbody>
 
                         @foreach($features as $feature)
+                        @if($feature->id !=0)
                         <tr>
-                            
+
                             <td>{{ $feature->name }}</td>
                             <td><a href="{{route('admin.features.edit', $feature->id)}}" class="btn btn-warning"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -64,7 +65,7 @@
                                     </svg></a>
                             </td>
                         </tr>
-                       
+                        @endif
                         @endforeach
 
                     </tbody>
@@ -76,30 +77,42 @@
 
                 </table>
 
-                <nav class="">
-                    <ul class="mt-4 pagination justify-content-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {{-- Nút Trang trước --}}
                         @if ($features->onFirstPage())
-                        <!-- Không có trang trước đó -->
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo; Trước</span>
+                        </li>
                         @else
-                        <li class="page-item"><a class="text-dark page-link" href="{{ $features->previousPageUrl() }}">
-                                < Trước</a>
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $features->previousPageUrl() }}"
+                                aria-label="Trang trước">&laquo; Trước</a>
                         </li>
                         @endif
-                        @for ($i = 1; $i <= $features->lastPage(); $i++)
-                            <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $features->url($i) }}">{{$i}}</a></li>
+
+                        {{-- Hiển thị trang hiện tại và các trang gần đó --}}
+                        @for ($i = max(1, $features->currentPage() - 3); $i <= min($features->lastPage(),
+                            $features->currentPage() + 3); $i++)
+                            <li class="page-item {{ $i == $features->currentPage() ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $features->url($i) }}">{{ $i }}</a>
+                            </li>
                             @endfor
 
+                            {{-- Nút Trang kế tiếp --}}
                             @if ($features->hasMorePages())
-                            <!-- Có trang kế tiếp -->
-                            <li class="page-item"><a class="text-dark page-link"
-                                    href="{{ $features->nextPageUrl() }}">Sau ></a>
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $features->nextPageUrl() }}" aria-label="Trang tiếp">Sau
+                                    &raquo;</a>
                             </li>
                             @else
-                            <!-- Không trang kế tiếp -->
+                            <li class="page-item disabled">
+                                <span class="page-link">Sau &raquo;</span>
+                            </li>
                             @endif
                     </ul>
                 </nav>
+
 
 
             </div>

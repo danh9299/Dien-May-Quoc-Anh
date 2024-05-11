@@ -48,17 +48,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        $validator =  $request->validate([
+        $validator = $request->validate([
             'name' => 'required',
             'model' => 'required',
             'price' => 'required|numeric|max:999999999|min:500',
             'old_price' => 'nullable|max:999999999|numeric|min:500',
             'quantity' => 'required|numeric|min:0',
             'image_link' => 'required|file|mimes:jpeg,png,webp,jpg,svg|max:7168',
-            'image_list.*' => 'file|mimes:jpeg,png,webp,jpg,svg|max:7168',          
+            'image_list.*' => 'file|mimes:jpeg,png,webp,jpg,svg|max:7168',
         ]);
 
-        if (!$validator){
+        if (!$validator) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -70,50 +70,46 @@ class ProductController extends Controller
             $product->old_price = $request->price;
         } else {
             $product->old_price = $request->old_price;
-            
+
         }
         $product->quantity = $request->quantity;
         $product->brand_id = $request->brand_id;
         $product->feature_id = $request->feature_id;
         $product->type_id = $request->type_id;
         $product->catalog_id = $request->catalog_id;
-        if ($request->has('content')) {
-            if (is_null($request->content)) {
-                $product->content = "<p>Nội dung đang được cập nhật</p>";
-            } else {
-                $product->content = $request->content;
-            }
-        } else {
+
+        if (is_null($request->content)) {
             $product->content = "<p>Nội dung đang được cập nhật</p>";
-        }
-
-        if ($request->has('specifications')) {
-            if (is_null($request->specifications)) {
-                $product->specifications = "<p>Thông số đang được cập nhật</p>";
-            } else {
-
-                $product->specifications = $request->specifications;
-            }
         } else {
-            $product->specifications = "<p>Thông số đang được cập nhật</p>";
+            $product->content = $request->content;
         }
+
+
+
+        if (is_null($request->specifications)) {
+            $product->specifications = "<p>Thông số đang được cập nhật</p>";
+        } else {
+
+            $product->specifications = $request->specifications;
+        }
+
 
         $imageSaveLocation = public_path('img/product_images');
 
         $mainImage = $request->file('image_link');
-        $mainImageName = time() . '_' . $product->model.'.'.$mainImage->getClientOriginalExtension();
+        $mainImageName = time() . '_' . $product->model . '.' . $mainImage->getClientOriginalExtension();
         $mainImage->move($imageSaveLocation, $mainImageName);
         $product->image_link = $mainImageName;
 
         if ($request->has('image_list')) {
             $imageList = $request->file('image_list');
             $imageListNames = [];
-            $count=1;
+            $count = 1;
             foreach ($imageList as $image) {
-                $imageName = time() . '_' . $product->model.'_'.$count.'.'.$image->getClientOriginalExtension();
+                $imageName = time() . '_' . $product->model . '_' . $count . '.' . $image->getClientOriginalExtension();
                 $image->move($imageSaveLocation, $imageName);
                 $imageListNames[] = $imageName;
-                $count = $count +1;
+                $count = $count + 1;
             }
             $imageListNamesJson = json_encode($imageListNames);
             $product->image_list = $imageListNamesJson;
@@ -144,7 +140,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $features = Feature::all();
         $types = Type::all();
-        return view('admin.products.edit', compact(['product','catalogs','brands', 'features' , 'types']));
+        return view('admin.products.edit', compact(['product', 'catalogs', 'brands', 'features', 'types']));
     }
 
     /**
@@ -153,29 +149,29 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
-    
+
         $rules = [
             'name' => 'required',
             'model' => 'required',
             'price' => 'required|numeric|max:999999999|min:500',
             'old_price' => 'nullable|max:999999999|numeric|min:500',
             'quantity' => 'required|numeric|min:0',
-            
+
         ];
-        
+
         // Conditionally add 'image_link' rule
         $product = Product::find($request->hidden_id);
         if ($request->image_link_check != $product->image_link) {
             $rules['image_link'] = 'required|file|mimes:jpeg,png,webp,jpg,svg|max:7168';
         }
-       if ($request->image_list_check != $product->image_list) {
-          $rules['image_list.*'] = 'file|mimes:jpeg,png,webp,jpg,svg|max:7168';
+        if ($request->image_list_check != $product->image_list) {
+            $rules['image_list.*'] = 'file|mimes:jpeg,png,webp,jpg,svg|max:7168';
         }
-        
-        $validator = $request->validate($rules);
-        
 
-        if (!$validator){
+        $validator = $request->validate($rules);
+
+
+        if (!$validator) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -186,67 +182,61 @@ class ProductController extends Controller
             $product->old_price = $request->price;
         } else {
             $product->old_price = $request->old_price;
-            
+
         }
         $product->quantity = $request->quantity;
         $product->brand_id = $request->brand_id;
         $product->feature_id = $request->feature_id;
         $product->type_id = $request->type_id;
         $product->catalog_id = $request->catalog_id;
-        if ($request->has('content')) {
-            if (is_null($request->content)) {
-                $product->content = "<p>Nội dung đang được cập nhật</p>";
-            } else {
-                $product->content = $request->content;
-            }
-        } else {
+
+        if (is_null($request->content)) {
             $product->content = "<p>Nội dung đang được cập nhật</p>";
-        }
-
-        if ($request->has('specifications')) {
-            if (is_null($request->specifications)) {
-                $product->specifications = "<p>Thông số đang được cập nhật</p>";
-            } else {
-
-                $product->specifications = $request->specifications;
-            }
         } else {
-            $product->specifications = "<p>Thông số đang được cập nhật</p>";
+            $product->content = $request->content;
         }
+
+
+
+        if (is_null($request->specifications)) {
+            $product->specifications = "<p>Thông số đang được cập nhật</p>";
+        } else {
+
+            $product->specifications = $request->specifications;
+        }
+
 
         $imageSaveLocation = public_path('img/product_images');
 
         if ($request->image_link_check != $product->image_link) {
-        $mainImage = $request->file('image_link');
-        $mainImageName = time() . '_' . $product->model.'.'.$mainImage->getClientOriginalExtension();
-        $mainImage->move($imageSaveLocation, $mainImageName);
-        $product->image_link = $mainImageName;
-        }
-        else{
+            $mainImage = $request->file('image_link');
+            $mainImageName = time() . '_' . $product->model . '.' . $mainImage->getClientOriginalExtension();
+            $mainImage->move($imageSaveLocation, $mainImageName);
+            $product->image_link = $mainImageName;
+        } else {
             $product->image_link = $request->image_link_check;
         }
         //Xử lí image_list
-       if ($request->image_list_check != $product->image_list) {
-        if ($request->has('image_list')) {
-            $imageList = $request->file('image_list');
-            $imageListNames = [];
-            $count=1;
-            foreach ($imageList as $image) {
-                $imageName = time() . '_' . $product->model.'_'.$count.'.'.$image->getClientOriginalExtension();
-                $image->move($imageSaveLocation, $imageName);
-                $imageListNames[] = $imageName;
-                $count = $count +1;
+        if ($request->image_list_check != $product->image_list) {
+            if ($request->has('image_list')) {
+                $imageList = $request->file('image_list');
+                $imageListNames = [];
+                $count = 1;
+                foreach ($imageList as $image) {
+                    $imageName = time() . '_' . $product->model . '_' . $count . '.' . $image->getClientOriginalExtension();
+                    $image->move($imageSaveLocation, $imageName);
+                    $imageListNames[] = $imageName;
+                    $count = $count + 1;
+                }
+                $imageListNamesJson = json_encode($imageListNames);
+                $product->image_list = $imageListNamesJson;
+            } else {
+                $imageListNames = [];
+                $product->image_list = json_encode($imageListNames);
             }
-            $imageListNamesJson = json_encode($imageListNames);
-            $product->image_list = $imageListNamesJson;
         } else {
-            $imageListNames = [];
-            $product->image_list = json_encode($imageListNames);
+            $product->image_list = $request->image_list_check;
         }
-    }
-    else{
-        $product->image_list = $request->image_list_check;
-    }
 
         $product->save();
         // Chuyển hướng về trang san pham
@@ -256,7 +246,8 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Product $product){
+    public function delete(Product $product)
+    {
         return view('admin.products.delete', compact('product'));
     }
     public function destroy(Product $product)

@@ -1,8 +1,6 @@
 function previewImage() {
 document.getElementById("image_link").addEventListener("change", function () {
     var file = this.files[0];
-   
-    if (this.files.length >0){
     document.getElementById("changeImage").style.display = "block";
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -13,11 +11,7 @@ document.getElementById("image_link").addEventListener("change", function () {
         document.getElementById("image_link").style.display = "none";
 
     };
-    reader.readAsDataURL(file);}
-    else{
-        document.getElementById('image_link_check').value = ''; 
-        alert('Không có ảnh đại diện được chọn');
-    }
+    reader.readAsDataURL(file);
     
 });
 }
@@ -27,7 +21,7 @@ function previewImages(){
     document.getElementById('image_list').addEventListener('change', function() {
         var files = this.files;
         var imagePreviewContainer = document.getElementById('imagePreviewContainer');
-        if (this.files.length >0){
+       
         document.getElementById('changeImages').style.display = 'block'; 
         var maxFiles = 5; // Số lượng tệp tối đa
         // Kiểm tra số lượng tệp được chọn
@@ -53,11 +47,8 @@ function previewImages(){
                 document.getElementById("image_list").style.display = "none";
             };
             reader.readAsDataURL(file);
-        }}
-        else{
-            document.getElementById('image_list_check').value = ''; 
-            alert('Không có ảnh nào được chọn');
         }
+      
     });
 }
 

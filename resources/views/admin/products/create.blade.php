@@ -170,7 +170,7 @@
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Ảnh đại diện sản phẩm</h6>
                         <input type="file" name="image_link" id="image_link" onclick="previewImage()" class="shadow @error('image_link') is-invalid @enderror form-control" />
-                        <img id="previewImage" src="#" class="mt-2 admin-product-image" alt="Preview" style="display:none;">
+                        <img id="previewImage"  class="mt-2 admin-product-image" alt="Preview" style="display:none;">
                         <a id="changeImage" class="text-danger mt-2" style="max-width:200px; display:none" onclick="chooseAnotherImage()">Xóa ảnh</a>
                         @error('image_link')
                             <span class="invalid-feedback" role="alert">
@@ -198,14 +198,7 @@
                                 </strong>
                             </span>
                             @enderror
-                            @error('image_list[]')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>
-
-                                <p class="text-dark">Vui lòng tải lên các ảnh minh họa!</p>
-                            </strong>
-                        </span>
-                        @enderror
+                         
                     </div>
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary" value="Thêm" />
@@ -217,7 +210,7 @@
     </div>
 </div>
 
-<script src="{{asset('js/admin-preview-image.js')}}"></script>
+<script src="{{asset('js/admin-preview-image-create-products.js')}}"></script>
 
 
 

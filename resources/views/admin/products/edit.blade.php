@@ -186,7 +186,7 @@
                     <!--image-->
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Ảnh đại diện sản phẩm</h6>
-                        <input type="file" name="image_link" id="image_link" onclick="previewImage()"
+                        <input type="file" style="display:none" name="image_link" id="image_link" onclick="previewImage()"
                             class="shadow @error('image_link') is-invalid @enderror form-control" />
                         <input type="text" id="image_link_check" style="display:none" name="image_link_check"
                             value="{{$product->image_link}}">
@@ -207,9 +207,9 @@
                     <!--image list-->
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Các ảnh minh họa sản phẩm</h6>
-                        <input type="file" multiple name="image_list[]" id="image_list"
+                        <input style="@if($product->image_list != "[]")  display:none @endif" type="file" multiple name="image_list[]" id="image_list"
                             class="shadow @error('image_list.*') is-invalid @enderror  form-control" />
-                            <input style="display:none" value="{{$product->image_list}}" name="image_list_check" id="image_list_check"/>
+                            <input style="display:none"  value="{{$product->image_list}}" name="image_list_check" id="image_list_check"/>
 
                         <div class="mt-2" id="imagePreviewContainer">
                             @for ($i=0;$i<count(json_decode($product->image_list));$i = $i + 1)
@@ -251,7 +251,7 @@
     </div>
 </div>
 
-<script src="{{asset('js/admin-preview-image.js')}}"></script>
+<script src="{{asset('js/admin-preview-image-edit-products.js')}}"></script>
 
 
 

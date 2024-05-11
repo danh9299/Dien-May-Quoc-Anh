@@ -1,37 +1,34 @@
 function previewImage() {
 document.getElementById("image_link").addEventListener("change", function () {
     var file = this.files[0];
+   
     if (this.files.length >0){
+    document.getElementById("changeImage").style.display = "block";
     var reader = new FileReader();
     reader.onload = function (e) {
         document.getElementById('image_link_check').value = ''; 
         document.getElementById("previewImage").src = e.target.result;
         document.getElementById("previewImage").style.display = "block";
-        document.getElementById("changeImage").style.display = "block";
       
+        document.getElementById("image_link").style.display = "none";
 
     };
     reader.readAsDataURL(file);}
     else{
         document.getElementById('image_link_check').value = ''; 
-        document.getElementById("previewImage").style.display = "none";
-        document.getElementById("changeImage").style.display = "none";
         alert('Không có ảnh đại diện được chọn');
     }
     
 });
 }
 
+
 function previewImages(){
     document.getElementById('image_list').addEventListener('change', function() {
         var files = this.files;
         var imagePreviewContainer = document.getElementById('imagePreviewContainer');
-        
-        
-
-        document.getElementById('changeImages').style.display = 'block'; 
-
         if (this.files.length >0){
+        document.getElementById('changeImages').style.display = 'block'; 
         var maxFiles = 5; // Số lượng tệp tối đa
         // Kiểm tra số lượng tệp được chọn
         if (files.length > maxFiles) {
@@ -53,13 +50,12 @@ function previewImages(){
                 img.style.maxHeight = '100px';
                 imagePreviewContainer.appendChild(img);
                 document.getElementById('image_list_check').value = ''; 
+                document.getElementById("image_list").style.display = "none";
             };
             reader.readAsDataURL(file);
         }}
         else{
             document.getElementById('image_list_check').value = ''; 
-            document.getElementById("imagePreviewContainer").style.display = "none";
-            document.getElementById("changeImages").style.display = "none";
             alert('Không có ảnh nào được chọn');
         }
     });
@@ -72,11 +68,13 @@ function chooseAnotherImage() {
         document.getElementById('image_link_check').value = ''; 
         document.getElementById('previewImage').style.display = 'none'; // Hide preview image
         document.getElementById('changeImage').style.display = 'none'; // Hide preview image
+        document.getElementById("image_link").style.display = "block";
     }
     function chooseOtherImages() {
         document.getElementById('image_list').value = ''; // Reset input file
         imagePreviewContainer.innerHTML = '';
         document.getElementById('image_list_check').value = ''; 
+        document.getElementById("image_list").style.display = "block";
         document.getElementById('changeImages').style.display = 'none'; // Hide preview image
     }
 

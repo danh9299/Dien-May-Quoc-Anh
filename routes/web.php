@@ -97,7 +97,10 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('/admin/products/search',[ProductController::class, 'search'])->name('admin.products.search');
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/admin/products/store', [ProductController::class, 'store'])->name('admin.products.store');
-
+    Route::get('admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('admin/products/{product}/update', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::get('admin/products/{product}/delete', [ProductController::class, 'delete'])->name('admin.products.delete');
+    Route::delete('admin/products/{product}/destroy', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     //Articles
     Route::get('/admin/articles', function () {
         return view('admin.articles.index');

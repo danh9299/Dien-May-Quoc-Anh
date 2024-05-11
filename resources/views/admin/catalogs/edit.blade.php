@@ -43,7 +43,7 @@
                             <select name="parent_id" class="shadow form-select">
                                 @if(!empty($catalogs) && count($catalogs)>0)
                                 @foreach($catalogs as $item)
-                                <option value="{{$item->id}}">{{$item->catalog_name}}</option>
+                                <option value="{{$item->id}}" {{ $catalog->parent_id == $item->id ? 'selected' : '' }}    >{{$item->catalog_name}}</option>
                                 @endforeach
                                 @endif
                             </select>

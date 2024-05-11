@@ -92,8 +92,8 @@
   /*admin image thumbnail*/
 
   .admin-product-image{
-    max-width: 150px;
-    max-height: 100px;
+    max-width: 120px;
+    max-height: 120px;
   }
 
   .admin-product-add-import-export{
@@ -136,3 +136,13 @@
 .product-specs-editor{
   height: 700px;
 }
+
+
+
+#changeImage:hover{
+cursor: pointer;
+}
+
+#changeImages:hover{
+  cursor: pointer;
+  }

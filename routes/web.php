@@ -8,6 +8,7 @@ use App\HTTP\Controllers\ProductController;
 use App\HTTP\Controllers\FeatureController;
 use App\HTTP\Controllers\TypeController;
 use App\HTTP\Controllers\BrandController;
+use App\HTTP\Controllers\MemberController;
 use App\HTTP\Controllers\AdminForgotPasswordController;
 
 /*
@@ -111,12 +112,22 @@ Route::group(['middleware' => 'check.admin'], function () {
         return view('admin.errors.no-role');
     })->name('admin.errors.no-role');
 
+
+
 });
 //Admin toàn quyền
 Route::group(['middleware' => 'check.admin.role'], function () {
      //Register chỉ dành cho admin quyền 1
      Route::get('/admin/register', [AdminRegisterController::class, 'show'])->name('admin.auth.register.show');
      Route::post('/admin/register', [AdminRegisterController::class, 'register'])->name('admin.auth.register.register');
+
+    //Members
+    Route::get('/admin/members', [MemberController::class, 'index'] )->name('admin.members.index');
+    Route::get('/admin/members/search', [MemberController::class, 'search'] )->name('admin.members.search');
+    Route::get('admin/members/{member}/edit', [MemberController::class, 'edit'])->name('admin.members.edit');
+    Route::put('admin/members/{member}/update', [MemberController::class, 'update'])->name('admin.members.update');
+    Route::get('admin/members/{member}/delete', [MemberController::class, 'delete'])->name('admin.members.delete');
+    Route::delete('admin/members/{member}/destroy', [MemberController::class, 'destroy'])->name('admin.members.destroy');
 });
 
 

@@ -33,7 +33,7 @@ class AdminRegisterController extends Controller
 
 
         
-        return redirect()->route('admin.auth.register.show')->with('success', 'Đăng ký thành công!');
+        return redirect()->route('admin.members.index')->with('success', 'Đăng ký thành viên thành công!');
     }
     }
 

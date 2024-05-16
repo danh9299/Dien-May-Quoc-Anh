@@ -71,4 +71,4 @@ function chooseAnotherImage() {
 
 
 previewImage();
-previewImages()
+previewImages();

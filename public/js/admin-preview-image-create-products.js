@@ -73,5 +73,5 @@ function previewImage() {
     
     
     previewImage();
-    previewImages()
+    previewImages();
     

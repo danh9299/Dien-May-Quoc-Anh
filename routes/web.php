@@ -8,6 +8,7 @@ use App\HTTP\Controllers\ProductController;
 use App\HTTP\Controllers\FeatureController;
 use App\HTTP\Controllers\TypeController;
 use App\HTTP\Controllers\BrandController;
+use App\HTTP\Controllers\ArticleController;
 use App\HTTP\Controllers\MemberController;
 use App\HTTP\Controllers\AdminForgotPasswordController;
 
@@ -102,10 +103,17 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::put('admin/products/{product}/update', [ProductController::class, 'update'])->name('admin.products.update');
     Route::get('admin/products/{product}/delete', [ProductController::class, 'delete'])->name('admin.products.delete');
     Route::delete('admin/products/{product}/destroy', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    
     //Articles
-    Route::get('/admin/articles', function () {
-        return view('admin.articles.index');
-    })->name('admin.articles.index');
+    Route::get('/admin/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
+    Route::get('/admin/articles/search',[ArticleController::class, 'search'])->name('admin.articles.search');
+    Route::get('/admin/articles/create', [ArticleController::class, 'create'])->name('admin.articles.create');
+    Route::post('/admin/articles/store', [ArticleController::class, 'store'])->name('admin.articles.store');
+    Route::get('admin/articles/{article}/edit', [ArticleController::class, 'edit'])->name('admin.articles.edit');
+    Route::put('admin/articles/{article}/update', [ArticleController::class, 'update'])->name('admin.articles.update');
+    Route::get('admin/articles/{article}/delete', [ArticleController::class, 'delete'])->name('admin.articles.delete');
+    Route::delete('admin/articles/{article}/destroy', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
+    
 
     //Errors
     Route::get('/admin/errors/no-role', function(){
@@ -121,7 +129,7 @@ Route::group(['middleware' => 'check.admin.role'], function () {
      Route::get('/admin/register', [AdminRegisterController::class, 'show'])->name('admin.auth.register.show');
      Route::post('/admin/register', [AdminRegisterController::class, 'register'])->name('admin.auth.register.register');
 
-    //Members
+    //Chỉ admin quyền 1 được quản lí thông tin các thành viên khác
     Route::get('/admin/members', [MemberController::class, 'index'] )->name('admin.members.index');
     Route::get('/admin/members/search', [MemberController::class, 'search'] )->name('admin.members.search');
     Route::get('admin/members/{member}/edit', [MemberController::class, 'edit'])->name('admin.members.edit');

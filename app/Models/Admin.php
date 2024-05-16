@@ -9,4 +9,9 @@ class Admin extends Authenticatable
 {
     use HasFactory;
     protected $guard = 'admin'; // Đây là tên guard sẽ được sử dụng trong file config/auth.php
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

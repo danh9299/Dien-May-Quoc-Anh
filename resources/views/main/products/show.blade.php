@@ -5,9 +5,10 @@
     <!--Đường liên kết tới sản phẩm-->
     <div class="container mt-2 qa-product-show-links">
         <ul>
-            <li><a href="#"> Trang chủ </a> > </li>
-            <li><a href="#"> Danh mục</a> > </li>
-            <li><a href="#"> Sản phẩm </a> </li>
+            <li><a href="{{route('main.home')}}"> Trang chủ </a> > </li>
+            <li><a href="#"> {{$product->catalog->catalog_name}}</a> > </li>
+            <li><a href="#"> {{$product->name}} </a> </li>
+           
         </ul>
     </div>
 
@@ -27,17 +28,19 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://cdn.tgdd.vn/Products/Images/1942/305837/smart-tivi-qled-4k-98-inch-samsung-qa98q80c-1.jpg"
-                                class="d-block w-100" alt="...">
+                            <img src="{{ asset('/img/product_images/' . $product->image_link) }}" class="d-block w-100"
+                                alt="...">
                         </div>
+                      
+                        @if(is_array( json_decode($product->image_list )))
+                        @foreach(json_decode($product->image_list) as $image_list_item)
                         <div class="carousel-item">
-                            <img src="https://cdn.tgdd.vn/Products/Images/1942/305837/smart-tivi-qled-4k-98-inch-samsung-qa98q80c-2.jpg"
-                                class="d-block w-100" alt="...">
+                            <img src="{{ asset('/img/product_images/' . $image_list_item) }}" class="d-block w-100"
+                                alt="...">
                         </div>
-                        <div class="carousel-item">
-                            <img src="https://cdn.tgdd.vn/Products/Images/1942/305837/smart-tivi-qled-4k-98-inch-samsung-qa98q80c-3.jpg"
-                                class="d-block w-100" alt="...">
-                        </div>
+                        @endforeach
+                        @endif
+
                     </div>
                     <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev">
@@ -55,20 +58,20 @@
             <!-- Product Name và price -->
             <div class="col-lg-6 col-md-5 col-sm-12 mb-3  px-5">
 
-                <h2>Smart Tivi QLED 4K 98 inch Samsung QA98Q80C</h2>
+                <h1>{{$product->name}}</h1>
                 <ul>
-                    <li>Mã sản phẩm: <b>QA98Q80C</b></li>
-                    <li>Thương hiệu: <a href="#">Samsung</a></li>
-                    <li>Tình trạng: <b>Còn hàng</b></li>
-                    <li>Cỡ: <b>98 inch</b></li>
-                    <li>Tính năng: <b>Độ phân giải 4K</b></li>
+                    <li>Mã sản phẩm: <b>{{$product->model}}</b></li>
+                    <li>Thương hiệu: <a href="#">{{$product->brand->name}}</a></li>
+                    <li>Tình trạng: <b>@if($product->quantity > 0) Còn hàng @else Hết hàng @endif</b></li>
+                    <li>Thiết kế: <b>Độ phân giải 4K</b></li>
                 </ul>
                 <ul style="list-style:none">
                     <li>
-                        <h2>Giá bán: <b class="text-danger">97.500.000đ</b> </h2>
+                        <h2>Giá bán: <b class="text-danger"> {{number_format($product->price, 0, ',', '.')}}</b> </h2>
                     </li>
                     <li>
-                        <h4>Giá cũ: <b class="text-secondary"><del>98.500.000đ</del></b> </h4>
+                        <h4>Giá cũ: <b class="text-secondary"><del>
+                                    {{number_format($product->old_price, 0, ',', '.')}}</del></b> </h4>
                     </li>
                 </ul>
 
@@ -87,6 +90,27 @@
                         giỏ</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!--Nội dung bài viết-->
+    <div class="container mt-5 mb-3">
+        <div class="row px-3">
+            <div class="col-lg-8 col-md-12" >
+            <div class="text-center">
+                <h1> Thông tin sản phẩm</h1>
+            </div>
+            <div   class="qa-product-content-size border border-4 rounded border-dark overflow-auto">
+            {!! $product->content !!}
+            </div>
+        </div>
+       
+            <div class="col-lg-4 col-md-12" > <div class="text-center">
+                <h1>Thông số kỹ thuật</h1>
+            </div>
+            <div  class="qa-product-specifications-size border border-4 rounded border-dark overflow-auto">{!! $product->specifications !!}</div></div>
         </div>
     </div>
 

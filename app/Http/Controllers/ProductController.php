@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Catalog;
 use App\Models\Type;
 use App\Models\Brand;
+use App\Models\Image;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,26 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function HomePageGetAll()
+    {
+        //
+        $tivis = Product::where('catalog_id', 1)->orderBy('updated_at', 'desc')->limit(15)->get();
+        $tulanhs = Product::where('catalog_id', 2)->orderBy('updated_at', 'desc')->limit(15)->get();
+        $maygiats = Product::where('catalog_id', 3)->orderBy('updated_at', 'desc')->limit(15)->get();
+        $dieuhoas = Product::where('catalog_id', 4)->orderBy('updated_at', 'desc')->limit(15)->get();
+        $logo = Image::where('group',1)->first();
+        $slider_images = Image::where('group',2)->get();
+        $long_images = Image::where('group',3)->get();
+        return view('main.home', ['tivis' => $tivis,'tulanhs'=>$tulanhs, 'maygiats' => $maygiats,'dieuhoas' => $dieuhoas, 'logo'=>$logo,'slider_images'=>$slider_images,'long_images'=>$long_images]);
+    }
+    public function HeaderSearch(Request $request)
+    {
+        $searchText = $request->input('search');
+        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
+        $products = Product::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orWhereRaw("REPLACE(model, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.products.index', ['products' => $products]);
+    }
+
     public function index()
     {
         //
@@ -27,6 +48,14 @@ class ProductController extends Controller
         $products = Product::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orWhereRaw("REPLACE(model, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.products.index', ['products' => $products]);
     }
+    /**
+     * Display the specified resource.
+     */
+    public function show(Product $product)
+    {
+        //
+        $logo = Image::where('group',1)->first();
+        return view('main.products.show', compact('product','logo'));}
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +70,7 @@ class ProductController extends Controller
 
         return view('admin.products.create', ['catalogs' => $catalogs, 'brands' => $brands, 'features' => $features, 'types' => $types]);
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -122,13 +152,8 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Thêm mới Sản phẩm thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    
+    
 
     /**
      * Show the form for editing the specified resource.

@@ -74,7 +74,7 @@
                 <div class="qa-logo text-center text-lg-left">
                     <a href="{{ route('main.home') }}"
                         ><img
-                            src="{{ asset('img/logo/QA.png') }}"
+                            src="{{ asset('/img/logo/' . $logo->image_link) }}"
                             class=""
                             alt="dienmayquocanh.com"
                     /></a>

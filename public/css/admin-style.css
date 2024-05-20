@@ -146,3 +146,14 @@ cursor: pointer;
 #changeImages:hover{
   cursor: pointer;
   }
+
+
+/*Class cho ảnh trong mục admim/images */
+.admin-home-images a{
+  text-decoration: none;
+  color:black;
+}
+.admin-home-images a:hover{
+  cursor:pointer;
+  color:red;
+}

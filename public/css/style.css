@@ -2,6 +2,29 @@ body {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+/*CSS cho scroll bar*/
+/* scrollbar height and width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(226, 83, 83);
+  }
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(226, 83, 83);;
+  }
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
 /*CSS cho qa-top-nav*/
 .qa-top-nav {
     margin: 0; /*bỏ khoảng trống xung quanh*/
@@ -266,3 +289,23 @@ footer{
 }
 
 
+
+/*---------------*/
+.qa-product-content-size{
+   max-height: 800px;
+}
+
+
+.qa-product-specifications-size{
+    max-height:500px;
+}
+
+
+@media (max-width: 500.98px){
+    .qa-product-content-size{
+        max-height: 500px;
+     }   
+     .qa-product-specifications-size{
+        max-height:300px;
+    }
+}

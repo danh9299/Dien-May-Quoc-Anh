@@ -10,6 +10,7 @@ use App\HTTP\Controllers\TypeController;
 use App\HTTP\Controllers\BrandController;
 use App\HTTP\Controllers\ArticleController;
 use App\HTTP\Controllers\MemberController;
+use App\HTTP\Controllers\ImageController;
 use App\HTTP\Controllers\AdminForgotPasswordController;
 
 /*
@@ -24,10 +25,8 @@ use App\HTTP\Controllers\AdminForgotPasswordController;
 */
 
 //Main pages
-Route::get('/', function () {
-    return view('main.home');
-})->name('main.home');
-
+Route::get('/', [ProductController::class, 'homePageGetAll'])->name('main.home');
+Route::get('/products/{product}/show', [ProductController::class, 'show'])->name('main.products.show');
 Route::get('/login', function () {
     return view('main.auth.login');
 })->name('main.auth.login');
@@ -36,9 +35,11 @@ Route::get('/register', function () {
     return view('main.auth.register');
 })->name('main.auth.register');
 
-Route::get('/products/show', function () {
-    return view('main.products.show');
-})->name('main.products.show');
+
+
+
+
+
 
 //Admin pages
 Route::group(['middleware' => 'check.admin'], function () {
@@ -121,6 +122,8 @@ Route::group(['middleware' => 'check.admin'], function () {
     })->name('admin.errors.no-role');
 
 
+    //Images
+    Route::get('/admin/images',[ImageController::class, 'index'])->name('admin.images.index');
 
 });
 //Admin toàn quyền
@@ -136,6 +139,8 @@ Route::group(['middleware' => 'check.admin.role'], function () {
     Route::put('admin/members/{member}/update', [MemberController::class, 'update'])->name('admin.members.update');
     Route::get('admin/members/{member}/delete', [MemberController::class, 'delete'])->name('admin.members.delete');
     Route::delete('admin/members/{member}/destroy', [MemberController::class, 'destroy'])->name('admin.members.destroy');
+
+    
 });
 
 

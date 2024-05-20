@@ -4,78 +4,34 @@
 <main class="row">
     <!--Slider cho banner-->
     <div class="slider container">
-        <div
-            id="carouselExampleIndicators"
-            class="carousel slide"
-            data-bs-ride="carousel"
-        >
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="0"
-                    class="active"
-                    aria-current="true"
-                    aria-label="Slide 1"
-                ></button>
-                <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="1"
-                    aria-label="Slide 2"
-                ></button>
-                <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide-to="2"
-                    aria-label="Slide 3"
-                ></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img
-                        src="https://thegioidienmay247.vn/wp-content/uploads/2023/08/79b537a947299577cc38-1.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
+                @if(count($slider_images)>0)
+                @foreach($slider_images as $index => $slider_image)
+                <div class="carousel-item @if($index==0) active @endif">
+                    <img src="{{ asset('/img/slider-banner/' . $slider_image->image_link) }}" class="d-block w-100"
+                        alt="..." />
                 </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://thegioidienmay247.vn/wp-content/uploads/2022/10/2.png"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
-                <div class="carousel-item">
-                    <img
-                        src="https://thegioidienmay247.vn/wp-content/uploads/2022/11/6118a6efcbca12944bdb.jpg"
-                        class="d-block w-100"
-                        alt="..."
-                    />
-                </div>
+
+                @endforeach
+                @endif
             </div>
-            <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev"
-            >
-                <span
-                    class="carousel-control-prev-icon"
-                    aria-hidden="true"
-                ></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Trước</span>
             </button>
-            <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next"
-            >
-                <span
-                    class="carousel-control-next-icon"
-                    aria-hidden="true"
-                ></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Sau</span>
             </button>
         </div>
@@ -88,46 +44,44 @@
             <div class="col-12 py-3">
                 <div class="row">
                     <div
-                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1"
-                    >
+                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1">
                         <h2>TIVI</h2>
                     </div>
                 </div>
                 <div class="container">
                     <div class="home-product d-flex">
-                        @for ($i = 0; $i < 10; $i++)
+                        @if(count($tivis)>0)
+                        @foreach ($tivis as $tivi)
                         <!-- Product -->
-                        <div
-                            class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
-                        >
-                        <a href="{{route('main.products.show')}}">
-                        <div class="text-center mt-1 "> 
-                        <img
-                                src="https://product.hstatic.net/200000632093/product/smart-tivi-qled-4k-55-inch-samsung-qa55q80c-1-180x120_-_copy_29bea3df638846b6a5cbb41802242082_large.jpg"
-                                class="img-thumbnail border-0"
-                                alt="..."
-                            /></div>   </a>
-                            
+                        <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <a href="{{route('main.products.show',$tivi->id)}}">
+                                <div class="text-center mt-1 ">
+                                    <img src="{{ asset('/img/product_images/' . $tivi->image_link) }}"
+                                        class="img-thumbnail border-0" alt="..." />
+                                </div>
+                            </a>
+
                             <div class="card-body">
-                            <a href="{{route('main.products.show')}}">
-                                <h5 class="card-title">
-                                    Smart Tivi QLED 4K 98 inch Samsung QA98Q80C
-                                </h5></a>
+                                <a href="{{route('main.products.show',$tivi->id)}}">
+                                    <h5 class="card-title">
+                                        {{$tivi->name}}
+                                    </h5>
+                                </a>
                                 <span class="product-price-old">
-                                    99.000.000đ
+                                    {{number_format($tivi->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price"> 97.500.000đ </span>
-                                <button
-                                    class="btn btn-outline-dark"
-                                    type="button"
-                                >
+                                <span class="product-price"> {{number_format($tivi->price, 0, ',', '.')}}</span>
+                                <button class="btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>
                         </div>
                         <!-- Product -->
-                        @endfor
+                        @endforeach
+                        @else
+                        <p>Đang cập nhật</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -136,9 +90,12 @@
     <!-- Tivi-->
 
     <!--Long banner-->
+    @if($long_images->has(0))
     <div class="container-fluid">
-        <img src="{{ asset('img/long-banner/4.png') }}" class="img-fluid" />
+        <img src="{{ asset('/img/long-banner/' . $long_images->get(0)->image_link) }}" class="img-fluid" />
     </div>
+    @endif
+
 
     <!-- Tủ lạnh -->
     <div class="col-12 mt-2 mb-2">
@@ -146,43 +103,43 @@
             <div class="col-12 py-3">
                 <div class="row">
                     <div
-                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1"
-                    >
+                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1">
                         <h2>TỦ LẠNH</h2>
                     </div>
                 </div>
                 <div class="container">
                     <div class="home-product d-flex">
-                        @for ($i = 0; $i < 10; $i++)
+                        @if(count($tulanhs)>0)
+                        @foreach ($tulanhs as $tulanh)
                         <!-- Product -->
-                        <div
-                            class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
-                        >
-                        <div class="text-center mt-1 "> 
-                            <img
-                                src="https://product.hstatic.net/200000632093/product/10025649-tl-sharp-sj-fx630v-st-01_62073da735fc4ec6a0481d6ad1f95271_large.jpg"
-                                class="img-thumbnail border-0"
-                                alt="..."
-                            /></div>
+                        <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <a href="{{route('main.products.show',$tulanh->id)}}">
+                                <div class="text-center mt-1 ">
+                                    <img src="{{ asset('/img/product_images/' . $tulanh->image_link) }}"
+                                        class="img-thumbnail border-0" alt="..." />
+                                </div>
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    Tủ lạnh Sharp 4 cánh 626 Lít SJ-FX630V-ST
-                                </h5>
+                                <a href="{{route('main.products.show',$tulanh->id)}}">
+                                    <h5 class="card-title">
+                                        {{$tulanh->name}}
+                                    </h5>
+                                </a>
                                 <span class="product-price-old">
-                                    18.000.000đ
+                                    {{number_format($tulanh->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price"> 14.500.000đ </span>
-                                <button
-                                    class="btn btn-outline-dark"
-                                    type="button"
-                                >
+                                <span class="product-price">{{number_format($tulanh->price, 0, ',', '.')}} </span>
+                                <button class="btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>
                         </div>
                         <!-- Product -->
-                        @endfor
+                        @endforeach
+                        @else
+                        <p>Đang cập nhật</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -191,9 +148,11 @@
     <!-- Tủ lạnh-->
 
     <!--Long banner-->
+    @if($long_images->has(1))
     <div class="container-fluid">
-        <img src="{{ asset('img/long-banner/3.png') }}" class="img-fluid" />
+        <img src="{{ asset('/img/long-banner/' . $long_images->get(1)->image_link) }}" class="img-fluid" />
     </div>
+    @endif
 
     <!-- Máy giặt -->
     <div class="col-12 mt-2 mb-2">
@@ -201,42 +160,43 @@
             <div class="col-12 py-3">
                 <div class="row">
                     <div
-                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1"
-                    >
+                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1">
                         <h2>MÁY GIẶT</h2>
                     </div>
                 </div>
                 <div class="container">
                     <div class="home-product d-flex">
-                        @for ($i = 0; $i < 10; $i++)
+                        @if(count($maygiats)>0)
+                        @foreach ($maygiats as $maygiat)
                         <!-- Product -->
-                        <div
-                            class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
-                        ><div class="text-center mt-1 "> 
-                            <img
-                                src="https://product.hstatic.net/200000632093/product/may-giat-midea-mfg70-1000-7-kg_ac7b2b4c9af548af90444dc6e1b38672_large.jpg"
-                                class="img-thumbnail border-0"
-                                alt="..."
-                            /></div>
+                        <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <a href="{{route('main.products.show',$maygiat->id)}}">
+                                <div class="text-center mt-1 ">
+                                    <img src="{{ asset('/img/product_images/' . $maygiat->image_link) }}"
+                                        class="img-thumbnail border-0" alt="..." />
+                                </div>
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    Máy giặt 7 Kg Midea MFG70-1000
-                                </h5>
+                                <a href="{{route('main.products.show',$maygiat->id)}}">
+                                    <h5 class="card-title">
+                                        {{$maygiat->name}}
+                                    </h5>
+                                </a>
                                 <span class="product-price-old">
-                                    5.800.000đ
+                                    {{number_format($maygiat->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price"> 4.800.000đ </span>
-                                <button
-                                    class="btn btn-outline-dark"
-                                    type="button"
-                                >
+                                <span class="product-price">{{number_format($maygiat->price, 0, ',', '.')}} </span>
+                                <button class="btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>
                         </div>
                         <!-- Product -->
-                        @endfor
+                        @endforeach
+                        @else
+                        <p>Đang cập nhật</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -245,9 +205,12 @@
     <!-- Máy giặt-->
 
     <!--Long banner-->
+
+    @if($long_images->has(2)))
     <div class="container-fluid">
-        <img src="{{ asset('img/long-banner/2.png') }}" class="img-fluid" />
+        <img src="{{ asset('/img/long-banner/' . $long_images->get(2)->image_link) }}" class="img-fluid" />
     </div>
+    @endif
 
     <!-- Điều hòa -->
     <div class="col-12 mt-2 mb-2">
@@ -255,43 +218,40 @@
             <div class="col-12 py-3">
                 <div class="row">
                     <div
-                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1"
-                    >
+                        class="col-12 text-center bg-secondary-subtle text-dark border-top border-bottom border-dark mb-2 p-1">
                         <h2>ĐIỀU HÒA</h2>
                     </div>
                 </div>
                 <div class="container">
                     <div class="home-product d-flex">
-                        @for ($i = 0; $i < 10; $i++)
+                        @if(count($dieuhoas)>0)
+                        @foreach ($dieuhoas as $dieuhoa)
                         <!-- Product -->
-                        <div
-                            class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2"
-                        >
-                            <img
-                                src="https://product.hstatic.net/200000632093/product/may-lanh-electrolux-inverter-1-5hp-esv12cro-c1-sl_eccd0dc1f07d40bb959557a6576f87c9_large.jpg"
-                                class="img-thumbnail border-0"
-                                alt="..."
-                            />
+                        <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                            <a href="{{route('main.products.show',$dieuhoa->id)}}">
+                                <img src="{{ asset('/img/product_images/' . $dieuhoa->image_link) }}"
+                                    class="img-thumbnail border-0" alt="..." /></a>
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    Điều hòa Electrolux Inverter 1.5HP
-                                    ESV12CRO-C1
-                                </h5>
+                                <a href="{{route('main.products.show',$dieuhoa->id)}}">
+                                    <h5 class="card-title">
+                                        {{$dieuhoa->name}}
+                                    </h5>
+                                </a>
                                 <span class="product-price-old">
-                                    8.800.000đ
+                                    {{number_format($dieuhoa->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price"> 7.800.000đ </span>
-                                <button
-                                    class="btn btn-outline-dark"
-                                    type="button"
-                                >
+                                <span class="product-price"> {{number_format($dieuhoa->price, 0, ',', '.')}} </span>
+                                <button class="btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>
                         </div>
                         <!-- Product -->
-                        @endfor
+                        @endforeach
+                        @else
+                        <p>Đang cập nhật</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -302,8 +262,10 @@
 <!-- Main Content -->
 
 <!--Long banner-->
+@if($long_images->has(3))
 <div class="container-fluid">
-    <img src="{{ asset('img/long-banner/saleoff.png') }}" class="img-fluid" />
+    <img src="{{ asset('/img/long-banner/' . $long_images->get(3)->image_link) }}" class="img-fluid" />
 </div>
+@endif
 
 @endsection

@@ -292,20 +292,28 @@ footer{
 
 /*---------------*/
 .qa-product-content-size{
-   max-height: 800px;
+   max-height: 400px;
+  
+   overflow: hidden;
+
 }
 
 
 .qa-product-specifications-size{
-    max-height:500px;
+    max-height:300px;
+    
+    overflow: hidden;
 }
 
 
 @media (max-width: 500.98px){
     .qa-product-content-size{
-        max-height: 500px;
+        overflow:hidden;
+        max-height: 300px;
      }   
      .qa-product-specifications-size{
-        max-height:300px;
+        max-height:200px;
+        overflow: hidden;
     }
 }
+

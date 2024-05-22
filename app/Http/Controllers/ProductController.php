@@ -54,8 +54,9 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        $tulanhs = Product::where('catalog_id', $product->catalog_id)->inRandomOrder()->limit(10)->get();
         $logo = Image::where('group',1)->first();
-        return view('main.products.show', compact('product','logo'));}
+        return view('main.products.show', compact('product','logo','tulanhs'));}
 
     /**
      * Show the form for creating a new resource.

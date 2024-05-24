@@ -292,7 +292,7 @@ footer{
 
 /*---------------*/
 .qa-product-content-size{
-   max-height: 400px;
+   max-height: 600px;
   
    overflow: hidden;
 
@@ -300,7 +300,7 @@ footer{
 
 
 .qa-product-specifications-size{
-    max-height:300px;
+    max-height:500px;
     
     overflow: hidden;
 }

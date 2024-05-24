@@ -104,7 +104,7 @@
                 <div>
                     <h1 class="text-center"> Thông tin sản phẩm</h1>
                 </div>
-                <div class="qa-product-content-size border border-1 border-bottom-0  border-danger overflow-hidden">
+                <div class="qa-product-content-size   overflow-hidden">
                     {!! $product->content !!}
 
 
@@ -143,12 +143,12 @@
                     <h1>Thông số kỹ thuật</h1>
                 </div>
                 <div
-                    class="qa-product-specifications-size border border-1 border-bottom-0  border-danger overflow-hidden">
+                    class="qa-product-specifications-size bg-secondary-subtle border  border-dark  overflow-hidden">
                     {!!
     $product->specifications !!}</div>
                 <!-- Button trigger modal -->
                 <div class="d-grid gap-2">
-                    <button type="button" class="rounded-top-0 btn btn-danger" data-bs-toggle="modal"
+                    <button type="button" class="rounded-top-0 btn btn-danger border  border-dark border-top-0" data-bs-toggle="modal"
                         data-bs-target="#product-specification-modal">
                         Đọc thêm
                     </button>

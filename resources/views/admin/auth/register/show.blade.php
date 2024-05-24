@@ -41,7 +41,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password_confirmation" class="form-label">Xác nhận Password</label>
-                    <input type="password" name="password_confirmation" class="form-control"
+                    <input type="password"  class="form-control"
                         name="password_confirmation" required>
                 </div>
                 <div class="mb-3">

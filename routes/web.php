@@ -12,7 +12,8 @@ use App\HTTP\Controllers\ArticleController;
 use App\HTTP\Controllers\MemberController;
 use App\HTTP\Controllers\ImageController;
 use App\HTTP\Controllers\AdminForgotPasswordController;
-
+use App\HTTP\Controllers\LoginController;
+use App\HTTP\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,9 +32,12 @@ Route::get('/login', function () {
     return view('main.auth.login');
 })->name('main.auth.login');
 
-Route::get('/register', function () {
-    return view('main.auth.register');
-})->name('main.auth.register');
+Route::get('/login', [LoginController::class, 'show'])->name('main.auth.login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('main.auth.authenticate');
+
+
+Route::get('/register', [RegisterController::class, 'show'])->name('main.auth.register');
+Route::post('/register', [RegisterController::class, 'addnew'])->name('main.auth.addnew');
 
 
 

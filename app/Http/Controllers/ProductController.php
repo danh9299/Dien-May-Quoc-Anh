@@ -25,7 +25,8 @@ class ProductController extends Controller
         $logo = Image::where('group',1)->first();
         $slider_images = Image::where('group',2)->get();
         $long_images = Image::where('group',3)->get();
-        return view('main.home', ['tivis' => $tivis,'tulanhs'=>$tulanhs, 'maygiats' => $maygiats,'dieuhoas' => $dieuhoas, 'logo'=>$logo,'slider_images'=>$slider_images,'long_images'=>$long_images]);
+        $main_catalogs = Catalog::where('parent_id',0)->get();
+        return view('main.home', ['tivis' => $tivis,'tulanhs'=>$tulanhs, 'maygiats' => $maygiats,'dieuhoas' => $dieuhoas, 'logo'=>$logo,'slider_images'=>$slider_images,'long_images'=>$long_images,'main_catalogs' => $main_catalogs]);
     }
     public function HeaderSearch(Request $request)
     {
@@ -56,7 +57,8 @@ class ProductController extends Controller
         //
         $tulanhs = Product::where('catalog_id', $product->catalog_id)->inRandomOrder()->limit(10)->get();
         $logo = Image::where('group',1)->first();
-        return view('main.products.show', compact('product','logo','tulanhs'));}
+        $main_catalogs = Catalog::where('parent_id',0)->get();
+        return view('main.products.show', compact('product','logo','tulanhs','main_catalogs'));}
 
     /**
      * Show the form for creating a new resource.

@@ -7,7 +7,11 @@
         <h2>Đăng Nhập</h2>
     </div>
 </div>
-
+@if (session('success'))
+<div class="alert alert-success mt-5 px-5">
+    {{ session('success') }}
+</div>
+@endif
 <main class="container">
     <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-3 mb-4">
         <div class="row">

@@ -155,196 +155,33 @@
                                 >Trang chủ</a
                             >
                         </li>
+                        @if(count($main_catalogs )>0)
+                        @foreach($main_catalogs as $main_catalog)
+                        @if($main_catalog->id != 0)
                         <li class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle"
                                 href="#"
-                                id="tivi"
                                 data-bs-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
-                                >Tivi</a
+                                >{{$main_catalog->catalog_name}}</a
                             >
+                           
                             <div class="dropdown-menu" aria-labelledby="tivi">
+                            @if($main_catalog->children->count() >0)
+                            @foreach($main_catalog->children as $child_catalog)
                                 <a class="dropdown-item" href="category.html"
-                                    >Tivi Samsung</a
+                                    >{{$child_catalog->catalog_name}}</a
                                 >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tivi Sony</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tivi LG</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tivi TCL</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tivi Aqua</a
-                                >
+                                @endforeach
+                               @endif
                             </div>
+                          
                         </li>
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                id="tu-lanh"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Tủ lạnh</a
-                            >
-                            <div
-                                class="dropdown-menu"
-                                aria-labelledby="tu-lanh"
-                            >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tủ lạnh Toshiba</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tủ lạnh Samsung</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tủ lạnh LG</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tủ lạnh Sharp</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tủ lạnh Aqua</a
-                                >
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                id="dieu-hoa"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Điều hòa</a
-                            >
-                            <div
-                                class="dropdown-menu"
-                                aria-labelledby="dieu-hoa"
-                            >
-                                <a class="dropdown-item" href="category.html"
-                                    >Điều hòa Panasonic</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Điều hòa Casper</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Điều hòa Sumikura</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Điều hòa Gree</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Điều hòa Sharp</a
-                                >
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                id="may-giat-may-say"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Máy giặt máy sấy</a
-                            >
-                            <div
-                                class="dropdown-menu"
-                                aria-labelledby="may-giat-may-say"
-                            >
-                                <a class="dropdown-item" href="category.html"
-                                    >Máy giặt máy sấy LG</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Máy giặt máy sấy Electrolux</a
-                                >
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                id="tu-dong"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Tủ đông</a
-                            >
-                            <div
-                                class="dropdown-menu"
-                                aria-labelledby="tu-dong"
-                            >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tủ đông Alaska</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Tủ đông Sanaky</a
-                                >
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                id="am-thanh"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Âm thanh</a
-                            >
-                            <div
-                                class="dropdown-menu"
-                                aria-labelledby="am-thanh"
-                            >
-                                <a class="dropdown-item" href="category.html"
-                                    >Âm thanh Sony</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Âm thanh Samsung</a
-                                >
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link dropdown-toggle"
-                                href="#"
-                                id="gia-dung"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                >Gia dụng</a
-                            >
-                            <div
-                                class="dropdown-menu"
-                                aria-labelledby="gia-dung"
-                            >
-                                <a class="dropdown-item" href="category.html"
-                                    >Nồi cơm</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Lò vi sóng</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Máy lọc không khí</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Máy hút ẩm</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Máy rửa bát</a
-                                >
-                                <a class="dropdown-item" href="category.html"
-                                    >Máy hút bụi</a
-                                >
-                            </div>
-                        </li>
+                        @endif
+                        @endforeach
+                        @endif
                     </ul>
                 </div>
             </nav>

@@ -16,6 +16,15 @@ class ImageController extends Controller
         return view('admin.images.index');
     }
 
+    public function editLogo(){
+        return view('admin.images.logo.edit');
+    }
+    public function editLongBanners(){
+        return view('admin.images.long-banners.edit');
+    }
+    public function editSliderBanners(){
+        return view('admin.images.slider-banners.edit');
+    }
     /**
      * Show the form for creating a new resource.
      */

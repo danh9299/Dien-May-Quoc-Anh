@@ -128,6 +128,9 @@ Route::group(['middleware' => 'check.admin'], function () {
 
     //Images
     Route::get('/admin/images',[ImageController::class, 'index'])->name('admin.images.index');
+    Route::get('/admin/images/logo',[ImageController::class, 'editLogo'])->name('admin.images.logo.edit');
+    Route::get('/admin/images/long-banners',[ImageController::class, 'editLongBanners'])->name('admin.images.long-banners.edit');
+    Route::get('/admin/images/slider-banners',[ImageController::class, 'editSliderBanners'])->name('admin.images.slider-banners.edit');
 
 });
 //Admin toàn quyền

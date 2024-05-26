@@ -12,9 +12,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //HOME
+     
     public function HomePageGetAll()
     {
         //
@@ -26,8 +25,17 @@ class ProductController extends Controller
         $slider_images = Image::where('group',2)->get();
         $long_images = Image::where('group',3)->get();
         $main_catalogs = Catalog::where('parent_id',0)->get();
-        return view('main.home', ['tivis' => $tivis,'tulanhs'=>$tulanhs, 'maygiats' => $maygiats,'dieuhoas' => $dieuhoas, 'logo'=>$logo,'slider_images'=>$slider_images,'long_images'=>$long_images,'main_catalogs' => $main_catalogs]);
+        $brands = Brand::all();
+        return view('main.home', ['tivis' => $tivis,'tulanhs'=>$tulanhs, 'maygiats' => $maygiats,'dieuhoas' => $dieuhoas, 'logo'=>$logo,'slider_images'=>$slider_images,'long_images'=>$long_images,'main_catalogs' => $main_catalogs,'brands'=>$brands]);
     }
+    public function show(Product $product)
+    {
+        //
+        $tulanhs = Product::where('catalog_id', $product->catalog_id)->inRandomOrder()->limit(10)->get();
+        $logo = Image::where('group',1)->first();
+        $main_catalogs = Catalog::where('parent_id',0)->get();
+        $brands = Brand::all();
+        return view('main.products.show', compact('product','logo','tulanhs','main_catalogs','brands'));}
     public function HeaderSearch(Request $request)
     {
         $searchText = $request->input('search');
@@ -36,6 +44,7 @@ class ProductController extends Controller
         return view('admin.products.index', ['products' => $products]);
     }
 
+    //ADMIN
     public function index()
     {
         //
@@ -52,13 +61,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
-    {
-        //
-        $tulanhs = Product::where('catalog_id', $product->catalog_id)->inRandomOrder()->limit(10)->get();
-        $logo = Image::where('group',1)->first();
-        $main_catalogs = Catalog::where('parent_id',0)->get();
-        return view('main.products.show', compact('product','logo','tulanhs','main_catalogs'));}
+    
 
     /**
      * Show the form for creating a new resource.

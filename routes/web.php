@@ -128,10 +128,12 @@ Route::group(['middleware' => 'check.admin'], function () {
 
     //Images
     Route::get('/admin/images',[ImageController::class, 'index'])->name('admin.images.index');
-    Route::get('/admin/images/logo',[ImageController::class, 'editLogo'])->name('admin.images.logo.edit');
+    Route::get('/admin/images/logo/edit',[ImageController::class, 'editLogo'])->name('admin.images.logo.edit');
+    Route::put('/admin/images/logo/update',[ImageController::class, 'updateLogo'])->name('admin.images.logo.update');
     Route::get('/admin/images/long-banners',[ImageController::class, 'editLongBanners'])->name('admin.images.long-banners.edit');
+    Route::put('/admin/images/long-banners/update',[ImageController::class, 'updateLongBanners'])->name('admin.images.long-banners.update');
     Route::get('/admin/images/slider-banners',[ImageController::class, 'editSliderBanners'])->name('admin.images.slider-banners.edit');
-
+    Route::put('/admin/images/slider-banners/update',[ImageController::class, 'updateSliderBanners'])->name('admin.images.slider-banners.update');
 });
 //Admin toàn quyền
 Route::group(['middleware' => 'check.admin.role'], function () {

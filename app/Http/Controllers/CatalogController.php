@@ -107,6 +107,9 @@ class CatalogController extends Controller
             // Cập nhật parent_id của các danh mục con về 0
             $catalog->children()->update(['parent_id' => 0]);
         }
+        if($catalog->products->isNotEmpty()){
+            $catalog->products()->update(['catalog_id'=>0]);
+        }
         $catalog->delete();
 
         return redirect()->route('admin.catalogs.index')->with('success', 'Xóa danh mục thành công!');

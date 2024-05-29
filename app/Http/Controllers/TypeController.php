@@ -96,6 +96,9 @@ class TypeController extends Controller
     public function destroy(Type $type)
     {
         //
+        if($type->products->isNotEmpty()){
+            $type->products()->update(['type_id'=>0]);
+        }
         $type->delete();
 
         return redirect()->route('admin.types.index')->with('success', 'Xóa phân loại thành công!');

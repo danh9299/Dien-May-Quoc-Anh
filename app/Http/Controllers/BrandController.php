@@ -96,6 +96,9 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         //
+        if($brand->products->isNotEmpty()){
+            $brand->products()->update(['brand_id'=>0]);
+        }
         $brand->delete();
 
         return redirect()->route('admin.brands.index')->with('success', 'Xóa hãng thành công!');

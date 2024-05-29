@@ -96,6 +96,9 @@ class FeatureController extends Controller
     public function destroy(Feature $feature)
     {
         //
+        if($feature->products->isNotEmpty()){
+            $feature->products()->update(['feature_id'=>0]);
+        }
         $feature->delete();
 
         return redirect()->route('admin.features.index')->with('success', 'Xóa Thiết kế thành công!');

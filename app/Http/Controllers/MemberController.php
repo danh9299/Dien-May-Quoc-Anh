@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use Illuminate\Validation\Rule;
 class MemberController extends Controller
 {
     /**
@@ -59,15 +60,18 @@ class MemberController extends Controller
      */
     public function update(Request $request, Admin $member)
     {
+        $member = Admin::find($request->hidden_id);
         //
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => [
+                Rule::unique('admins')->ignore($member->id),
+            ],
             'username' => 'required',
             'role' => 'required',
         ]);
 
-        $member = Admin::find($request->hidden_id);
+        
         $member->name = $request->name;
         $member->username = $request->username;
         $member->email = $request->email;

@@ -14,6 +14,7 @@ use App\HTTP\Controllers\ImageController;
 use App\HTTP\Controllers\AdminForgotPasswordController;
 use App\HTTP\Controllers\LoginController;
 use App\HTTP\Controllers\RegisterController;
+use App\HTTP\Controllers\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,6 +135,13 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::put('/admin/images/long-banners/update',[ImageController::class, 'updateLongBanners'])->name('admin.images.long-banners.update');
     Route::get('/admin/images/slider-banners',[ImageController::class, 'editSliderBanners'])->name('admin.images.slider-banners.edit');
     Route::put('/admin/images/slider-banners/update',[ImageController::class, 'updateSliderBanners'])->name('admin.images.slider-banners.update');
+
+
+    //Settings
+    Route::get('/admin/settings',[SettingController::class, 'index'])->name('admin.settings.index');
+    Route::get('/admin/settings/account/edit',[SettingController::class, 'editAccountInfo'])->name('admin.settings.account.edit');
+    Route::put('/admin/settings/account/update',[SettingController::class, 'updateAccountInfo'])->name('admin.settings.account.update');
+    
 });
 //Admin toàn quyền
 Route::group(['middleware' => 'check.admin.role'], function () {
@@ -149,7 +157,11 @@ Route::group(['middleware' => 'check.admin.role'], function () {
     Route::get('admin/members/{member}/delete', [MemberController::class, 'delete'])->name('admin.members.delete');
     Route::delete('admin/members/{member}/destroy', [MemberController::class, 'destroy'])->name('admin.members.destroy');
 
-    
+    //Settings
+    Route::get('/admin/settings/general/edit',[SettingController::class, 'editGeneral'])->name('admin.settings.general.edit');
+    Route::put('/admin/settings/general/update',[SettingController::class, 'updateGeneral'])->name('admin.settings.general.update');
+    Route::get('/admin/settings/network/edit',[SettingController::class, 'editNetwork'])->name('admin.settings.network.edit');
+    Route::put('/admin/settings/network/update',[SettingController::class, 'updateNetwork'])->name('admin.settings.network.update');
 });
 
 

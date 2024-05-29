@@ -49,12 +49,12 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Email thành viên</label>
                         <div class="col-sm-10">
-                            <input type="text" name="email" value="{{$member->email}}"
-                                class="shadow @error('email') is-invalid @enderror form-control" />
+                            <input type="email" name="email" value="{{$member->email}}"
+                                class="shadow @error('email') is-invalid @enderror form-control" required/>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>
-                                    <p class="text-danger">Email không được để trống!</p>
+                                    <p class="text-danger">Email bạn vừa nhập đã tồn tại! Vui lòng chọn email khác hoặc giữ nguyên email hiện có</p>
                                 </strong>
                             </span>
                             @enderror

@@ -1,5 +1,6 @@
 @extends('main.master')
 @section('content')
+
 <!-- Main Content -->
 <main class="row">
     <!--Đường liên kết tới sản phẩm-->

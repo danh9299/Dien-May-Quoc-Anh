@@ -1,3 +1,8 @@
+<?php 
+    use App\Models\Image;
+    $logo = Image::where('group',1)->first();
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +23,7 @@
         <link
             rel="icon"
             type="image/x-icon"
-            href="{{ asset('img/logo/QA.png') }}"
+            href="{{ asset('img/logo/'.$logo->image_link) }}"
         />
     </head>
     <body>

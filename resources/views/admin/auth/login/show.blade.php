@@ -1,3 +1,9 @@
+<?php 
+    use App\Models\Image;
+
+$logo = Image::where('group', 1)->first();
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +17,13 @@
 
 
     <!--Favicon thay logo trên tab-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/QA.png') }}" />
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/' . $logo->image_link) }}" />
 </head>
 
 <body>
     <div class="mt-5 text-center px-5">
-        <img class="img-thumbnail " src="{{asset('img/logo/QA.png')}}">
+        <img class="img-thumbnail " src="{{ asset('img/logo/' . $logo->image_link) }}">
     </div>
     <div class="container w-75 mt-5 px-5 mb-5">
         <div class="card">
@@ -37,7 +44,7 @@
                     <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 </form>
                 @if ($errors->has('username'))
-                <span class="text-danger mt-2">{{ $errors->first('username') }}</span>
+                    <span class="text-danger mt-2">{{ $errors->first('username') }}</span>
                 @endif
 
             </div>
@@ -50,7 +57,7 @@
     <!--Bundle-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 </body>
 
 </html>

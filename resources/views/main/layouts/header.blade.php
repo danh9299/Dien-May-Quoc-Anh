@@ -1,3 +1,12 @@
+<?php
+use App\Models\Catalog;
+use App\Models\Brand;
+use App\Models\Image;
+$logo = Image::where('group',1)->first();
+$main_catalogs = Catalog::where('parent_id',0)->get();
+$brands = Brand::all();
+?>
+
 <header class="container-fluid">
     <!-- Top Nav -->
     <div class="col-12 bg-danger py-2 d-md-block d-none">

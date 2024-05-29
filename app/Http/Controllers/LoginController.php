@@ -10,9 +10,8 @@ class LoginController extends Controller
 {
     //
     public function show(){
-        $logo = Image::where('group',1)->first();
-        $main_catalogs = Catalog::where('parent_id',0)->get();
-        return view('main.auth.login', ['logo'=>$logo, 'main_catalogs'=>$main_catalogs]);}
+        
+        return view('main.auth.login');}
     
         public function authenticate(Request $request): RedirectResponse
         {

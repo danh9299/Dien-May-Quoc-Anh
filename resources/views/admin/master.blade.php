@@ -1,3 +1,8 @@
+<?php 
+    use App\Models\Image;
+    $logo = Image::where('group',1)->first();
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin-style.css') }}" />
 
     <!--Favicon thay logo trên tab-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/QA.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/'.$logo->image_link) }}" />
     <!--Tiny MCE-->
     <script src="https://cdn.tiny.cloud/1/6dn912idv9vs62u74uqn6ngifxnt4cs9u8meho1uga5aj5yt/tinymce/7/tinymce.min.js"
         referrerpolicy="origin"></script>

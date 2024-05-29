@@ -12,9 +12,8 @@ class RegisterController extends Controller
     //
     public function show()
     {
-        $logo = Image::where('group', 1)->first();
-        $main_catalogs = Catalog::where('parent_id', 0)->get();
-        return view('main.auth.register', ['logo' => $logo, 'main_catalogs' => $main_catalogs]);
+       
+        return view('main.auth.register');
     }
     public function addnew(Request $request)
     {

@@ -1,5 +1,9 @@
 @extends('main.master') @section('content')
-
+<?php
+use App\Models\Image;
+$slider_images = Image::where('group',2)->get();
+$long_images = Image::where('group',3)->get();
+?>
 <!-- Main Content -->
 <main class="row">
     <!--Slider cho banner-->

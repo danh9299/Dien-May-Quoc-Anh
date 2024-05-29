@@ -1,6 +1,11 @@
+<?php 
+    use App\Models\Image;
+    $logo = Image::where('group',1)->first();
+    ?>
 <!--Sidebar navigations desktop-->
 <div class="bg-danger admin-sidebar-navigations d-lg-block d-none">
-   <h3  class="mt-2 text-center text-light">Menu Quản trị</h3><hr>
+
+<img class="img-thumbnail text-center mt-2 " src="{{ asset('img/logo/' . $logo->image_link) }}"><hr>
     <!--List navigations-->
     <ul>
         <li class="p-2">
@@ -99,7 +104,7 @@
     <div id="mobileSidebar" class="mobile-sidebar bg-danger">
         <div class="position-absolute top-0 end-0"><button class="closebtn " id="closeSidebar"
                 onclick="closeSidebar()">X</button></div>
-                <h3 class="mt-2 text-center text-light">Menu Quản trị</h3><hr>
+                <img class="img-thumbnail text-center mt-2 " src="{{ asset('img/logo/' . $logo->image_link) }}"><hr>
         <!--List navigations-->
         <ul>
             <li class="p-2">

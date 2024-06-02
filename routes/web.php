@@ -109,7 +109,9 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::put('admin/products/{product}/update', [ProductController::class, 'update'])->name('admin.products.update');
     Route::get('admin/products/{product}/delete', [ProductController::class, 'delete'])->name('admin.products.delete');
     Route::delete('admin/products/{product}/destroy', [ProductController::class, 'destroy'])->name('admin.products.destroy');
-    
+    Route::get('/admin/products/{product}/quick-edit', [ProductController::class, 'quickEdit'])->name('admin.products.quickEdit');
+    Route::put('/admin/products/{product}/quick-update', [ProductController::class, 'quickUpdate'])->name('admin.products.quickUpdate');
+
     //Articles
     Route::get('/admin/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
     Route::get('/admin/articles/search',[ArticleController::class, 'search'])->name('admin.articles.search');

@@ -266,6 +266,27 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Cập nhật sản phẩm thành công!');
     }
 
+
+    public function quickEdit($id){
+        
+        $product = Product::findOrFail($id);
+        return response()->json($product);
+    }
+    public function quickUpdate(Request $request, $id)
+{
+    
+    
+
+        $product = Product::findOrFail($id);
+    // Cập nhật thông tin sản phẩm
+    $product->name = $request->name;
+    $product->price = $request->price;
+    $product->model = $request->model;
+    $product->save();
+    
+    return response()->json(['message' => 'Cập nhật thành công!']);
+}
+
     /**
      * Remove the specified resource from storage.
      */

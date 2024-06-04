@@ -29,6 +29,7 @@ use App\HTTP\Controllers\SettingController;
 //Main pages
 Route::get('/', [ProductController::class, 'homePageGetAll'])->name('main.home');
 Route::get('/products/{product}/show', [ProductController::class, 'show'])->name('main.products.show');
+Route::get('/products/{catalog}',[ProductController::class, 'listNoBrand'])->name('main.products.list-no-brand');
 Route::get('/login', function () {
     return view('main.auth.login');
 })->name('main.auth.login');
@@ -39,7 +40,8 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('main.auth
 
 Route::get('/register', [RegisterController::class, 'show'])->name('main.auth.register');
 Route::post('/register', [RegisterController::class, 'addnew'])->name('main.auth.addnew');
-
+//Logout
+Route::get('/logout', [LoginController::class, 'logout'])->name('main.auth.logout');
 
 
 

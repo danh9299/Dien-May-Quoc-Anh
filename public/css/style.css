@@ -126,7 +126,6 @@ body {
     padding-bottom: .3rem;
 }
 
-
 .product-price-old {
     text-decoration: line-through;
     color: #ccc;
@@ -139,7 +138,9 @@ body {
     font-weight: 600;
 }
 
-
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
 
 /*css cho footer address*/
@@ -213,67 +214,140 @@ footer{
   width: 100%;
 }
 
-.home-product{
+.qa-home-product{
     overflow:auto;
   
 }
-.home-product::-webkit-scrollbar {
+.qa-home-product::-webkit-scrollbar {
     display: none;
   }
-.home-product .card{
+.qa-home-product .card{
     max-width: 100%;
 }
 
-.home-product .product-price-old{
+.qa-home-product .product-price-old{
     font-size:16px;
 }
-.home-product .product-price{
+.qa-home-product .product-price{
     font-size:18px;
     color:red;
 }
-.home-product .card-title{
+.qa-home-product .card-title{
     font-size: 15px;
-    
 }
 
-.home-product a{
+.qa-home-product a{
     
     text-decoration: none;
     color:black;
 }
 
 @media  (max-width: 767.98px){
-    .home-product .product-price-old{
+    .qa-home-product .product-price-old{
     font-size: 12px;}
 
-    .home-product .product-price{
+    .qa-home-product .product-price{
         font-size:15px;
     }
-    .home-product .card-title{
+    .qa-home-product .card-title{
         font-size: 13px;
     }
 
 }
 @media (max-width: 500.98px){
-    .home-product .product-price-old{
+    .qa-home-product .product-price-old{
     font-size: 11px;}
-    .home-product .product-price{
+    .qa-home-product .product-price{
         font-size:13px;
         color:red;
     }
-    .home-product .card-title{
+    .qa-home-product .card-title{
         font-size: 10px;
     }
 }
 
 @media (max-width: 380.98px){
-    .home-product .product-price-old{
+    .qa-home-product .product-price-old{
     font-size: 12px;}
-    .home-product .product-price{
+    .qa-home-product .product-price{
         font-size:13px;
         color:red;
     }
-    .home-product .btn{
+    .qa-home-product .btn{
+        font-size: 10px;
+    }
+}
+
+
+
+.qa-list-product .card{
+    max-width: 100%;
+}
+
+.qa-list-product .product-price-old{
+    font-size:16px;
+}
+.qa-list-product .product-price{
+    font-size:18px;
+    color:red;
+}
+.qa-list-product .card-title{
+    font-size: 15px;
+}
+
+.qa-list-product a{
+    
+    text-decoration: none;
+    color:black;
+}
+
+@media  (max-width: 767.98px){
+    .qa-list-product{
+        justify-content:space-evenly;
+    }
+    .qa-list-product .product-price-old{
+    font-size: 12px;}
+
+    .qa-list-product .product-price{
+        font-size:15px;
+    }
+    .qa-list-product .card-title{
+        font-size: 13px;
+    }
+    .qa-list-product .card{
+        width: 230px;
+    }
+
+}
+@media (max-width: 500.98px){
+    .qa-list-product{
+        justify-content:space-evenly;
+    }
+    .qa-list-product .product-price-old{
+    font-size: 11px;}
+    .qa-list-product .product-price{
+        font-size:13px;
+        color:red;
+    }
+    .qa-list-product .card-title{
+        font-size: 10px;
+    }
+    .qa-list-product .card{
+        width: 200px;
+    }
+}
+
+@media (max-width: 380.98px){
+    .qa-list-product{
+        justify-content:space-evenly;
+    }
+    .qa-list-product .product-price-old{
+    font-size: 12px;}
+    .qa-list-product .product-price{
+        font-size:13px;
+        color:red;
+    }
+    .qa-list-product .btn{
         font-size: 10px;
     }
 }

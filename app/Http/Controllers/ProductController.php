@@ -23,11 +23,26 @@ class ProductController extends Controller
         $dieuhoas = Product::where('catalog_id', 4)->orderBy('updated_at', 'desc')->limit(15)->get();
         return view('main.home', ['tivis' => $tivis,'tulanhs'=>$tulanhs, 'maygiats' => $maygiats,'dieuhoas' => $dieuhoas]);
     }
+
+    public function listNoBrand(Catalog $catalog){
+        
+        $filter_brands = Brand::whereHas('products', function($query) use ($catalog) {
+            $query->where('catalog_id', $catalog->id);
+        })->get();
+        $filter_types = Type::whereHas('products', function($query) use ($catalog) {
+            $query->where('catalog_id', $catalog->id);
+        })->get();
+        $filter_features = Feature::whereHas('products', function($query) use ($catalog) {
+            $query->where('catalog_id', $catalog->id);
+        })->get();
+        $products = Product::where('catalog_id', $catalog->id)->orderBy('updated_at', 'desc')->paginate(10);
+        return view('main.products.list-no-brand',compact('products','catalog','filter_brands','filter_types','filter_features'));
+    }
     public function show(Product $product)
     {
         //
-        $tulanhs = Product::where('catalog_id', $product->catalog_id)->inRandomOrder()->limit(10)->get();
-        return view('main.products.show', compact('product','tulanhs'));}
+        $similar_products = Product::where('catalog_id', $product->catalog_id)->inRandomOrder()->limit(10)->get();
+        return view('main.products.show', compact('product','similar_products'));}
     public function HeaderSearch(Request $request)
     {
         $searchText = $request->input('search');

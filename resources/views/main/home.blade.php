@@ -53,7 +53,7 @@ $long_images = Image::where('group',3)->get();
                     </div>
                 </div>
                 <div class="container">
-                    <div class="home-product d-flex">
+                    <div class="qa-home-product d-flex">
                         @if(count($tivis)>0)
                         @foreach ($tivis as $tivi)
                         <!-- Product -->
@@ -112,7 +112,7 @@ $long_images = Image::where('group',3)->get();
                     </div>
                 </div>
                 <div class="container">
-                    <div class="home-product d-flex">
+                    <div class="qa-home-product d-flex">
                         @if(count($tulanhs)>0)
                         @foreach ($tulanhs as $tulanh)
                         <!-- Product -->
@@ -169,7 +169,7 @@ $long_images = Image::where('group',3)->get();
                     </div>
                 </div>
                 <div class="container">
-                    <div class="home-product d-flex">
+                    <div class="qa-home-product d-flex">
                         @if(count($maygiats)>0)
                         @foreach ($maygiats as $maygiat)
                         <!-- Product -->
@@ -227,7 +227,7 @@ $long_images = Image::where('group',3)->get();
                     </div>
                 </div>
                 <div class="container">
-                    <div class="home-product d-flex">
+                    <div class="qa-home-product d-flex">
                         @if(count($dieuhoas)>0)
                         @foreach ($dieuhoas as $dieuhoa)
                         <!-- Product -->

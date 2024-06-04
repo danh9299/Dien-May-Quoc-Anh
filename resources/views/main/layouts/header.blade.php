@@ -28,6 +28,19 @@ $brands = Brand::all();
                 </ul>
             </div>
             <div class="col-auto">
+            @if (Auth::guard('web')->check())
+                <ul class="qa-top-nav">
+                    <li>
+                        <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('main.auth.logout') }}">
+                            Đăng xuất
+                        </a>
+
+                    </li>
+                </ul>
+                @else
                 <ul class="qa-top-nav">
                     <li>
                         <a href="{{route('main.auth.register')}}">Đăng Ký</a>
@@ -36,6 +49,8 @@ $brands = Brand::all();
                         <a href="{{route('main.auth.login')}}">Đăng nhập</a>
                     </li>
                 </ul>
+                
+                @endif
             </div>
         </div>
     </div>
@@ -52,7 +67,20 @@ $brands = Brand::all();
                 <a href="tel:0338093232">033.809.3232</a>
             </div>
             <div class="col-auto ms-auto">
-                <ul class="">
+                @if (Auth::guard('web')->check())
+                <ul class="qa-top-nav">
+                    <li>
+                    <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('main.auth.logout') }}">
+                            Đăng xuất
+                        </a>
+
+                    </li>
+                </ul>
+                @else
+                <ul class="qa-top-nav">
                     <li>
                         <a href="{{route('main.auth.register')}}">Đăng Ký</a>
                     </li>
@@ -60,6 +88,8 @@ $brands = Brand::all();
                         <a href="{{route('main.auth.login')}}">Đăng nhập</a>
                     </li>
                 </ul>
+                
+                @endif
             </div>
         </div>
     </div>
@@ -125,16 +155,17 @@ $brands = Brand::all();
                         @foreach($main_catalogs as $main_catalog)
                         @if($main_catalog->id != 0)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">{{$main_catalog->catalog_name}}</a>
+                            <a class="nav-link " href="{{route('main.products.list-no-brand',$main_catalog->id)}}"  
+                                >{{$main_catalog->catalog_name}}</a>
 
                             <div class="dropdown-menu">
                                 @if(count($brands) >0)
                                 @foreach($brands as $brand)
                                 @if($brand->id != 0)
                                 <a class="dropdown-item" href="category.html">
-                                <!--href="route('',gửi id brand và gửi id catalog_id sau đó select product where id và id)"-->
-                                {{$main_catalog->catalog_name}} {{$brand->name}}</a>
+                                    <!--href="route('',gửi id brand và gửi id catalog_id sau đó select product where id và id)"-->
+                                    {{$main_catalog->catalog_name}} {{$brand->name}}
+                                </a>
                                 @endif
                                 @endforeach
                                 @endif

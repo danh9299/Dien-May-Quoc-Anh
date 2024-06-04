@@ -203,10 +203,6 @@
                         <input type="text" class="form-control" id="quickEditProductModel" name="model" required>
                       
                     </div>
-
-
-
-
                     <hr>
                     <button type="submit" class="btn btn-primary">Lưu</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>

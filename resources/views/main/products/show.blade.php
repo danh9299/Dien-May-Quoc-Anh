@@ -33,12 +33,12 @@
                         </div>
 
                         @if(is_array(json_decode($product->image_list)))
-                            @foreach(json_decode($product->image_list) as $image_list_item)
-                                <div class="carousel-item">
-                                    <img src="{{ asset('/img/product_images/' . $image_list_item) }}" class="d-block w-100"
-                                        alt="...">
-                                </div>
-                            @endforeach
+                        @foreach(json_decode($product->image_list) as $image_list_item)
+                        <div class="carousel-item">
+                            <img src="{{ asset('/img/product_images/' . $image_list_item) }}" class="d-block w-100"
+                                alt="...">
+                        </div>
+                        @endforeach
                         @endif
 
                     </div>
@@ -63,9 +63,9 @@
                     <li>Tình trạng:
                         <b>
                             @if($product->quantity > 0)
-                                Còn hàng
-                            @else 
-                                Hết hàng
+                            Còn hàng
+                            @else
+                            Hết hàng
                             @endif
                         </b>
                     </li>
@@ -143,14 +143,13 @@
                 <div class="text-center">
                     <h1>Thông số kỹ thuật</h1>
                 </div>
-                <div
-                    class="qa-product-specifications-size bg-secondary-subtle border  border-dark  overflow-hidden">
+                <div class="qa-product-specifications-size bg-secondary-subtle border  border-dark  overflow-hidden">
                     {!!
-    $product->specifications !!}</div>
+                    $product->specifications !!}</div>
                 <!-- Button trigger modal -->
                 <div class="d-grid gap-2">
-                    <button type="button" class="rounded-top-0 btn btn-danger border  border-dark border-top-0" data-bs-toggle="modal"
-                        data-bs-target="#product-specification-modal">
+                    <button type="button" class="rounded-top-0 btn btn-danger border  border-dark border-top-0"
+                        data-bs-toggle="modal" data-bs-target="#product-specification-modal">
                         Đọc thêm
                     </button>
                 </div>
@@ -177,14 +176,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 </main>
 <!-- Main Content -->
 
@@ -195,36 +186,36 @@
     <div class="text-center">
         <h2>Xem thêm các sản phẩm cùng danh mục</h2>
     </div>
-    <div class="home-product d-flex overflow-x-scroll">
-        @if(count($tulanhs) > 0)
-            @foreach ($tulanhs as $tulanh)
-                <!-- Product -->
-                <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                    <a href="{{route('main.products.show', $tulanh->id)}}">
-                        <div class="text-center mt-1 ">
-                            <img src="{{ asset('/img/product_images/' . $tulanh->image_link) }}" class="img-thumbnail border-0"
-                                alt="..." />
-                        </div>
-                    </a>
-                    <div class="card-body">
-                        <a href="{{route('main.products.show', $tulanh->id)}}">
-                            <h5 class="card-title">
-                                {{$tulanh->name}}
-                            </h5>
-                        </a>
-                        <span class="product-price-old">
-                            {{number_format($tulanh->old_price, 0, ',', '.')}}
-                        </span>
-                        <br />
-                        <span class="product-price">{{number_format($tulanh->price, 0, ',', '.')}} </span>
-                        <button class="btn btn-outline-dark" type="button">
-                            Thêm vào giỏ
-                        </button>
-                    </div>
+    <div class="qa-home-product d-flex overflow-x-scroll">
+        @if(count($similar_products) > 0)
+        @foreach ($similar_products as $similar_product)
+        <!-- Product -->
+        <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <a href="{{route('main.products.show', $similar_product->id)}}">
+                <div class="text-center mt-1 ">
+                    <img src="{{ asset('/img/product_images/' . $similar_product->image_link) }}"
+                        class="img-thumbnail border-0" alt="..." />
                 </div>
-            @endforeach
+            </a>
+            <div class="card-body">
+                <a href="{{route('main.products.show', $similar_product->id)}}">
+                    <h5 class="card-title">
+                        {{$similar_product->name}}
+                    </h5>
+                </a>
+                <span class="product-price-old">
+                    {{number_format($similar_product->old_price, 0, ',', '.')}}
+                </span>
+                <br />
+                <span class="product-price">{{number_format($similar_product->price, 0, ',', '.')}} </span>
+                <button class="btn btn-outline-dark" type="button">
+                    Thêm vào giỏ
+                </button>
+            </div>
+        </div>
+        @endforeach
         @else
-            <p>Đang cập nhật</p>
+        <p>Đang cập nhật</p>
         @endif
     </div>
 </div>

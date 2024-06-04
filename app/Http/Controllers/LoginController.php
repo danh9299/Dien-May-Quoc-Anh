@@ -30,6 +30,13 @@ class LoginController extends Controller
                 'username' => 'Thông tin đăng nhập không chính xác.',
             ])->onlyInput('password');
         }
+        public function logout(){
+            Auth::guard('web')->logout();
+    
+           
+    
+            return redirect()->route('main.home');
+        }
     
     }
 

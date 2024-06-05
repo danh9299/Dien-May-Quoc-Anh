@@ -107,12 +107,13 @@ $brands = Brand::all();
             </div>
             <!--Thanh tìm kiếm-->
             <div class="col-lg-5 mx-auto mt-4 mt-lg-0">
-                <form action="#">
+           
+                <form method="GET" action="{{ route('main.search') }}">
                     <div class="form-group">
                         <div class="qa-search input-group">
-                            <input type="search" class="form-control border-danger"
-                                placeholder="Nhập thông tin tìm kiếm..." required />
-                            <button class="btn btn-danger">
+                            <input type="text" name="search" class="form-control border-danger"
+                                placeholder="Nhập thông tin tìm kiếm..."  />
+                            <button type="submit" class="btn btn-danger">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-search" viewBox="0 0 16 16">
                                     <path
@@ -162,7 +163,7 @@ $brands = Brand::all();
                                 @if(count($brands) >0)
                                 @foreach($brands as $brand)
                                 @if($brand->id != 0)
-                                <a class="dropdown-item" href="category.html">
+                                <a class="dropdown-item" href="{{route('main.products.list-with-brand',['catalog_id' => $main_catalog->id, 'brand_id' => $brand->id])}}">
                                     <!--href="route('',gửi id brand và gửi id catalog_id sau đó select product where id và id)"-->
                                     {{$main_catalog->catalog_name}} {{$brand->name}}
                                 </a>

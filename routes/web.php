@@ -30,6 +30,9 @@ use App\HTTP\Controllers\SettingController;
 Route::get('/', [ProductController::class, 'homePageGetAll'])->name('main.home');
 Route::get('/products/{product}/show', [ProductController::class, 'show'])->name('main.products.show');
 Route::get('/products/{catalog}',[ProductController::class, 'listNoBrand'])->name('main.products.list-no-brand');
+Route::get('/products/{catalog_id}/{brand_id}',[ProductController::class, 'listWithBrand'])->name('main.products.list-with-brand');
+Route::get('/search',[ProductController::class, 'headerSearch'])->name('main.search');
+
 Route::get('/login', function () {
     return view('main.auth.login');
 })->name('main.auth.login');

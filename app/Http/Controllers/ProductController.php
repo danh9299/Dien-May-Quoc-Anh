@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     //HOME
-     
+
     public function HomePageGetAll()
     {
         //
@@ -21,34 +21,64 @@ class ProductController extends Controller
         $tulanhs = Product::where('catalog_id', 2)->orderBy('updated_at', 'desc')->limit(15)->get();
         $maygiats = Product::where('catalog_id', 3)->orderBy('updated_at', 'desc')->limit(15)->get();
         $dieuhoas = Product::where('catalog_id', 4)->orderBy('updated_at', 'desc')->limit(15)->get();
-        return view('main.home', ['tivis' => $tivis,'tulanhs'=>$tulanhs, 'maygiats' => $maygiats,'dieuhoas' => $dieuhoas]);
+        return view('main.home', ['tivis' => $tivis, 'tulanhs' => $tulanhs, 'maygiats' => $maygiats, 'dieuhoas' => $dieuhoas]);
     }
 
-    public function listNoBrand(Catalog $catalog){
-        
-        $filter_brands = Brand::whereHas('products', function($query) use ($catalog) {
+    public function listNoBrand(Catalog $catalog)
+    {
+
+        $filter_brands = Brand::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();
-        $filter_types = Type::whereHas('products', function($query) use ($catalog) {
+        $filter_types = Type::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();
-        $filter_features = Feature::whereHas('products', function($query) use ($catalog) {
+        $filter_features = Feature::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();
         $products = Product::where('catalog_id', $catalog->id)->orderBy('updated_at', 'desc')->paginate(10);
-        return view('main.products.list-no-brand',compact('products','catalog','filter_brands','filter_types','filter_features'));
+        return view('main.products.list-no-brand', compact('products', 'catalog', 'filter_brands', 'filter_types', 'filter_features'));
+    }
+    public function listWithBrand($catalog_id, $brand_id)
+    {
+
+        // Fetch the catalog object if needed
+        $catalog = Catalog::findOrFail($catalog_id);
+        $filter_types = Type::whereHas('products', function ($query) use ($catalog) {
+            $query->where('catalog_id', $catalog->id);
+        })->get();
+        $filter_features = Feature::whereHas('products', function ($query) use ($catalog) {
+            $query->where('catalog_id', $catalog->id);
+        })->get();
+        $products = Product::where('catalog_id', $catalog_id)->where('brand_id', $brand_id)->orderBy('updated_at', 'desc')->paginate(10);
+        return view('main.products.list-with-brand', compact('products', 'catalog', 'filter_types', 'filter_features'));
     }
     public function show(Product $product)
     {
         //
         $similar_products = Product::where('catalog_id', $product->catalog_id)->inRandomOrder()->limit(10)->get();
-        return view('main.products.show', compact('product','similar_products'));}
-    public function HeaderSearch(Request $request)
+        return view('main.products.show', compact('product', 'similar_products'));
+    }
+    public function headerSearch(Request $request)
     {
         $searchText = $request->input('search');
-        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
-        $products = Product::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orWhereRaw("REPLACE(model, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.products.index', ['products' => $products]);
+        $keywords = explode(' ', $searchText);
+        $products = Product::query();
+        // Combine conditions for all keywords
+        $products->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%'])
+                        ->orWhereRaw("REPLACE(model, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+
+        $products = $products->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+
+        return view('main.products.search', ['products' => $products]);
+
     }
 
     //ADMIN
@@ -61,14 +91,25 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $searchText = $request->input('search');
-        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
-        $products = Product::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orWhereRaw("REPLACE(model, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.products.index', ['products' => $products]);
+        $keywords = explode(' ', $searchText);
+        $products = Product::query();
+        // Combine conditions for all keywords
+        $products->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%'])
+                        ->orWhereRaw("REPLACE(model, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+        $products = $products->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+         return view('admin.products.index', ['products' => $products]);
     }
     /**
      * Display the specified resource.
      */
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -83,7 +124,7 @@ class ProductController extends Controller
 
         return view('admin.products.create', ['catalogs' => $catalogs, 'brands' => $brands, 'features' => $features, 'types' => $types]);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -165,8 +206,8 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Thêm mới Sản phẩm thành công');
     }
 
-    
-    
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -282,25 +323,26 @@ class ProductController extends Controller
     }
 
 
-    public function quickEdit($id){
-        
+    public function quickEdit($id)
+    {
+
         $product = Product::findOrFail($id);
         return response()->json($product);
     }
     public function quickUpdate(Request $request, $id)
-{
-    
-    
+    {
+
+
 
         $product = Product::findOrFail($id);
-    // Cập nhật thông tin sản phẩm
-    $product->name = $request->name;
-    $product->price = $request->price;
-    $product->model = $request->model;
-    $product->save();
-    
-    return response()->json(['message' => 'Cập nhật thành công!']);
-}
+        // Cập nhật thông tin sản phẩm
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->model = $request->model;
+        $product->save();
+
+        return response()->json(['message' => 'Cập nhật thành công!']);
+    }
 
     /**
      * Remove the specified resource from storage.

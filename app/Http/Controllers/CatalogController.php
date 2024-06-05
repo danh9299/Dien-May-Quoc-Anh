@@ -19,9 +19,19 @@ class CatalogController extends Controller
     public function search(Request $request)
     {
         $searchText = $request->input('search');
-        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
-        $catalogs = Catalog::whereRaw("REPLACE(catalog_name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->paginate(6);
-        return view('admin.catalogs.index', ['catalogs' => $catalogs]);
+        $keywords = explode(' ', $searchText);
+        $catalogs = Catalog::query();
+        // Combine conditions for all keywords
+        $catalogs->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(catalog_name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+        $catalogs = $catalogs->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+          return view('admin.catalogs.index', ['catalogs' => $catalogs]);
     }
 
     /**

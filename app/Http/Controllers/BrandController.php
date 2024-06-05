@@ -18,9 +18,19 @@ class BrandController extends Controller
     public function search(Request $request)
     {
         $searchText = $request->input('search');
-        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
-        $brands = Brand::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->paginate(6);
-        return view('admin.brands.index', ['brands' => $brands]);
+        $keywords = explode(' ', $searchText);
+        $brands = Brand::query();
+        // Combine conditions for all keywords
+        $brands->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+        $brands = $brands->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+          return view('admin.brands.index', ['brands' => $brands]);
     }
     /**
      * Show the form for creating a new resource.

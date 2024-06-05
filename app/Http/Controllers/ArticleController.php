@@ -18,9 +18,20 @@ class ArticleController extends Controller
     }
     public function search(Request $request){
         $searchText = $request->input('search');
-        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
-        $articles = Article::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.articles.index', ['articles' => $articles]);
+        $keywords = explode(' ', $searchText);
+        $articles = Article::query();
+        // Combine conditions for all keywords
+        $articles->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+        $articles = $articles->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+     
+return view('admin.articles.index', ['articles' => $articles]);
     }
     
     /**

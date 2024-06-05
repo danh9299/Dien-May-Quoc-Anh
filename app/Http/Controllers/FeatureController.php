@@ -18,9 +18,19 @@ class FeatureController extends Controller
     public function search(Request $request)
     {
         $searchText = $request->input('search');
-        $searchTextWithoutSpace = str_replace(' ', '', $searchText);
-        $features = Feature::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->paginate(6);
-        return view('admin.features.index', ['features' => $features]);
+        $keywords = explode(' ', $searchText);
+        $features = Feature::query();
+        // Combine conditions for all keywords
+        $features->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+        $features = $features->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+         return view('admin.features.index', ['features' => $features]);
     }
     /**
      * Show the form for creating a new resource.

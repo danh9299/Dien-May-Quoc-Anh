@@ -24,7 +24,7 @@ class ProductController extends Controller
         return view('main.home', ['tivis' => $tivis, 'tulanhs' => $tulanhs, 'maygiats' => $maygiats, 'dieuhoas' => $dieuhoas]);
     }
 
-    public function listNoBrand(Catalog $catalog)
+    public function listNoBrand(Catalog $catalog, Request $request)
     {
 
         $filter_brands = Brand::whereHas('products', function ($query) use ($catalog) {
@@ -36,22 +36,66 @@ class ProductController extends Controller
         $filter_features = Feature::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();
-        $products = Product::where('catalog_id', $catalog->id)->orderBy('updated_at', 'desc')->paginate(10);
+
+
+        // Lấy các sản phẩm dựa trên các bộ lọc
+        $productsQuery = Product::where('catalog_id', $catalog->id);
+
+        // Lấy dữ liệu từ các bộ lọc (nếu có)
+        $brandIds = $request->input('brands', []);
+        $featureIds = $request->input('features', []);
+        $typeIds = $request->input('types', []);
+
+        if (!empty($brandIds)) {
+            $productsQuery->whereIn('brand_id', $brandIds);
+        }
+
+        if (!empty($featureIds)) {
+            $productsQuery->whereIn('feature_id', $featureIds);
+        }
+
+        if (!empty($typeIds)) {
+            $productsQuery->whereIn('type_id', $typeIds);
+        }
+
+        // Sử dụng truy vấn đã áp dụng bộ lọc để phân trang và lấy sản phẩm
+        $products = $productsQuery->orderBy('updated_at', 'desc')->paginate(10);
         return view('main.products.list-no-brand', compact('products', 'catalog', 'filter_brands', 'filter_types', 'filter_features'));
     }
-    public function listWithBrand($catalog_id, $brand_id)
+    public function listWithBrand($catalog_id, $brand_id, Request $request)
     {
-
+        
+      
         // Fetch the catalog object if needed
         $catalog = Catalog::findOrFail($catalog_id);
+        $brand = Brand::findOrFail($brand_id);
         $filter_types = Type::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();
         $filter_features = Feature::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();
-        $products = Product::where('catalog_id', $catalog_id)->where('brand_id', $brand_id)->orderBy('updated_at', 'desc')->paginate(10);
-        return view('main.products.list-with-brand', compact('products', 'catalog', 'filter_types', 'filter_features'));
+
+        // Lấy các sản phẩm dựa trên các bộ lọc
+        $productsQuery = Product::where('catalog_id', $catalog->id)->where('brand_id', $brand_id);
+
+        // Lấy dữ liệu từ các bộ lọc (nếu có)
+
+        $featureIds = $request->input('features', []);
+        $typeIds = $request->input('types', []);
+        if (!empty($featureIds)) {
+            $productsQuery->whereIn('feature_id', $featureIds);
+        }
+
+        if (!empty($typeIds)) {
+            $productsQuery->whereIn('type_id', $typeIds);
+        }
+
+        // Sử dụng truy vấn đã áp dụng bộ lọc để phân trang và lấy sản phẩm
+        $products = $productsQuery->orderBy('updated_at', 'desc')->paginate(10);
+
+
+        return view('main.products.list-with-brand', compact('brand','products', 'catalog', 'filter_types', 'filter_features'));
     }
     public function show(Product $product)
     {
@@ -104,7 +148,7 @@ class ProductController extends Controller
             }
         });
         $products = $products->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
-         return view('admin.products.index', ['products' => $products]);
+        return view('admin.products.index', ['products' => $products]);
     }
     /**
      * Display the specified resource.

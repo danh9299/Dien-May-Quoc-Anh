@@ -10,37 +10,37 @@
         <div class="col-md-2 qa-filter-product p-4  mt-4">
             <h3 class="text-center"> Bộ Lọc {{$catalog->catalog_name}}</h3>
             <hr>
-         
-           
-            <h4 class="mt-2 mb-2">Lọc thiết kế</h4>
-            <form action="">
-            @if(count($filter_features) >0)
-            @foreach($filter_features as $filter_feature)
-            @if($filter_feature->id != 0)
+            <form action="{{ route('main.products.list-with-brand',['catalog_id' => $catalog->id, 'brand_id' => $brand->id]) }}" method="GET">
+                <h4 class="mt-2 mb-2">Lọc thiết kế</h4>
+                @if(count($filter_features) > 0)
+                @foreach($filter_features as $filter_feature)
+                @if($filter_feature->id != 0)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="">
+                    <input class="form-check-input" name="features[]" type="checkbox" value="{{ $filter_feature->id }}"
+                        {{ in_array($filter_feature->id, request('features', [])) ? 'checked' : '' }}>
                     <label class="form-check-label">
                         {{$filter_feature->name}}
                     </label>
                 </div>
                 @endif
-                @endforeach  
+                @endforeach
                 @endif
-            </form>
-            <h4 class="mt-2 mb-2">Lọc phân loại</h4>
-            <form action="">
-            @if(count($filter_types) >0)
-            @foreach($filter_types as $filter_type)
-            @if($filter_type->id != 0)
+
+                <h4 class="mt-2 mb-2">Lọc phân loại</h4>
+                @if(count($filter_types) > 0)
+                @foreach($filter_types as $filter_type)
+                @if($filter_type->id != 0)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="">
+                    <input class="form-check-input" name="types[]" type="checkbox" value="{{ $filter_type->id }}"
+                        {{ in_array($filter_type->id, request('types', [])) ? 'checked' : '' }}>
                     <label class="form-check-label">
                         {{$filter_type->name}}
                     </label>
                 </div>
                 @endif
-                @endforeach  
-                @endif 
+                @endforeach
+                @endif
+                <button type="submit" class="btn btn-primary mt-3">Lọc</button>
             </form>
         </div>
         <div class="col-md-10 col-sm-12">
@@ -48,7 +48,7 @@
                 <div class="col-12 py-3">
                     <div class="row">
                         <div class="col-12 text-center text-uppercase">
-                            <h2>{{$catalog->catalog_name}}</h2>
+                            <h2>{{$catalog->catalog_name.' '.$brand->name}}</h2>
                         </div>
                     </div>
                     <div class="row qa-list-product px-1">

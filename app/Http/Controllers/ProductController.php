@@ -57,15 +57,21 @@ class ProductController extends Controller
         if (!empty($typeIds)) {
             $productsQuery->whereIn('type_id', $typeIds);
         }
-
+        // Lọc theo giá
+        if ($request->has('min_price') && $request->min_price !== null) {
+            $productsQuery->where('price', '>=', $request->min_price);
+        }
+        if ($request->has('max_price') && $request->max_price !== null) {
+            $productsQuery->where('price', '<=', $request->max_price);
+        }
         // Sử dụng truy vấn đã áp dụng bộ lọc để phân trang và lấy sản phẩm
         $products = $productsQuery->orderBy('updated_at', 'desc')->paginate(10);
         return view('main.products.list-no-brand', compact('products', 'catalog', 'filter_brands', 'filter_types', 'filter_features'));
     }
     public function listWithBrand($catalog_id, $brand_id, Request $request)
     {
-        
-      
+
+
         // Fetch the catalog object if needed
         $catalog = Catalog::findOrFail($catalog_id);
         $brand = Brand::findOrFail($brand_id);
@@ -91,11 +97,18 @@ class ProductController extends Controller
             $productsQuery->whereIn('type_id', $typeIds);
         }
 
+        // Lọc theo giá
+        if ($request->has('min_price') && $request->min_price !== null) {
+            $productsQuery->where('price', '>=', $request->min_price);
+        }
+        if ($request->has('max_price') && $request->max_price !== null) {
+            $productsQuery->where('price', '<=', $request->max_price);
+        }
         // Sử dụng truy vấn đã áp dụng bộ lọc để phân trang và lấy sản phẩm
         $products = $productsQuery->orderBy('updated_at', 'desc')->paginate(10);
 
 
-        return view('main.products.list-with-brand', compact('brand','products', 'catalog', 'filter_types', 'filter_features'));
+        return view('main.products.list-with-brand', compact('brand', 'products', 'catalog', 'filter_types', 'filter_features'));
     }
     public function show(Product $product)
     {

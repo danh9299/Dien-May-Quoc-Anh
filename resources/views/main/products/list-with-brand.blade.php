@@ -10,7 +10,7 @@
         <div class="col-md-2 qa-filter-product p-4  mt-4">
             <h3 class="text-center"> Bộ Lọc {{$catalog->catalog_name}}</h3>
             <hr>
-            <form action="{{ route('main.products.list-with-brand',['catalog_id' => $catalog->id, 'brand_id' => $brand->id]) }}" method="GET">
+            <form id="filterForm" action="{{ route('main.products.list-with-brand',['catalog_id' => $catalog->id, 'brand_id' => $brand->id]) }}" method="GET">
                 <h4 class="mt-2 mb-2">Lọc thiết kế</h4>
                 @if(count($filter_features) > 0)
                 @foreach($filter_features as $filter_feature)
@@ -40,6 +40,25 @@
                 @endif
                 @endforeach
                 @endif
+                <h4 class="mt-2 mb-2">Lọc theo giá</h4>
+                <div class="form-group">
+                    <label for="min_price">Giá thấp nhất</label>
+                    @if(request()->has('min_price'))
+                    <input type="number" class="form-control" id="min_price" name="min_price"
+                        value="{{ request('min_price') }}">
+                    @else
+                    <input type="number" class="form-control" id="min_price" name="min_price" value="0">
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="max_price">Giá cao nhất</label>
+                    @if(request()->has('max_price'))
+                    <input type="number" class="form-control" id="max_price" name="max_price"
+                        value="{{ request('max_price') }}">
+                    @else
+                    <input type="number" class="form-control" id="max_price" name="max_price" value="999999999">
+                    @endif
+                </div>
                 <button type="submit" class="btn btn-primary mt-3">Lọc</button>
             </form>
         </div>
@@ -139,4 +158,5 @@
     </main>
     <!-- Main Content -->
 </div>
+<script src="{{asset('js/check_filter_price.js')}}"></script>
 @endsection

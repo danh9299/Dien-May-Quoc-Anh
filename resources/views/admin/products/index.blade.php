@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container admin-product-add-import-export px-5 mt-3 mb-2">
-    <a href="{{route('admin.products.create')}}" class="btn btn-primary">Thêm mới</a>
+
     <a href="#" class="btn btn-success">Nhập file</a>
     <a href="#" class="btn btn-secondary">Xuất file</a>
 </div>
@@ -20,39 +20,8 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Lọc
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><select class="form-select border-0" id="admin-filter-by-catalog"
-                                    aria-label="Floating label select example">
-                                    <option selected>Tất cả danh mục</option>
-                                    <option value="1">Tivi</option>
-                                    <option value="2">Tủ lạnh</option>
-                                    <option value="3">Máy giặt</option>
-                                </select></li>
-                            <li><select class="form-select border-0" id="admin-filter-by-brand"
-                                    aria-label="Floating label select example">
-                                    <option selected>Tất cả hãng</option>
-                                    <option value="1">LG</option>
-                                    <option value="2">Sony</option>
-                                    <option value="3">Samsung</option>
-                                    <option value="4">Toshiba</option>
-                                </select></li>
-                            <li><select class="form-select border-0" id="admin-filter-by-status"
-                                    aria-label="Floating label select example">
-                                    <option selected>Tất cả trạng thái</option>
-                                    <option value="1">Còn hàng</option>
-                                    <option value="2">Hết hàng</option>
-
-                                </select></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item bg-primary-subtle" href="#">Bắt đầu lọc</a></li>
-                        </ul>
+                <div class="col">
+                        <a href="{{route('admin.products.create')}}" class="btn btn-primary">Thêm mới</a>
                     </div>
                     <div class="col">
                         <form method="GET" action="{{ route('admin.products.search') }}">

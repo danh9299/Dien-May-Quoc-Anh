@@ -2,6 +2,9 @@
 use App\Models\Catalog;
 use App\Models\Brand;
 use App\Models\Image;
+use App\Models\Footer;
+$footer = Footer::where('id',1)->first();
+
 $logo = Image::where('group',1)->first();
 $main_catalogs = Catalog::where('parent_id',0)->get();
 $brands = Brand::all();
@@ -14,16 +17,16 @@ $brands = Brand::all();
             <div class="col-auto me-auto">
                 <ul class="qa-top-nav">
                     <li>
-                        <a href="tel:0903283996">090.328.3996</a>
+                    <a href="tel:{{$footer->hotline1}}">{{$footer->hotline1}}</a>
                     </li>
                     <li>
-                        <a href="tel:0962538373">096.253.8373</a>
+                    <a href="tel:{{$footer->hotline2}}">{{$footer->hotline2}}</a>
                     </li>
                     <li>
-                        <a href="tel:0913047388">091.304.7388</a>
+                    <a href="tel:{{$footer->hotline3}}">{{$footer->hotline3}}</a>
                     </li>
                     <li>
-                        <a href="tel:0338093232">033.809.3232</a>
+                    <a href="tel:{{$footer->hotline4}}">{{$footer->hotline4}}</a>
                     </li>
                 </ul>
             </div>

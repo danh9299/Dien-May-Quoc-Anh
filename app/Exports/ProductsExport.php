@@ -12,7 +12,26 @@ class ProductsExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Product::all();
+        return Product::with(['catalog', 'brand', 'type', 'feature'])->get()->map(function($product) {
+            return [
+                'id' => $product->id,
+                'danh mục' => $product->catalog->catalog_name ?? '',
+                'phân loại' => $product->type->name ?? '',
+                'thiết kế' => $product->feature->name ?? '',
+                'hãng' => $product->brand->name ?? '',
+                'tên' => $product->name,
+                'model' => $product->model,
+                'giá' => $product->price,
+                'giá cũ' => $product->old_price,
+                'số lượng' => $product->quantity,
+                'nội dung mô tả sản phẩm' => $product->content,
+                'thông số kỹ thuật' => $product->specifications,
+                'link ảnh đại diện' => $product->image_link,
+                'mảng chứa link các ảnh phụ' => $product->image_list,
+                'ngày tạo' => $product->created_at,
+                'ngày cập nhật cuối' => $product->updated_at,
+            ];
+        });
     }
     public function headings(): array
     {

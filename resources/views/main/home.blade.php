@@ -60,7 +60,7 @@ $long_images = Image::where('group',3)->get();
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$tivi->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset('/img/product_images/' . $tivi->image_link) }}"
+                                    <img src="{{ asset($tivi->image_link) }}"
                                         class="img-thumbnail border-0" alt="..." />
                                 </div>
                             </a>
@@ -119,7 +119,7 @@ $long_images = Image::where('group',3)->get();
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$tulanh->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset('/img/product_images/' . $tulanh->image_link) }}"
+                                    <img src="{{ asset($tulanh->image_link) }}"
                                         class="img-thumbnail border-0" alt="..." />
                                 </div>
                             </a>
@@ -176,7 +176,7 @@ $long_images = Image::where('group',3)->get();
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$maygiat->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset('/img/product_images/' . $maygiat->image_link) }}"
+                                    <img src="{{ asset($maygiat->image_link) }}"
                                         class="img-thumbnail border-0" alt="..." />
                                 </div>
                             </a>
@@ -233,7 +233,7 @@ $long_images = Image::where('group',3)->get();
                         <!-- Product -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$dieuhoa->id)}}">
-                                <img src="{{ asset('/img/product_images/' . $dieuhoa->image_link) }}"
+                                <img src="{{ asset($dieuhoa->image_link) }}"
                                     class="img-thumbnail border-0" alt="..." /></a>
                             <div class="card-body">
                                 <a href="{{route('main.products.show',$dieuhoa->id)}}">

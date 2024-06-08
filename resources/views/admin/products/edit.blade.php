@@ -190,7 +190,7 @@
                             class="shadow @error('image_link') is-invalid @enderror form-control" />
                         <input type="text" id="image_link_check" style="display:none" name="image_link_check"
                             value="{{$product->image_link}}">
-                        <img id="previewImage" src="{{asset('/img/product_images/' . $product->image_link) }}"
+                        <img id="previewImage" src="{{asset($product->image_link) }}"
                             class="mt-2 admin-product-image" alt="Preview">
                         <a id="changeImage" class="text-danger mt-2" style="max-width:200px; "
                             onclick="chooseAnotherImage()">Xóa ảnh</a>
@@ -214,7 +214,7 @@
                         <div class="mt-2" id="imagePreviewContainer">
                             @for ($i=0;$i<count(json_decode($product->image_list));$i = $i + 1)
                                 <img class="admin-product-image"
-                                    src="{{asset('/img/product_images/' . json_decode($product->image_list)[$i]) }}">
+                                    src="{{asset(json_decode($product->image_list)[$i]) }}">
                                 @endfor
                         </div>
                        

@@ -7,9 +7,9 @@
         <!-- Category Products -->
 
         <div class="col-md-2 qa-filter-product p-4  mt-4">
-            <h3 class="text-center"> Bộ Lọc {{$catalog->catalog_name}}</h3>
+            <h3 class="text-center"> Bộ Lọc </h3>
             <hr>
-            <form action="{{ route('main.products.list-no-brand', $catalog->id) }}" id="filterForm" method="GET">
+            <form action="{{ route('main.products.list-all-products') }}" id="filterForm" method="GET">
                 <h4 class="mt-2 mb-2">Lọc hãng</h4>
 
                 @if(count($filter_brands) > 0)
@@ -84,7 +84,7 @@
                 <div class="col-12 py-3">
                     <div class="row">
                         <div class="col-12 text-center text-uppercase">
-                            <h2>{{$catalog->catalog_name}}</h2>
+                            <h2>Tất cả sản phẩm</h2>
                         </div>
                     </div>
                     <div class="row qa-list-product px-1">

@@ -24,6 +24,50 @@ class ProductController extends Controller
         return view('main.home', ['tivis' => $tivis, 'tulanhs' => $tulanhs, 'maygiats' => $maygiats, 'dieuhoas' => $dieuhoas]);
     }
 
+    public function listAllProducts(Request $request)
+    {
+
+        $filter_brands = Brand::all();
+        $filter_types = Type::all();
+      
+        $filter_features = Feature::all();
+
+
+        // Lấy các sản phẩm 
+       
+    $productsQuery = Product::query();
+
+        // Lấy dữ liệu từ các bộ lọc (nếu có)
+        $brandIds = $request->input('brands', []);
+        $featureIds = $request->input('features', []);
+        $typeIds = $request->input('types', []);
+
+        if (!empty($brandIds)) {
+            $productsQuery->whereIn('brand_id', $brandIds);
+        }
+
+        if (!empty($featureIds)) {
+            $productsQuery->whereIn('feature_id', $featureIds);
+        }
+
+        if (!empty($typeIds)) {
+            $productsQuery->whereIn('type_id', $typeIds);
+        }
+        // Lọc theo giá
+        if ($request->has('min_price') && $request->min_price !== null) {
+            $productsQuery->where('price', '>=', $request->min_price);
+        }
+        if ($request->has('max_price') && $request->max_price !== null) {
+            $productsQuery->where('price', '<=', $request->max_price);
+        }
+        // Sử dụng truy vấn đã áp dụng bộ lọc để phân trang và lấy sản phẩm
+       // Order by updated_at in descending order
+    $productsQuery->orderBy('updated_at', 'desc');
+
+    // Paginate the results
+    $products = $productsQuery->paginate(10);
+        return view('main.products.list-all-products', compact('products', 'filter_brands', 'filter_types', 'filter_features'));
+    }
     public function listNoBrand(Catalog $catalog, Request $request)
     {
 
@@ -142,7 +186,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::orderBy('created_at', 'desc')->paginate(10);
+        $products = Product::orderBy('updated_at', 'desc')->paginate(10);
         return view('admin.products.index', ['products' => $products]);
     }
     public function search(Request $request)
@@ -236,11 +280,12 @@ class ProductController extends Controller
 
 
         $imageSaveLocation = public_path('img/product_images');
+        $imageSaveUrl = 'img/product_images';
 
         $mainImage = $request->file('image_link');
         $mainImageName = time() . '_' . $product->model . '.' . $mainImage->getClientOriginalExtension();
         $mainImage->move($imageSaveLocation, $mainImageName);
-        $product->image_link = $mainImageName;
+        $product->image_link = $imageSaveUrl.'/'.$mainImageName;
 
         if ($request->has('image_list')) {
             $imageList = $request->file('image_list');
@@ -249,7 +294,7 @@ class ProductController extends Controller
             foreach ($imageList as $image) {
                 $imageName = time() . '_' . $product->model . '_' . $count . '.' . $image->getClientOriginalExtension();
                 $image->move($imageSaveLocation, $imageName);
-                $imageListNames[] = $imageName;
+                $imageListNames[] = $imageSaveUrl.'/'.$imageName;
                 $count = $count + 1;
             }
             $imageListNamesJson = json_encode($imageListNames);
@@ -343,12 +388,13 @@ class ProductController extends Controller
 
 
         $imageSaveLocation = public_path('img/product_images');
+        $imageSaveUrl = 'img/product_images';
 
         if ($request->image_link_check != $product->image_link) {
             $mainImage = $request->file('image_link');
             $mainImageName = time() . '_' . $product->model . '.' . $mainImage->getClientOriginalExtension();
             $mainImage->move($imageSaveLocation, $mainImageName);
-            $product->image_link = $mainImageName;
+            $product->image_link = $imageSaveUrl.'/'.$mainImageName;
         } else {
             $product->image_link = $request->image_link_check;
         }
@@ -361,7 +407,7 @@ class ProductController extends Controller
                 foreach ($imageList as $image) {
                     $imageName = time() . '_' . $product->model . '_' . $count . '.' . $image->getClientOriginalExtension();
                     $image->move($imageSaveLocation, $imageName);
-                    $imageListNames[] = $imageName;
+                    $imageListNames[] = $imageSaveUrl.'/'.$imageName;
                     $count = $count + 1;
                 }
                 $imageListNamesJson = json_encode($imageListNames);

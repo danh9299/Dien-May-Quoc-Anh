@@ -56,7 +56,7 @@
                     @foreach($products as $product)
                     <tr>
 
-                        <th scope="row"><img src="{{ asset('/img/product_images/' . $product->image_link) }}"
+                        <th scope="row"><img src="{{ asset($product->image_link) }}"
                                 class="admin-product-image" alt="{{$product->model}}" /></th>
                         <td>{{$product->name}}</td>
                         <td>{{$product->model}}</td>

@@ -80,7 +80,7 @@
                         <div class="mb-3  card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$product->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset('/img/product_images/' . $product->image_link) }}"
+                                    <img src="{{ asset($product->image_link) }}"
                                         class="img-thumbnail border-0" alt="..." />
                                 </div>
                             </a>

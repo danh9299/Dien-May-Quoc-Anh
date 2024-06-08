@@ -18,7 +18,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Ảnh sản phẩm</label>
                         <div class="col-sm-10">
-                        <img src="{{ asset('/img/product_images/' . $product->image_link) }}"
+                        <img src="{{ asset($product->image_link) }}"
                                 class="admin-product-image" alt="{{$product->model}}" readonly/>
                         </div>
                     </div>

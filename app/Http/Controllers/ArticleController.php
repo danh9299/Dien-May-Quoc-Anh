@@ -10,6 +10,22 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function listAllArticles(){
+        $articles = Article::orderBy('created_at', 'desc')->paginate(10);
+        return view('main.articles.list-all-articles', ['articles' => $articles]);
+    }
+    
+  /**
+     * Display the specified resource.
+     */
+    public function show(Article $article)
+    {
+        //
+        
+        return view('main.articles.show', compact('article'));
+    }
+
+
     public function index()
     {
         //
@@ -73,24 +89,17 @@ return view('admin.articles.index', ['articles' => $articles]);
         }
         
         $imageSaveLocation = public_path('img/article_images');
-
+        $imageUrlSave = 'img/article_images';
         $mainImage = $request->file('image_link');
         $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
         $mainImage->move($imageSaveLocation, $mainImageName);
-        $article->image_link = $mainImageName;
+        $article->image_link = $imageUrlSave.'/'.$mainImageName;
         $article->author_id = $request->author_id;
         $article->save();
         return redirect()->route('admin.articles.index')->with('success', 'Thêm mới Tin tức thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Article $article)
-    {
-        //
-       
-    }
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -137,12 +146,12 @@ return view('admin.articles.index', ['articles' => $articles]);
         }
         $article->author_id = $request->author_id;
         $imageSaveLocation = public_path('img/article_images');
-
+        $imageUrlSave = 'img/article_images';
         if ($request->image_link_check != $article->image_link) {
             $mainImage = $request->file('image_link');
             $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
             $mainImage->move($imageSaveLocation, $mainImageName);
-            $article->image_link = $mainImageName;
+            $article->image_link = $imageUrlSave.'/'.$mainImageName;
         } else {
             $article->image_link = $request->image_link_check;
         }

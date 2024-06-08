@@ -44,10 +44,10 @@
                     <!--Tác giả-->
                     <div class="row mb-4 ">
                         <h6 class="text-dark  mb-2">Tác giả</h6>
-                        <input type="text" name="author_id" value="{{ Auth::guard('admin')->id()}}"
+                        <input type="text" name="author_id" value="{{$article->admin->id}}"
                             class="shadow  form-control" hidden />
                         <div class="col-sm-10">
-                            <input type="text" name="" value="{{ Auth::guard('admin')->user()->name}}"
+                            <input type="text" name="" value="{{ $article->admin->name}}"
                                 class="shadow  form-control" readonly />
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             class="shadow @error('image_link') is-invalid @enderror form-control" />
                         <input type="text" id="image_link_check" style="display:none" name="image_link_check"
                             value="{{$article->image_link}}">
-                        <img id="previewImage" src="{{asset('/img/article_images/' . $article->image_link) }}"
+                        <img id="previewImage" src="{{asset( $article->image_link) }}"
                             class="mt-2 img-thumbnail" alt="Preview">
                         <a id="changeImage" class="text-danger mt-2" style="max-width:200px; "
                             onclick="chooseAnotherImage()">Xóa ảnh</a>

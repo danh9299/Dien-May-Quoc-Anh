@@ -34,6 +34,9 @@ Route::get('/products',[ProductController::class, 'listAllProducts'])->name('mai
 Route::get('/products/{catalog_id}/{brand_id}',[ProductController::class, 'listWithBrand'])->name('main.products.list-with-brand');
 Route::get('/search',[ProductController::class, 'headerSearch'])->name('main.search');
 
+Route::get('/articles',[ArticleController::class, 'listAllArticles'])->name('main.articles.list-all-articles');
+Route::get('/articles/{article}/show', [ArticleController::class, 'show'])->name('main.articles.show');
+
 Route::get('/login', function () {
     return view('main.auth.login');
 })->name('main.auth.login');

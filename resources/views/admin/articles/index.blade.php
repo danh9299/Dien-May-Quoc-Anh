@@ -46,7 +46,7 @@
                         @foreach($articles as $article)
                         @if($article->id !=0)
                         <tr>
-                        <th scope="row"><img src="{{ asset('/img/article_images/' . $article->image_link) }}"
+                        <th scope="row"><img src="{{ asset($article->image_link) }}"
                                 class="admin-product-image" alt="{{$article->name}}" /></th>
                             <td>{{ $article->name }}</td>
                             

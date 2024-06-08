@@ -1,5 +1,6 @@
 body {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    overflow-x:hidden;
 }
 
 /*CSS cho scroll bar*/
@@ -215,14 +216,17 @@ footer{
 }
 
 .qa-home-product{
-    overflow:auto;
+    overflow-x:auto;
+    overflow-y:hidden;
   
 }
 .qa-home-product::-webkit-scrollbar {
     display: none;
   }
-.qa-home-product .card{
-    max-width: 100%;
+
+.qa-home-product .card img{
+    max-width: 150px;
+    max-height: 120px;
 }
 
 .qa-home-product .product-price-old{
@@ -244,46 +248,61 @@ footer{
 
 @media  (max-width: 767.98px){
     .qa-home-product .product-price-old{
-    font-size: 12px;}
+    font-size: 17px;}
 
     .qa-home-product .product-price{
-        font-size:15px;
+        font-size:17px;
     }
     .qa-home-product .card-title{
-        font-size: 13px;
+        font-size: 17px;
     }
+ 
+    .qa-home-product .card img{
+        max-width: 150px;
+        max-height: 120px;
+    }
+    
 
 }
 @media (max-width: 500.98px){
     .qa-home-product .product-price-old{
-    font-size: 11px;}
+    font-size: 15px;}
     .qa-home-product .product-price{
-        font-size:13px;
+        font-size:15px;
         color:red;
     }
     .qa-home-product .card-title{
-        font-size: 10px;
+        font-size: 15px;
+    }
+ 
+    .qa-home-product .card img{
+        max-width: 150px;
+        max-height: 180px;
     }
 }
 
 @media (max-width: 380.98px){
     .qa-home-product .product-price-old{
-    font-size: 12px;}
+    font-size: 14px;}
     .qa-home-product .product-price{
-        font-size:13px;
+        font-size:14px;
         color:red;
     }
     .qa-home-product .btn{
-        font-size: 10px;
+        font-size: 14px;
+    }
+    .qa-home-product .card img{
+        max-width: 100px;
+        max-height: 100px;
     }
 }
 
 
 
-.qa-list-product .card{
-    max-width: 100%;
+.qa-list-product .card img{
+    max-width: 150px;
+    max-height: 120px;
 }
-
 .qa-list-product .product-price-old{
     font-size:16px;
 }
@@ -317,6 +336,10 @@ footer{
     .qa-list-product .card{
         width: 230px;
     }
+    .qa-list-product .card img{
+        max-width: 150px;
+        max-height: 120px;
+    }
 
 }
 @media (max-width: 500.98px){
@@ -335,20 +358,34 @@ footer{
     .qa-list-product .card{
         width: 200px;
     }
+    .qa-list-product .card img{
+        max-width: 150px;
+        max-height: 180px;
+    }
 }
 
-@media (max-width: 380.98px){
+@media (max-width: 420.98px){
     .qa-list-product{
         justify-content:space-evenly;
+        font-size: 16px;
     }
-    .qa-list-product .product-price-old{
-    font-size: 12px;}
+    .qa-list-product .card-title{
+        font-size: 14px;
+    }
+   
     .qa-list-product .product-price{
-        font-size:13px;
+       
         color:red;
     }
     .qa-list-product .btn{
-        font-size: 10px;
+        font-size: 15px;
+    }
+    .qa-list-product .card{
+        width: 160px;
+    }
+    .qa-list-product .card img{
+        max-width: 130px;
+        max-height: 100px;
     }
 }
 
@@ -432,4 +469,19 @@ footer{
     }
    
    
+}
+
+
+.modal-body img {
+    max-width: 80%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.modal-body table, th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
 }

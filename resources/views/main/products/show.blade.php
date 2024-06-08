@@ -7,16 +7,15 @@
     <div class="container mt-2 qa-product-show-links">
         <ul>
             <li><a href="{{route('main.home')}}"> Trang chủ </a> > </li>
-            <li><a href="#"> {{$product->catalog->catalog_name}}</a> > </li>
-            <li><a href="#"> {{$product->name}} </a> </li>
-
+            <li><a href="#"> {{$product->catalog->catalog_name}}</a>  </li>
+           
         </ul>
     </div>
     <!--Thông tin chính về sản phẩm-->
     <div class="container px-5">
         <div class="row">
             <!-- Product Images -->
-            <div class="col-lg-6 col-md-5 col-sm-12 mb-3">
+            <div class="col-lg-4 col-md-5 col-sm-12 mb-3">
                 <div id="carouselExampleCaptions" class="carousel slide">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
@@ -55,7 +54,7 @@
                 </div>
             </div>
             <!-- Product Name và price -->
-            <div class="col-lg-6 col-md-5 col-sm-12 mb-3  px-5">
+            <div class="col-lg-8 col-md-5 col-sm-12 mb-3  px-5">
                 <h1>{{$product->name}}</h1>
                 <ul>
                     <li>Mã sản phẩm: <b>{{$product->model}}</b></li>
@@ -81,15 +80,15 @@
                     </li>
                 </ul>
                 <div class="row mt-2 d-flex">
-                    <div class="col-3">
+                    <div class="col-lg-3 col-sm-6">
                         <h3 for="qty">Số lượng:</h3>
                     </div>
-                    <div class="col-2">
+                    <div class="col-lg-2 col-sm-6">
                         <input type="number" id="qty" min="1" value="1" class="form-control" required>
                     </div>
                 </div>
 
-                <div class="col-5 text-center mt-1">
+                <div class="col-5 text-center mt-3">
                     <button class="btn btn-outline-danger" type="button"><i class="fas fa-cart-plus me-2"></i>Thêm vào
                         giỏ</button>
                 </div>
@@ -101,7 +100,7 @@
     <div class="container mt-5 mb-3">
         <div class="row px-2">
             <!--Nội dung bài viết-->
-            <div class="col">
+            <div class="col-lg-8 col-sm-12">
                 <div>
                     <h1 class="text-center"> Thông tin sản phẩm</h1>
                 </div>
@@ -139,7 +138,7 @@
                 </div>
             </div>
             <!--Thông số kỹ thuật-->
-            <div class="col">
+            <div class="col-lg-4 col-sm-12">
                 <div class="text-center">
                     <h1>Thông số kỹ thuật</h1>
                 </div>
@@ -164,7 +163,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body ">
                                 {!! $product->specifications !!}
                             </div>
                             <div class="modal-footer">

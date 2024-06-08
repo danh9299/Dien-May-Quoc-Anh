@@ -11,6 +11,8 @@ use App\Models\Feature;
 use Illuminate\Http\Request;
 use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductsImport;
+
 class ProductController extends Controller
 {
     //HOME
@@ -30,13 +32,13 @@ class ProductController extends Controller
 
         $filter_brands = Brand::all();
         $filter_types = Type::all();
-      
+
         $filter_features = Feature::all();
 
 
         // Lấy các sản phẩm 
-       
-    $productsQuery = Product::query();
+
+        $productsQuery = Product::query();
 
         // Lấy dữ liệu từ các bộ lọc (nếu có)
         $brandIds = $request->input('brands', []);
@@ -62,11 +64,11 @@ class ProductController extends Controller
             $productsQuery->where('price', '<=', $request->max_price);
         }
         // Sử dụng truy vấn đã áp dụng bộ lọc để phân trang và lấy sản phẩm
-       // Order by updated_at in descending order
-    $productsQuery->orderBy('updated_at', 'desc');
+        // Order by updated_at in descending order
+        $productsQuery->orderBy('updated_at', 'desc');
 
-    // Paginate the results
-    $products = $productsQuery->paginate(10);
+        // Paginate the results
+        $products = $productsQuery->paginate(10);
         return view('main.products.list-all-products', compact('products', 'filter_brands', 'filter_types', 'filter_features'));
     }
     public function listNoBrand(Catalog $catalog, Request $request)
@@ -284,18 +286,20 @@ class ProductController extends Controller
         $imageSaveUrl = 'img/product_images';
 
         $mainImage = $request->file('image_link');
-        $mainImageName = time() . '_' . $product->model . '.' . $mainImage->getClientOriginalExtension();
+        $mainImageName = time() . '_' . $product->model ;
+        $mainImageName = preg_replace('/[^A-Za-z0-9]/', '', $mainImageName). '.' . $mainImage->getClientOriginalExtension();
         $mainImage->move($imageSaveLocation, $mainImageName);
-        $product->image_link = $imageSaveUrl.'/'.$mainImageName;
+        $product->image_link = $imageSaveUrl . '/' . $mainImageName;
 
         if ($request->has('image_list')) {
             $imageList = $request->file('image_list');
             $imageListNames = [];
             $count = 1;
             foreach ($imageList as $image) {
-                $imageName = time() . '_' . $product->model . '_' . $count . '.' . $image->getClientOriginalExtension();
+                $imageName = time() . '_' . $product->model . '_' . $count ;
+                $imageName = preg_replace('/[^A-Za-z0-9]/', '', $imageName). '.' . $image->getClientOriginalExtension();
                 $image->move($imageSaveLocation, $imageName);
-                $imageListNames[] = $imageSaveUrl.'/'.$imageName;
+                $imageListNames[] = $imageSaveUrl . '/' . $imageName;
                 $count = $count + 1;
             }
             $imageListNamesJson = json_encode($imageListNames);
@@ -393,9 +397,10 @@ class ProductController extends Controller
 
         if ($request->image_link_check != $product->image_link) {
             $mainImage = $request->file('image_link');
-            $mainImageName = time() . '_' . $product->model . '.' . $mainImage->getClientOriginalExtension();
+            $mainImageName = time() . '_' . $product->model ;
+            $mainImageName = preg_replace('/[^A-Za-z0-9]/', '', $mainImageName). '.' . $mainImage->getClientOriginalExtension();
             $mainImage->move($imageSaveLocation, $mainImageName);
-            $product->image_link = $imageSaveUrl.'/'.$mainImageName;
+            $product->image_link = $imageSaveUrl . '/' . $mainImageName;
         } else {
             $product->image_link = $request->image_link_check;
         }
@@ -406,9 +411,10 @@ class ProductController extends Controller
                 $imageListNames = [];
                 $count = 1;
                 foreach ($imageList as $image) {
-                    $imageName = time() . '_' . $product->model . '_' . $count . '.' . $image->getClientOriginalExtension();
+                    $imageName = time() . '_' . $product->model . '_' . $count ;
+                    $imageName = preg_replace('/[^A-Za-z0-9]/', '', $imageName). '.' . $image->getClientOriginalExtension();
                     $image->move($imageSaveLocation, $imageName);
-                    $imageListNames[] = $imageSaveUrl.'/'.$imageName;
+                    $imageListNames[] = $imageSaveUrl . '/' . $imageName;
                     $count = $count + 1;
                 }
                 $imageListNamesJson = json_encode($imageListNames);
@@ -462,8 +468,47 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index')->with('success', 'Xóa sản phẩm thành công!');
     }
-    public function export() 
+    public function export()
     {
         return Excel::download(new ProductsExport, 'dienmayquocanh-tat-ca-san-pham.xlsx');
     }
+    public function formImport()
+    {
+        return view('admin.products.form-import');
+    }
+
+    public function import(Request $request)
+    {
+        try {
+            if ($request->hasFile('file')) {
+                
+
+                $file = $request->file('file');
+                
+                // Đặt tên mới cho file
+                $fileName = time() . '_' . $file->getClientOriginalName();
+               
+                // Di chuyển file vào thư mục lưu trữ (nếu muốn)
+                $file->move(public_path('import-products'), $fileName);
+
+                // Thực hiện import với tên file mới
+                Excel::import(new ProductsImport, public_path('import-products/' . $fileName));
+                // Xóa file sau khi import
+                unlink(public_path('import-products/' . $fileName));
+
+
+
+                return redirect()->route('admin.products.index')->with('success', 'Import thành công!');
+
+
+            } else {
+                return redirect()->back()->with('error', 'Không có file được gửi lên!');
+            }
+        
+    } catch (\Exception $e) {
+         //Nếu có ngoại lệ, chuyển hướng người dùng đến trang form import kèm thông báo lỗi
+        return redirect()->back()->with('error', 'Có lỗi xảy ra trong quá trình import. Hãy kiểm tra lại định dạng file hoặc các trường dữ liệu trong file nhập của bạn! ');
+    }
+    }
+
 }

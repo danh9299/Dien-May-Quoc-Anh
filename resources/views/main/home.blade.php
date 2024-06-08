@@ -61,12 +61,12 @@ $long_images = Image::where('group',3)->get();
                             <a href="{{route('main.products.show',$tivi->id)}}">
                                 <div class="text-center mt-1 ">
                                     <img src="{{ asset($tivi->image_link) }}"
-                                        class="img-thumbnail border-0" alt="..." />
+                                        class="border-0" alt="..." />
                                 </div>
                             </a>
 
                             <div class="card-body">
-                                <a href="{{route('main.products.show',$tivi->id)}}">
+                                <a class="mt-1 mb-1" href="{{route('main.products.show',$tivi->id)}}">
                                     <h5 class="card-title">
                                         {{$tivi->name}}
                                     </h5>
@@ -75,8 +75,8 @@ $long_images = Image::where('group',3)->get();
                                     {{number_format($tivi->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price"> {{number_format($tivi->price, 0, ',', '.')}}</span>
-                                <button class="btn btn-outline-dark" type="button">
+                                <span class="product-price"> {{number_format($tivi->price, 0, ',', '.')}}</span><br>
+                                <button class="mt-1  btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>
@@ -120,11 +120,11 @@ $long_images = Image::where('group',3)->get();
                             <a href="{{route('main.products.show',$tulanh->id)}}">
                                 <div class="text-center mt-1 ">
                                     <img src="{{ asset($tulanh->image_link) }}"
-                                        class="img-thumbnail border-0" alt="..." />
+                                        class="border-0" alt="..." />
                                 </div>
                             </a>
                             <div class="card-body">
-                                <a href="{{route('main.products.show',$tulanh->id)}}">
+                                <a class="mt-1 mb-1"  href="{{route('main.products.show',$tulanh->id)}}">
                                     <h5 class="card-title">
                                         {{$tulanh->name}}
                                     </h5>
@@ -133,8 +133,8 @@ $long_images = Image::where('group',3)->get();
                                     {{number_format($tulanh->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price">{{number_format($tulanh->price, 0, ',', '.')}} </span>
-                                <button class="btn btn-outline-dark" type="button">
+                                <span class="product-price">{{number_format($tulanh->price, 0, ',', '.')}} </span><br>
+                                <button class="mt-1 btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>
@@ -177,11 +177,11 @@ $long_images = Image::where('group',3)->get();
                             <a href="{{route('main.products.show',$maygiat->id)}}">
                                 <div class="text-center mt-1 ">
                                     <img src="{{ asset($maygiat->image_link) }}"
-                                        class="img-thumbnail border-0" alt="..." />
+                                        class="border-0" alt="..." />
                                 </div>
                             </a>
                             <div class="card-body">
-                                <a href="{{route('main.products.show',$maygiat->id)}}">
+                                <a class="mt-1 mb-1"  href="{{route('main.products.show',$maygiat->id)}}">
                                     <h5 class="card-title">
                                         {{$maygiat->name}}
                                     </h5>
@@ -190,8 +190,8 @@ $long_images = Image::where('group',3)->get();
                                     {{number_format($maygiat->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price">{{number_format($maygiat->price, 0, ',', '.')}} </span>
-                                <button class="btn btn-outline-dark" type="button">
+                                <span class="product-price">{{number_format($maygiat->price, 0, ',', '.')}} </span><br>
+                                <button class="mt-1 btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>
@@ -234,9 +234,9 @@ $long_images = Image::where('group',3)->get();
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$dieuhoa->id)}}">
                                 <img src="{{ asset($dieuhoa->image_link) }}"
-                                    class="img-thumbnail border-0" alt="..." /></a>
+                                    class="border-0" alt="..." /></a>
                             <div class="card-body">
-                                <a href="{{route('main.products.show',$dieuhoa->id)}}">
+                                <a class="mt-1 mb-1"  href="{{route('main.products.show',$dieuhoa->id)}}">
                                     <h5 class="card-title">
                                         {{$dieuhoa->name}}
                                     </h5>
@@ -245,8 +245,8 @@ $long_images = Image::where('group',3)->get();
                                     {{number_format($dieuhoa->old_price, 0, ',', '.')}}
                                 </span>
                                 <br />
-                                <span class="product-price"> {{number_format($dieuhoa->price, 0, ',', '.')}} </span>
-                                <button class="btn btn-outline-dark" type="button">
+                                <span class="product-price"> {{number_format($dieuhoa->price, 0, ',', '.')}} </span><br>
+                                <button class="mt-1 btn btn-outline-dark" type="button">
                                     Thêm vào giỏ
                                 </button>
                             </div>

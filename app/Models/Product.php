@@ -8,6 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = [
+       
+        'catalog_id',
+        'type_id',
+        'feature_id',
+        'brand_id',
+        'name',
+        'model',
+        'price',
+        'old_price',
+        'quantity',
+        'content',
+        'specifications',
+        'image_link',
+        'image_list',
+    ];
     //1 product thuộc về 1 danh mục
     public function catalog()
     {

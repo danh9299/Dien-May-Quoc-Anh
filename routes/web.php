@@ -121,6 +121,8 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('/admin/products/{product}/quick-edit', [ProductController::class, 'quickEdit'])->name('admin.products.quickEdit');
     Route::put('/admin/products/{product}/quick-update', [ProductController::class, 'quickUpdate'])->name('admin.products.quickUpdate');
     Route::get('/admin/products/export/', [ProductController::class, 'export'])->name('admin.products.export');
+    Route::get('/admin/products/import/', [ProductController::class, 'formImport'])->name('admin.products.form-import');
+    Route::post('/admin/products/import/', [ProductController::class, 'import'])->name('admin.products.import');
     //Articles
     Route::get('/admin/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
     Route::get('/admin/articles/search',[ArticleController::class, 'search'])->name('admin.articles.search');

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container admin-product-add-import-export px-5 mt-3 mb-2">
 
-    <a href="#" class="btn btn-success">Nhập file</a>
+    <a href="{{route('admin.products.form-import')}}" class="btn btn-success">Nhập file</a>
     <a href="{{route('admin.products.export')}}" class="btn btn-secondary">Xuất file</a>
 </div>
 <div class="row">

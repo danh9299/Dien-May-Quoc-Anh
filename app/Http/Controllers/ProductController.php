@@ -9,7 +9,8 @@ use App\Models\Brand;
 use App\Models\Image;
 use App\Models\Feature;
 use Illuminate\Http\Request;
-
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;
 class ProductController extends Controller
 {
     //HOME
@@ -460,5 +461,9 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('admin.products.index')->with('success', 'Xóa sản phẩm thành công!');
+    }
+    public function export() 
+    {
+        return Excel::download(new ProductsExport, 'dienmayquocanh-tat-ca-san-pham.xlsx');
     }
 }

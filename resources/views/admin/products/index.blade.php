@@ -4,7 +4,7 @@
 <div class="container admin-product-add-import-export px-5 mt-3 mb-2">
 
     <a href="#" class="btn btn-success">Nhập file</a>
-    <a href="#" class="btn btn-secondary">Xuất file</a>
+    <a href="{{route('admin.products.export')}}" class="btn btn-secondary">Xuất file</a>
 </div>
 <div class="row">
     <h3 class="mt-2 px-5">Danh sách sản phẩm</h3>

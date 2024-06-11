@@ -83,20 +83,15 @@ $footer = Footer::where('id',1)->first();
                     <div class="col-12">
                         <ul class="qa-footer-policy-info">
                             <li>
-                                <a href="#">Chính sách bán hàng</a>
+                                <a href="{{route('main.policies.servicePolicy')}}">Điều khoản dịch vụ</a>
                             </li>
                             <li>
-                                <a href="#">Chính sách đổi trả</a>
+                                <a href="{{route('main.policies.returnPolicy')}}">Chính sách đổi trả</a>
                             </li>
                             <li>
-                                <a href="#">Chính sách bảo mật</a>
+                                <a href="{{route('main.policies.securePolicy')}}">Chính sách bảo mật</a>
                             </li>
-                            <li>
-                                <a href="#">Chính sách dịch vụ</a>
-                            </li>
-                            <li>
-                                <a href="#">Điều khoản dịch vụ</a>
-                            </li>
+                         
                         </ul>
                     </div>
                 </div>

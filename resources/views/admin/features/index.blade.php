@@ -31,7 +31,7 @@
             </div>
             <div class="card-body">
 
-                <table class="table">
+                <table class="table table-hover">
                     @if(!empty($features) && count($features)>0)
                     <thead>
                         <tr>

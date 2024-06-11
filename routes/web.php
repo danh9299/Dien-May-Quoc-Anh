@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\PolicyController;
 use Illuminate\Support\Facades\Route;
 use App\HTTP\Controllers\AdminRegisterController;
 use App\HTTP\Controllers\AdminLoginController;
@@ -33,9 +35,15 @@ Route::get('/products/{catalog}',[ProductController::class, 'listNoBrand'])->nam
 Route::get('/products',[ProductController::class, 'listAllProducts'])->name('main.products.list-all-products');
 Route::get('/products/{catalog_id}/{brand_id}',[ProductController::class, 'listWithBrand'])->name('main.products.list-with-brand');
 Route::get('/search',[ProductController::class, 'headerSearch'])->name('main.search');
-
+//Articles
 Route::get('/articles',[ArticleController::class, 'listAllArticles'])->name('main.articles.list-all-articles');
 Route::get('/articles/{article}/show', [ArticleController::class, 'show'])->name('main.articles.show');
+//Policy
+Route::get('/secure-policy', [PolicyController::class, 'securePolicy'])->name('main.policies.securePolicy');
+Route::get('/service-policy', [PolicyController::class, 'servicePolicy'])->name('main.policies.servicePolicy');
+Route::get('/return-policy', [PolicyController::class, 'returnPolicy'])->name('main.policies.returnPolicy');
+
+
 
 Route::get('/login', function () {
     return view('main.auth.login');
@@ -175,6 +183,15 @@ Route::group(['middleware' => 'check.admin.role'], function () {
     Route::put('/admin/settings/general/update',[SettingController::class, 'updateGeneral'])->name('admin.settings.general.update');
     Route::get('/admin/settings/network/edit',[SettingController::class, 'editNetwork'])->name('admin.settings.network.edit');
     Route::put('/admin/settings/network/update',[SettingController::class, 'updateNetwork'])->name('admin.settings.network.update');
+    
+    //Policy
+    Route::get('/admin/settings/secure-policy/edit',[SettingController::class, 'editSecure'])->name('admin.settings.policy.secure');
+    Route::put('/admin/settings/secure-policy/edit',[SettingController::class, 'updateSecure'])->name('admin.settings.policy.updateSecure');
+    Route::get('/admin/settings/service-policy/edit',[SettingController::class, 'editService'])->name('admin.settings.policy.service');
+    Route::put('/admin/settings/service-policy/edit',[SettingController::class, 'updateService'])->name('admin.settings.policy.updateService');
+    Route::get('/admin/settings/return-policy/edit',[SettingController::class, 'editReturn'])->name('admin.settings.policy.return');
+    Route::put('/admin/settings/return-policy/edit',[SettingController::class, 'updateReturn'])->name('admin.settings.policy.updateReturn');
+    
 });
 
 

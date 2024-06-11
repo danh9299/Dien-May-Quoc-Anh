@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
 use App\Models\Footer;
+use App\Models\Policy;
 
 class SettingController extends Controller
 {
@@ -56,18 +58,60 @@ class SettingController extends Controller
     {
         $account = auth()->guard('admin')->user();
         $request->validate([
-            
+
             'email' => [
                 Rule::unique('admins')->ignore($account->id),
             ],
-            
-            
+
+
         ]);
-        
+
         $account->name = $request->name;
         $account->email = $request->email;
         $account->username = $request->username;
         $account->save();
         return redirect()->route('admin.settings.account.edit')->with('success', 'Cập nhật Thông tin cá nhân thành công');
+    }
+    public function editSecure()
+    {
+        $policy = Policy::where('group', 'secure')->first();
+        return view('admin.settings.policy.secure', compact('policy'));
+    }
+    public function updateSecure(Request $request)
+    {
+        $policy = Policy::where('group', 'secure')->first();
+        $policy->content = $request->content;
+
+        $policy->save();
+        return redirect()->route('admin.settings.policy.secure')->with('success', 'Cập nhật Chính sách thành công');
+
+    }
+    public function editService()
+    {
+        $policy = Policy::where('group', 'service')->first();
+        return view('admin.settings.policy.service', compact('policy'));
+    }
+    public function updateService(Request $request)
+    {
+        $policy = Policy::where('group', 'service')->first();
+        $policy->content = $request->content;
+
+        $policy->save();
+        return redirect()->route('admin.settings.policy.service')->with('success', 'Cập nhật Chính sách thành công');
+
+    }
+    public function editReturn()
+    {
+        $policy = Policy::where('group', 'return')->first();
+        return view('admin.settings.policy.return', compact('policy'));
+    }
+    public function updateReturn(Request $request)
+    {
+        $policy = Policy::where('group','return')->first();
+        $policy->content = $request->content;
+
+        $policy->save();
+        return redirect()->route('admin.settings.policy.return')->with('success', 'Cập nhật Chính sách thành công');
+
     }
 }

@@ -30,6 +30,7 @@ class RegisterController extends Controller
         $user->password = bcrypt($request->password);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
       
         $user->save();
 

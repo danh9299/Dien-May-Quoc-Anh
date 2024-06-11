@@ -21,6 +21,10 @@
                         <label for="name" class="form-label">Tên</label>
                         <input type="text" name="name" class=" form-control" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="phone_number" class="form-label">Số điện thoại</label>
+                        <input type="text" name="phone_number" id="phone_number" class="form-control" maxlength="13" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);">
+                    </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>

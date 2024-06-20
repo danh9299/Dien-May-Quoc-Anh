@@ -70,6 +70,9 @@ class Kernel extends HttpKernel
         // Các middleware khác...
         'check.admin' => \App\Http\Middleware\CheckAdmin::class,
         'check.admin.role' => \App\Http\Middleware\CheckAdminRole::class,
+        
+            'auth.user' => \App\Http\Middleware\CheckUserLoggedIn::class,
+        
     ];
     
 }

@@ -129,7 +129,7 @@ $brands = Brand::all();
             </div>
             <!--Giỏ hàng-->
             <div class="col-lg-auto text-center text-lg-left header-item-holder">
-                <a href="#" class="qa-header-cart">
+                <a href="{{route('main.cart.view')}}" class="qa-header-cart">
                     Giỏ hàng
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-cart4" viewBox="0 0 16 16">

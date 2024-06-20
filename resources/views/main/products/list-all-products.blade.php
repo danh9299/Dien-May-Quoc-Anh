@@ -280,4 +280,6 @@
 </div>
 
 <script src="{{asset('js/check_filter_price.js')}}"></script>
+<!--Add-to-cart-->
+<script src="{{ asset('js/add-to-cart.js') }}">
 @endsection

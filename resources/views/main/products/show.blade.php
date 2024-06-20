@@ -222,4 +222,6 @@
         @endif
     </div>
 </div>
+<!--Add-to-cart-->
+<script src="{{ asset('js/add-to-cart.js') }}">
 @endsection

@@ -1,4 +1,3 @@
-
 @extends('main.master')
 @section('content')
 <div class="col-12">
@@ -6,8 +5,8 @@
     <main class="row">
 
         <!-- Category Products -->
-    
-        
+
+
         <div class="col-12 px-5 ">
             <div class="row">
                 <div class="col-12 py-3">
@@ -26,8 +25,8 @@
                         <div class="mb-3  card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$product->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset($product->image_link) }}"
-                                        class="img-thumbnail border-0" alt="..." />
+                                    <img src="{{ asset($product->image_link) }}" class="img-thumbnail border-0"
+                                        alt="..." />
                                 </div>
                             </a>
 
@@ -42,9 +41,14 @@
                                 </span>
                                 <br />
                                 <span class="product-price"> {{number_format($product->price, 0, ',', '.')}}</span>
-                                <button class="btn btn-outline-dark" type="button">
-                                    Thêm vào giỏ
-                                </button>
+                                <form class="add-to-cart-form">
+                                    @csrf
+                                    <input type="number" value="1" name="quantity" hidden>
+                                    <input type="number" value="{{$product->id}}" name="product_id" hidden>
+                                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                                        Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <!-- Product -->
@@ -104,4 +108,6 @@
     </main>
     <!-- Main Content -->
 </div>
+<!--Add-to-cart-->
+<script src="{{ asset('js/add-to-cart.js') }}">
 @endsection

@@ -296,4 +296,7 @@ $long_images = Image::where('group',3)->get();
 </div>
 @endif
 
+
+<!--Add-to-cart-->
+<script src="{{ asset('js/add-to-cart.js') }}">
 @endsection

@@ -7,8 +7,8 @@
     <div class="container mt-2 qa-product-show-links">
         <ul>
             <li><a href="{{route('main.home')}}"> Trang chủ </a> > </li>
-            <li><a href="#"> {{$product->catalog->catalog_name}}</a>  </li>
-           
+            <li><a href="#"> {{$product->catalog->catalog_name}}</a> </li>
+
         </ul>
     </div>
     <!--Thông tin chính về sản phẩm-->
@@ -27,15 +27,13 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ asset($product->image_link) }}" class="d-block w-100"
-                                alt="...">
+                            <img src="{{ asset($product->image_link) }}" class="d-block w-100" alt="...">
                         </div>
 
                         @if(is_array(json_decode($product->image_list)))
                         @foreach(json_decode($product->image_list) as $image_list_item)
                         <div class="carousel-item">
-                            <img src="{{ asset($image_list_item) }}" class="d-block w-100"
-                                alt="...">
+                            <img src="{{ asset($image_list_item) }}" class="d-block w-100" alt="...">
                         </div>
                         @endforeach
                         @endif
@@ -79,19 +77,26 @@
                                     {{number_format($product->old_price, 0, ',', '.')}}</del></b> </h4>
                     </li>
                 </ul>
-                <div class="row mt-2 d-flex">
-                    <div class="col-lg-3 col-sm-6">
-                        <h3 for="qty">Số lượng:</h3>
+                <form class="add-to-cart-form">
+                    @csrf
+                    <div class="row mt-2 d-flex">
+                        <div class="col-lg-3 col-sm-6">
+                            <h3 for="qty">Số lượng:</h3>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                            <input type="number" id="qty" min="1" value="1" name="quantity" class="form-control" required>
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-sm-6">
-                        <input type="number" id="qty" min="1" value="1" class="form-control" required>
-                    </div>
-                </div>
 
-                <div class="col-5 text-center mt-3">
-                    <button class="btn btn-outline-danger" type="button"><i class="fas fa-cart-plus me-2"></i>Thêm vào
-                        giỏ</button>
-                </div>
+
+
+                    <input type="number" value="{{$product->id}}" name="product_id" hidden>
+
+
+                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                        Thêm vào giỏ
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -192,8 +197,7 @@
         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <a href="{{route('main.products.show', $similar_product->id)}}">
                 <div class="text-center mt-1 ">
-                    <img src="{{ asset($similar_product->image_link) }}"
-                        class="img-thumbnail border-0" alt="..." />
+                    <img src="{{ asset($similar_product->image_link) }}" class="img-thumbnail border-0" alt="..." />
                 </div>
             </a>
             <div class="card-body">

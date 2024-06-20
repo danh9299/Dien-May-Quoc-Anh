@@ -17,6 +17,8 @@ use App\HTTP\Controllers\AdminForgotPasswordController;
 use App\HTTP\Controllers\LoginController;
 use App\HTTP\Controllers\RegisterController;
 use App\HTTP\Controllers\SettingController;
+use App\Http\Controllers\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,7 +61,12 @@ Route::post('/register', [RegisterController::class, 'addnew'])->name('main.auth
 Route::get('/logout', [LoginController::class, 'logout'])->name('main.auth.logout');
 
 
-
+//Cart
+Route::middleware('auth:web')->group(function () {
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('main.cart.add');
+    Route::get('/cart', [CartController::class, 'viewCart'])->name('main.cart.view');
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('main.cart.checkout');
+});
 
 
 

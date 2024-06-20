@@ -9,86 +9,88 @@
         <div class="col-md-2 col-sm-12 qa-filter-product p-4  mt-4">
             <!--Desktop-->
             <div class="d-lg-block d-none">
-            <h3 class="text-center"> Bộ Lọc {{$catalog->catalog_name}}</h3>
-            <hr>
-            <form action="{{ route('main.products.list-no-brand', $catalog->id) }}" id="filterForm" method="GET">
-                <h4 class="mt-2 mb-2">Lọc hãng</h4>
+                <h3 class="text-center"> Bộ Lọc {{$catalog->catalog_name}}</h3>
+                <hr>
+                <form action="{{ route('main.products.list-no-brand', $catalog->id) }}" id="filterForm" method="GET">
+                    <h4 class="mt-2 mb-2">Lọc hãng</h4>
 
-                @if(count($filter_brands) > 0)
-                @foreach($filter_brands as $filter_brand)
-                @if($filter_brand->id != 0)
-                <div class="form-check">
-                    <input class="form-check-input" name="brands[]" type="checkbox" value="{{ $filter_brand->id }}"
-                        {{ in_array($filter_brand->id, request('brands', [])) ? 'checked' : '' }}>
-                    <label class="form-check-label">
-                        {{$filter_brand->name}}
-                    </label>
-                </div>
-                @endif
-                @endforeach
-                @endif
-
-                <h4 class="mt-2 mb-2">Lọc thiết kế</h4>
-                @if(count($filter_features) > 0)
-                @foreach($filter_features as $filter_feature)
-                @if($filter_feature->id != 0)
-                <div class="form-check">
-                    <input class="form-check-input" name="features[]" type="checkbox" value="{{ $filter_feature->id }}"
-                        {{ in_array($filter_feature->id, request('features', [])) ? 'checked' : '' }}>
-                    <label class="form-check-label">
-                        {{$filter_feature->name}}
-                    </label>
-                </div>
-                @endif
-                @endforeach
-                @endif
-
-                <h4 class="mt-2 mb-2">Lọc phân loại</h4>
-                @if(count($filter_types) > 0)
-                @foreach($filter_types as $filter_type)
-                @if($filter_type->id != 0)
-                <div class="form-check">
-                    <input class="form-check-input" name="types[]" type="checkbox" value="{{ $filter_type->id }}"
-                        {{ in_array($filter_type->id, request('types', [])) ? 'checked' : '' }}>
-                    <label class="form-check-label">
-                        {{$filter_type->name}}
-                    </label>
-                </div>
-                @endif
-                @endforeach
-                @endif
-
-                <h4 class="mt-2 mb-2">Lọc theo giá</h4>
-                <div class="form-group">
-                    <label for="min_price">Giá thấp nhất</label>
-                    @if(request()->has('min_price'))
-                    <input type="number" class="form-control" id="min_price" name="min_price"
-                        value="{{ request('min_price') }}">
-                    @else
-                    <input type="number" class="form-control" id="min_price" name="min_price" value="0">
+                    @if(count($filter_brands) > 0)
+                    @foreach($filter_brands as $filter_brand)
+                    @if($filter_brand->id != 0)
+                    <div class="form-check">
+                        <input class="form-check-input" name="brands[]" type="checkbox" value="{{ $filter_brand->id }}"
+                            {{ in_array($filter_brand->id, request('brands', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label">
+                            {{$filter_brand->name}}
+                        </label>
+                    </div>
                     @endif
-                </div>
-                <div class="form-group">
-                    <label for="max_price">Giá cao nhất</label>
-                    @if(request()->has('max_price'))
-                    <input type="number" class="form-control" id="max_price" name="max_price"
-                        value="{{ request('max_price') }}">
-                    @else
-                    <input type="number" class="form-control" id="max_price" name="max_price" value="999999999">
+                    @endforeach
                     @endif
-                </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Lọc</button>
-            </form>
+                    <h4 class="mt-2 mb-2">Lọc thiết kế</h4>
+                    @if(count($filter_features) > 0)
+                    @foreach($filter_features as $filter_feature)
+                    @if($filter_feature->id != 0)
+                    <div class="form-check">
+                        <input class="form-check-input" name="features[]" type="checkbox"
+                            value="{{ $filter_feature->id }}"
+                            {{ in_array($filter_feature->id, request('features', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label">
+                            {{$filter_feature->name}}
+                        </label>
+                    </div>
+                    @endif
+                    @endforeach
+                    @endif
+
+                    <h4 class="mt-2 mb-2">Lọc phân loại</h4>
+                    @if(count($filter_types) > 0)
+                    @foreach($filter_types as $filter_type)
+                    @if($filter_type->id != 0)
+                    <div class="form-check">
+                        <input class="form-check-input" name="types[]" type="checkbox" value="{{ $filter_type->id }}"
+                            {{ in_array($filter_type->id, request('types', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label">
+                            {{$filter_type->name}}
+                        </label>
+                    </div>
+                    @endif
+                    @endforeach
+                    @endif
+
+                    <h4 class="mt-2 mb-2">Lọc theo giá</h4>
+                    <div class="form-group">
+                        <label for="min_price">Giá thấp nhất</label>
+                        @if(request()->has('min_price'))
+                        <input type="number" class="form-control" id="min_price" name="min_price"
+                            value="{{ request('min_price') }}">
+                        @else
+                        <input type="number" class="form-control" id="min_price" name="min_price" value="0">
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="max_price">Giá cao nhất</label>
+                        @if(request()->has('max_price'))
+                        <input type="number" class="form-control" id="max_price" name="max_price"
+                            value="{{ request('max_price') }}">
+                        @else
+                        <input type="number" class="form-control" id="max_price" name="max_price" value="999999999">
+                        @endif
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Lọc</button>
+                </form>
             </div>
-         
+
             <!--Mobile-->
             <div class="text-center  d-lg-none d-block">
-            <button class="btn btn-secondary btn-filter-sticky" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-                aria-controls="staticBackdrop">
-               Lọc sản phẩm
-            </button></div>
-           
+                <button class="btn btn-secondary btn-filter-sticky" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                    Lọc sản phẩm
+                </button>
+            </div>
+
 
             <div class="col-sm-12 offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
                 aria-labelledby="staticBackdropLabel">
@@ -207,19 +209,24 @@
                             </a>
 
                             <div class="card-body">
-                                <a href="{{route('main.products.show',$product->id)}}">
-                                    <h5 class="card-title">
-                                        {{$product->name}}
-                                    </h5>
-                                </a>
-                                <span class="product-price-old">
-                                    {{number_format($product->old_price, 0, ',', '.')}}
-                                </span>
-                                <br />
-                                <span class="product-price"> {{number_format($product->price, 0, ',', '.')}}</span>
-                                <button class="btn btn-outline-dark" type="button">
-                                    Thêm vào giỏ
-                                </button>
+                                <form class="add-to-cart-form">
+                                    @csrf
+                                    <a href="{{route('main.products.show',$product->id)}}">
+                                        <h5 class="card-title">
+                                            {{$product->name}}
+                                        </h5>
+                                    </a>
+                                    <span class="product-price-old">
+                                        {{number_format($product->old_price, 0, ',', '.')}}
+                                    </span>
+                                    <br />
+                                    <span class="product-price"> {{number_format($product->price, 0, ',', '.')}}</span>
+                                    <input type="number" value="1" name="quantity" hidden>
+                                    <input type="number" value="{{$product->id}}" name="product_id" hidden>
+                                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                                        Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <!-- Product -->

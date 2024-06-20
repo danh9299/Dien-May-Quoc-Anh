@@ -170,6 +170,8 @@
                             </a>
 
                             <div class="card-body">
+                            <form class="add-to-cart-form">
+                            @csrf
                                 <a href="{{route('main.products.show',$product->id)}}">
                                     <h5 class="card-title">
                                         {{$product->name}}
@@ -180,9 +182,12 @@
                                 </span>
                                 <br />
                                 <span class="product-price"> {{number_format($product->price, 0, ',', '.')}}</span>
-                                <button class="btn btn-outline-dark" type="button">
-                                    Thêm vào giỏ
-                                </button>
+                                <input type="number" value="1" name="quantity" hidden>
+                                    <input type="number" value="{{$product->id}}" name="product_id" hidden>
+                                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                                        Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <!-- Product -->

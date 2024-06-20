@@ -54,33 +54,42 @@ $long_images = Image::where('group',3)->get();
                 </div>
                 <div class="container">
                     <div class="qa-home-product d-flex">
+
+
+
                         @if(count($tivis)>0)
                         @foreach ($tivis as $tivi)
                         <!-- Product -->
+
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$tivi->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset($tivi->image_link) }}"
-                                        class="border-0" alt="..." />
+                                    <img src="{{ asset($tivi->image_link) }}" class="border-0" alt="..." />
                                 </div>
                             </a>
 
                             <div class="card-body">
-                                <a class="mt-1 mb-1" href="{{route('main.products.show',$tivi->id)}}">
-                                    <h5 class="card-title">
-                                        {{$tivi->name}}
-                                    </h5>
-                                </a>
-                                <span class="product-price-old">
-                                    {{number_format($tivi->old_price, 0, ',', '.')}}
-                                </span>
-                                <br />
-                                <span class="product-price"> {{number_format($tivi->price, 0, ',', '.')}}</span><br>
-                                <button class="mt-1  btn btn-outline-dark" type="button">
-                                    Thêm vào giỏ
-                                </button>
+                                <form class="add-to-cart-form">
+                                    @csrf
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$tivi->id)}}">
+                                        <h5 class="card-title">
+                                            {{$tivi->name}}
+                                        </h5>
+                                    </a>
+                                    <span class="product-price-old">
+                                        {{number_format($tivi->old_price, 0, ',', '.')}}
+                                    </span>
+                                    <br />
+                                    <span class="product-price"> {{number_format($tivi->price, 0, ',', '.')}}</span><br>
+                                    <input type="number" value="1" name="quantity" hidden>
+                                    <input type="number" value="{{$tivi->id}}" name="product_id" hidden>
+                                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                                        Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
+
                         <!-- Product -->
                         @endforeach
                         @else
@@ -119,24 +128,29 @@ $long_images = Image::where('group',3)->get();
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$tulanh->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset($tulanh->image_link) }}"
-                                        class="border-0" alt="..." />
+                                    <img src="{{ asset($tulanh->image_link) }}" class="border-0" alt="..." />
                                 </div>
                             </a>
                             <div class="card-body">
-                                <a class="mt-1 mb-1"  href="{{route('main.products.show',$tulanh->id)}}">
-                                    <h5 class="card-title">
-                                        {{$tulanh->name}}
-                                    </h5>
-                                </a>
-                                <span class="product-price-old">
-                                    {{number_format($tulanh->old_price, 0, ',', '.')}}
-                                </span>
-                                <br />
-                                <span class="product-price">{{number_format($tulanh->price, 0, ',', '.')}} </span><br>
-                                <button class="mt-1 btn btn-outline-dark" type="button">
-                                    Thêm vào giỏ
-                                </button>
+                                <form class="add-to-cart-form">
+                                    @csrf
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$tulanh->id)}}">
+                                        <h5 class="card-title">
+                                            {{$tulanh->name}}
+                                        </h5>
+                                    </a>
+                                    <span class="product-price-old">
+                                        {{number_format($tulanh->old_price, 0, ',', '.')}}
+                                    </span>
+                                    <br />
+                                    <span class="product-price">{{number_format($tulanh->price, 0, ',', '.')}}
+                                    </span><br>
+                                    <input type="number" value="1" name="quantity" hidden>
+                                    <input type="number" value="{{$tulanh->id}}" name="product_id" hidden>
+                                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                                        Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <!-- Product -->
@@ -176,24 +190,29 @@ $long_images = Image::where('group',3)->get();
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$maygiat->id)}}">
                                 <div class="text-center mt-1 ">
-                                    <img src="{{ asset($maygiat->image_link) }}"
-                                        class="border-0" alt="..." />
+                                    <img src="{{ asset($maygiat->image_link) }}" class="border-0" alt="..." />
                                 </div>
                             </a>
                             <div class="card-body">
-                                <a class="mt-1 mb-1"  href="{{route('main.products.show',$maygiat->id)}}">
-                                    <h5 class="card-title">
-                                        {{$maygiat->name}}
-                                    </h5>
-                                </a>
-                                <span class="product-price-old">
-                                    {{number_format($maygiat->old_price, 0, ',', '.')}}
-                                </span>
-                                <br />
-                                <span class="product-price">{{number_format($maygiat->price, 0, ',', '.')}} </span><br>
-                                <button class="mt-1 btn btn-outline-dark" type="button">
-                                    Thêm vào giỏ
-                                </button>
+                                <form class="add-to-cart-form">
+                                    @csrf
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$maygiat->id)}}">
+                                        <h5 class="card-title">
+                                            {{$maygiat->name}}
+                                        </h5>
+                                    </a>
+                                    <span class="product-price-old">
+                                        {{number_format($maygiat->old_price, 0, ',', '.')}}
+                                    </span>
+                                    <br />
+                                    <span class="product-price">{{number_format($maygiat->price, 0, ',', '.')}}
+                                    </span><br>
+                                    <input type="number" value="1" name="quantity" hidden>
+                                    <input type="number" value="{{$maygiat->id}}" name="product_id" hidden>
+                                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                                        Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <!-- Product -->
@@ -233,22 +252,27 @@ $long_images = Image::where('group',3)->get();
                         <!-- Product -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$dieuhoa->id)}}">
-                                <img src="{{ asset($dieuhoa->image_link) }}"
-                                    class="border-0" alt="..." /></a>
+                                <img src="{{ asset($dieuhoa->image_link) }}" class="border-0" alt="..." /></a>
                             <div class="card-body">
-                                <a class="mt-1 mb-1"  href="{{route('main.products.show',$dieuhoa->id)}}">
-                                    <h5 class="card-title">
-                                        {{$dieuhoa->name}}
-                                    </h5>
-                                </a>
-                                <span class="product-price-old">
-                                    {{number_format($dieuhoa->old_price, 0, ',', '.')}}
-                                </span>
-                                <br />
-                                <span class="product-price"> {{number_format($dieuhoa->price, 0, ',', '.')}} </span><br>
-                                <button class="mt-1 btn btn-outline-dark" type="button">
-                                    Thêm vào giỏ
-                                </button>
+                                <form class="add-to-cart-form">
+                                    @csrf
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$dieuhoa->id)}}">
+                                        <h5 class="card-title">
+                                            {{$dieuhoa->name}}
+                                        </h5>
+                                    </a>
+                                    <span class="product-price-old">
+                                        {{number_format($dieuhoa->old_price, 0, ',', '.')}}
+                                    </span>
+                                    <br />
+                                    <span class="product-price"> {{number_format($dieuhoa->price, 0, ',', '.')}}
+                                    </span><br>
+                                    <input type="number" value="1" name="quantity" hidden>
+                                    <input type="number" value="{{$dieuhoa->id}}" name="product_id" hidden>
+                                    <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
+                                        Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <!-- Product -->

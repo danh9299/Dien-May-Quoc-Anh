@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -61,18 +63,103 @@ class CartController extends Controller
         return redirect()->route('main.cart.view');
     }
 
+    public function showCheckoutForm()
+    {
+        $user = Auth::guard($this->guard)->user();
+        $cart = Cart::where('user_id', $user->id)->with('items.product')->first();
 
+        if (!$cart || $cart->items->isEmpty()) {
+            return redirect()->route('main.cart.view');
+        }
+
+        return view('main.cart.checkoutform', compact('cart'));
+    }
+
+
+
+
+
+
+    //Orders
+
+    //Main
+    public function viewOrder(Order $order)
+    {
+        return view('main.orders.view', compact('order'));
+    }
+
+    public function allOrders()
+    {
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id) ->orderBy('created_at', 'desc')->with('items.product')->get();
+   
+        return view('main.orders.all-orders', compact('orders'));
+    }
     public function checkout(Request $request)
     {
         $user = Auth::guard($this->guard)->user();
-
         $cart = Cart::where('user_id', $user->id)->with('items.product')->first();
 
-        // Xử lý logic thanh toán ở đây
+        if (!$cart || $cart->items->isEmpty()) {
+            return redirect()->route('cart.view')->with('error', 'Giỏ hàng của bạn đang trống.');
+        }
+        $order = new Order();
+        $order->user_id = $user->id;
+        
+        $order->total_amount = $cart->items->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+        $order->payment_method = $request->payment_method;
+        $order->save();
+
+        foreach ($cart->items as $item) {
+            $orderItem = new OrderItem();
+            $orderItem->order_id = $order->id;
+            $orderItem->product_id = $item->product_id;
+            $product = $item->product;
+            $product->quantity = $product->quantity - $item->quantity;
+            $orderItem->quantity = $item->quantity;
+            $orderItem->price = $item->product->price;
+            $product->save();
+            $orderItem->save();
+        }
 
         $cart->items()->delete();
         $cart->delete();
 
-        return redirect()->route('main.home');
+        return redirect()->route('main.orders.all-orders')->with('success', 'Đã tạo đơn hàng thành công.');
+  
     }
+
+    //Admin
+    public function index(){
+        $orders = Order::orderBy('updated_at', 'desc')->paginate(10);
+        return view('admin.orders.index', ['orders' => $orders]);
+    }
+    public function show(Order $order)
+{
+    $order->load('items.product'); // Load thông tin chi tiết sản phẩm trong đơn hàng
+    return view('admin.orders.show', compact('order'));
+}
+public function markAsDelivered($orderId)
+{
+    $order = Order::findOrFail($orderId);
+    
+    // Cập nhật trạng thái của đơn hàng thành "Đã giao"
+    $order->status = 'Đã giao';
+    $order->save();
+
+    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành đã giao.');
+}
+
+public function markAsUnDelivered($orderId)
+{
+    $order = Order::findOrFail($orderId);
+    
+    // Cập nhật trạng thái của đơn hàng thành "Đã giao"
+    $order->status = 'Chưa giao';
+    $order->save();
+
+    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành chưa giao.');
+}
 }

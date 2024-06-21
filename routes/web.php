@@ -66,9 +66,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('main.auth.logou
 Route::group(['middleware' => 'auth.user'], function () {
     Route::post('/cart/add', [CartController::class, 'addToCart'])->name('main.cart.add');
     Route::get('/cart', [CartController::class, 'viewCart'])->name('main.cart.view');
+    Route::get('/checkout', [CartController::class, 'showCheckoutForm'])->name('main.cart.showCheckoutForm');
     Route::post('/checkout', [CartController::class, 'checkout'])->name('main.cart.checkout');
     Route::delete('/cart/remove/{cart_item}', [CartController::class, 'removeCartItem'])->name('main.cart.remove');
-
+    Route::get('/order/{order}', [CartController::class, 'viewOrder'])->name('main.orders.view');
+    Route::get('/orders', [CartController::class, 'allOrders'])->name('main.orders.all-orders');
 });
 
 //Admin pages
@@ -170,6 +172,13 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings.index');
     Route::get('/admin/settings/account/edit', [SettingController::class, 'editAccountInfo'])->name('admin.settings.account.edit');
     Route::put('/admin/settings/account/update', [SettingController::class, 'updateAccountInfo'])->name('admin.settings.account.update');
+
+
+    //Orders
+    Route::get('/admin/orders', [CartController::class, 'index'])->name('admin.orders.index');
+    Route::get('/orders/{order}', [CartController::class, 'show'])->name('admin.orders.show');
+    Route::post('/orders/{order}/mark-as-delivered', [CartController::class, 'markAsDelivered'])->name('admin.orders.markAsDelivered');
+    Route::post('/orders/{order}/mark-as-undelivered', [CartController::class, 'markAsUnDelivered'])->name('admin.orders.markAsUnDelivered');
 
 });
 //Admin toàn quyền

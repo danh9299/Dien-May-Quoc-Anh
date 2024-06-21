@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    // 1 order thuộc về 1 transaction
-    public function transaction()
+
+    protected $fillable = [
+        'user_id', 'total_amount', 'payment_method'
+    ];
+
+    public function items()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->hasMany(OrderItem::class);
     }
-    // 1 order thuộc về 1 user
+
     public function user()
     {
         return $this->belongsTo(User::class);

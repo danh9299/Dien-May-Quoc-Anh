@@ -1,7 +1,7 @@
 @extends('main.master')
 @section('content')
 <h1 class="text-center mt-2 mb-2 ">---Giỏ hàng---</h1>
-<form action="{{ route('main.cart.checkout') }}" class="text-center mt-2 mb-2" method="POST">
+<form action="{{ route('main.cart.showCheckoutForm') }}" class="text-center mt-2 mb-2" method="GET">
     @csrf
     <button class="btn btn-success" type="submit">Tiến hành thanh toán</button>
 </form>
@@ -51,7 +51,7 @@
     </table>
 
 </div>
-<form action="{{ route('main.cart.checkout') }}" class="text-center mt-2 mb-2" method="POST">
+<form action="{{ route('main.cart.showCheckoutForm') }}" class="text-center mt-2 mb-2" method="GET">
     @csrf
     <button class="btn btn-success" type="submit">Tiến hành thanh toán</button>
 </form>

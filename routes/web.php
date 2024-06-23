@@ -183,6 +183,8 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('/orders/{order}', [CartController::class, 'show'])->name('admin.orders.show');
     Route::post('/orders/{order}/mark-as-delivered', [CartController::class, 'markAsDelivered'])->name('admin.orders.markAsDelivered');
     Route::post('/orders/{order}/mark-as-undelivered', [CartController::class, 'markAsUnDelivered'])->name('admin.orders.markAsUnDelivered');
+    Route::post('/orders/{order}/mark-as-paydone', [CartController::class, 'markAsPayDone'])->name('admin.orders.markAsPayDone');
+    Route::post('/orders/{order}/mark-as-paynotdone', [CartController::class, 'markAsPayNotDone'])->name('admin.orders.markAsPayNotDone');
 
    
 });

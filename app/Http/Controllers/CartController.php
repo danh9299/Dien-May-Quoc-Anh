@@ -182,4 +182,31 @@ public function markAsUnDelivered($orderId)
 
     return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành chưa giao.');
 }
+
+
+
+public function markAsPayNotDone($orderId){
+    $order = Order::findOrFail($orderId);
+    
+
+    $order->payment_status = 'Chưa thanh toán';
+    $order->save();
+
+    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành chưa thanh toán.');
+
+
+}
+
+
+public function markAsPayDone($orderId){
+    $order = Order::findOrFail($orderId);
+    
+
+    $order->payment_status = 'Đã thanh toán';
+    $order->save();
+
+    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành đã thanh toán.');
+
+
+}
 }

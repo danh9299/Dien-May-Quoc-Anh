@@ -3,11 +3,11 @@
 @section('content')
 
 @if($message = Session::get('success'))
-<div class="container">
-<div class="mt-5 px-5 alert alert-success">
-    {{ $message }}
-</div>
-</div>
+    <div class="container">
+        <div class="mt-5 px-5 alert alert-success">
+            {{ $message }}
+        </div>
+    </div>
 @endif
 <div class="container">
     <h1 class="mt-2 mb-3">Chi tiết đơn hàng #{{ $order->id }}</h1>
@@ -15,22 +15,38 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-            <div class="col-auto me-auto"><h5>
-            Ngày đặt hàng: {{ $order->created_at->format('d/m/Y H:i') }}</h5>
+                <div class="col-auto me-auto">
+                    <h5>
+                        Ngày đặt hàng: {{ $order->created_at->format('d/m/Y H:i') }}</h5>
+                </div>
+                <div class="col-auto">
+                    @if ($order->status != 'Đã giao')
+                        <form action="{{ route('admin.orders.markAsDelivered', $order->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Đã giao</button>
+                        </form>
+                    @else
+                        <form action="{{ route('admin.orders.markAsUnDelivered', $order->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Hủy giao</button>
+                        </form>
+                    @endif
+                </div>
+                <div class="col-auto">
+                    @if ($order->payment_status != 'Đã thanh toán')
+                        <form action="{{ route('admin.orders.markAsPayDone', $order->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Đã thanh toán</button>
+                        </form>
+                    @else
+                        <form action="{{ route('admin.orders.markAsPayNotDone', $order->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Chưa thanh toán</button>
+                        </form>
+                    @endif
+                </div>
+
             </div>
-            <div class="col-auto">
-            @if ($order->status != 'Đã giao')
-                <form action="{{ route('admin.orders.markAsDelivered', $order->id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Đã giao</button>
-                </form>
-            @else
-            <form action="{{ route('admin.orders.markAsUnDelivered', $order->id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Hủy giao</button>
-                </form>
-            @endif
-            </div></div>
         </div>
         <div class="card-body">
             <h5 class="card-title">Thông tin người đặt hàng</h5>
@@ -76,16 +92,16 @@
                     <b>Chuyển khoản</b>
                 @endif
             </h5>
-            
-
-                <div class="text-center">
-
-                    <a class="btn btn-secondary" href="{{route('admin.orders.index')}}">Trở lại</a>
-                </div>
 
 
+            <div class="text-center">
 
-            
+                <a class="btn btn-secondary" href="{{route('admin.orders.index')}}">Trở lại</a>
+            </div>
+
+
+
+
 
         </div>
     </div>

@@ -20,7 +20,7 @@ class PaymentController extends Controller
     $vnp_HashSecret = "WVB1NO7WLF8BYLTDE4OO6A88CVKQ3NSX"; //Chuỗi bí mật
     
     $vnp_TxnRef = $order_id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-    $vnp_OrderInfo = 'Thanh toán đơn hànng';
+    $vnp_OrderInfo = 'Thanh toán đơn hàng';
     $vnp_OrderType = 'Điện Máy Quốc Anh';
     $vnp_Amount = $total_amount * 100;
     $vnp_Locale = 'VN';

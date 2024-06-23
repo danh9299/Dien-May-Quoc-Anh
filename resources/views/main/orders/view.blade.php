@@ -12,7 +12,8 @@
             <p><strong>Mã đơn hàng:</strong> {{ $order->id }}</p>
             <p><strong>Tổng tiền:</strong> {{ number_format($order->total_amount, 0, ',', '.') }} VND</p>
             <p><strong>Phương thức thanh toán:</strong> {{ $order->payment_method == 'cod' ? 'Thanh toán khi nhận hàng' : 'Chuyển khoản' }}</p>
-           
+            <p><strong>Trạng thái:</strong> {{ $order->status  }}</p>
+            <p><strong>Thanh toán:</strong> {{ $order->payment_status }}</p>
         </div>
     </div>
 
@@ -27,6 +28,7 @@
                 <th scope="col">Giá</th>
                 <th scope="col">Số lượng</th>
                 <th scope="col">Thành tiền</th>
+             
             </tr>
         </thead>
         <tbody>

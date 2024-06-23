@@ -7,14 +7,15 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Mã đơn</th>
                 <th scope="col">Ngày đặt hàng</th>
                 <th scope="col">Người đặt hàng</th>
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Email</th>
                 <th scope="col">Tổng tiền</th>
                 <th>Phương thức thanh toán</th>
-                <th>Trạng thái</th>
+                <th>Trạng thái giao</th>
+                <th>Thanh toán</th>
                 <th scope="col">Chi tiết</th>
             </tr>
         </thead>
@@ -34,6 +35,7 @@
                     @endif</
                     td>
                     <td>{{$order->status}}</td>
+                    <td>{{$order->payment_status}}</td>
                     <td><a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-primary">Xem</a></td>
                 </tr>
             @endforeach

@@ -19,7 +19,8 @@
                     <th scope="col">Ngày đặt hàng</th>
                     <th scope="col">Tổng tiền</th>
                   <th>Phương thức thanh toán</th>
-                  <th>Trạng thái</th>
+                  <th>Thanh toán</th>
+                  <th>Trạng thái giao</th>
                     <th scope="col">Hành động</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                 Chuyển khoản
                 @endif</td>
                 <td>{{$order->status}}</td>
+                <td>{{$order->payment_status}}</td>
                     <td>
                         <a href="{{ route('main.orders.view', $order->id) }}" class="btn btn-primary">Xem chi tiết</a>
                     </td>

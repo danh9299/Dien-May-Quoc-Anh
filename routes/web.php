@@ -72,7 +72,7 @@ Route::group(['middleware' => 'auth.user'], function () {
     Route::delete('/cart/remove/{cart_item}', [CartController::class, 'removeCartItem'])->name('main.cart.remove');
     Route::get('/order/{order}', [CartController::class, 'viewOrder'])->name('main.orders.view');
     Route::get('/orders', [CartController::class, 'allOrders'])->name('main.orders.all-orders');
-    Route::get('/vnpay_return', [PaymentController::class, 'vnpay_return'])->name('main.vnpay_return');
+    Route::get('/vnpay_return', [PaymentController::class, 'vnpayReturn'])->name('main.vnpay_return');
 
     Route::post('/vnpay_payment',[PaymentController::class,'vnpay_payment'])->name('main.vnpay_payment');
 });

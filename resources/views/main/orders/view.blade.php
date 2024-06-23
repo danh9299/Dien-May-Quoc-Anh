@@ -4,6 +4,21 @@
 <div class="container">
     <h1 class="text-center mt-2 mb-2">Chi tiết đơn hàng</h1>
 
+@if (session('success'))
+<div class="container">
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+</div>
+@endif
+
+@if (session('error'))
+<div class="container">
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+</div>
+@endif
     <div class="card">
         <div class="card-header">
             <h3>Thông tin đơn hàng</h3>

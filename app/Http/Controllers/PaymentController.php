@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Order;
 class PaymentController extends Controller
 {
   
@@ -15,7 +15,7 @@ class PaymentController extends Controller
         $order_id = $request->input('order_id');
     
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    $vnp_Returnurl = "http://127.0.0.1:8000/vnpay_php/vnpay_return.php";
+    $vnp_Returnurl = route('main.vnpay_return');
     $vnp_TmnCode = "K6CG97BJ";//Mã website tại VNPAY 
     $vnp_HashSecret = "WVB1NO7WLF8BYLTDE4OO6A88CVKQ3NSX"; //Chuỗi bí mật
     
@@ -81,5 +81,38 @@ class PaymentController extends Controller
         }
         // vui lòng tham khảo thêm tại code demo
         return redirect()->away($vnp_Url);
+    }
+
+
+
+    public function vnpayReturn(Request $request)
+    {
+        // Kiểm tra xác thực phản hồi từ VNPAY (nếu cần)
+        // Xử lý dữ liệu nhận được từ VNPAY
+        $vnp_ResponseCode = $request->get('vnp_ResponseCode');
+        $vnp_TxnRef = $request->get('vnp_TxnRef'); // Mã đơn hàng trong hệ thống của bạn
+        $vnp_Amount = $request->get('vnp_Amount');
+
+        // Tìm đơn hàng tương ứng trong cơ sở dữ liệu
+        $order = Order::where('id', $vnp_TxnRef)->first();
+
+        if (!$order) {
+            return redirect()->route('home')->with('error', 'Không tìm thấy đơn hàng.');
+        }
+
+        // Kiểm tra trạng thái phản hồi từ VNPAY
+        if ($vnp_ResponseCode == '00') {
+            // Cập nhật trạng thái thanh toán của đơn hàng thành công
+            $order->payment_status = 'Đã thanh toán';
+            $order->save();
+
+            // Xử lý các công việc khác sau khi thanh toán thành công (vd: gửi email xác nhận)
+            // $this->sendPaymentConfirmationEmail($order);
+
+            return redirect()->route('main.orders.view', ['order' => $order])->with('success', 'Đã thanh toán thành công.');
+        } else {
+            // Xử lý trường hợp thanh toán thất bại
+            return redirect()->route('main.orders.view', ['order' => $order])->with('error', 'Thanh toán thất bại.');
+        }
     }
 }

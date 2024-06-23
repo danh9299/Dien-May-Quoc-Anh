@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PolicyController;
 use Illuminate\Support\Facades\Route;
 use App\HTTP\Controllers\AdminRegisterController;
@@ -71,6 +72,9 @@ Route::group(['middleware' => 'auth.user'], function () {
     Route::delete('/cart/remove/{cart_item}', [CartController::class, 'removeCartItem'])->name('main.cart.remove');
     Route::get('/order/{order}', [CartController::class, 'viewOrder'])->name('main.orders.view');
     Route::get('/orders', [CartController::class, 'allOrders'])->name('main.orders.all-orders');
+    Route::get('/vnpay_return', [PaymentController::class, 'vnpay_return'])->name('main.vnpay_return');
+
+    Route::post('/vnpay_payment',[PaymentController::class,'vnpay_payment'])->name('main.vnpay_payment');
 });
 
 //Admin pages
@@ -180,6 +184,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::post('/orders/{order}/mark-as-delivered', [CartController::class, 'markAsDelivered'])->name('admin.orders.markAsDelivered');
     Route::post('/orders/{order}/mark-as-undelivered', [CartController::class, 'markAsUnDelivered'])->name('admin.orders.markAsUnDelivered');
 
+   
 });
 //Admin toàn quyền
 Route::group(['middleware' => 'check.admin.role'], function () {

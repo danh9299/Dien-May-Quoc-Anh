@@ -35,7 +35,7 @@
             <label for="payment_method">Phương thức thanh toán:</label>
             <select class="form-control" id="payment_method" name="payment_method" required>
                 <option value="cod">Thanh toán khi nhận hàng</option>
-                <option value="bank_transfer">Chuyển khoản QR</option>
+                <option value="bank_transfer">Chuyển khoản</option>
             </select>
         </div>
         <button class="btn btn-success mt-3 mb-3" type="submit">Tiến hành thanh toán</button>

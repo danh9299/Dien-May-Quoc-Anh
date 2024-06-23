@@ -103,6 +103,11 @@ class CartController extends Controller
         if (!$cart || $cart->items->isEmpty()) {
             return redirect()->route('cart.view')->with('error', 'Giỏ hàng của bạn đang trống.');
         }
+
+
+      
+
+  
         $order = new Order();
         $order->user_id = $user->id;
         
@@ -111,6 +116,8 @@ class CartController extends Controller
         });
         $order->payment_method = $request->payment_method;
         $order->save();
+      
+
 
         foreach ($cart->items as $item) {
             $orderItem = new OrderItem();
@@ -126,6 +133,19 @@ class CartController extends Controller
 
         $cart->items()->delete();
         $cart->delete();
+
+        if ($request->payment_method == 'bank_transfer') {
+            // Lấy tổng số tiền cần thanh toán
+            $total_amount = $order->total_amount;
+    
+            // Điều hướng đến trang thanh toán, ví dụ như trang VNPAY
+            return view('main.cart.redirect_to_payment', [
+                'total_amount' => $total_amount,
+                'request_data' => $request->all(),
+                'order' => $order, // Có thể cần truyền thêm dữ liệu khác nếu cần thiết
+            ]);
+        }
+
 
         return redirect()->route('main.orders.all-orders')->with('success', 'Đã tạo đơn hàng thành công.');
   

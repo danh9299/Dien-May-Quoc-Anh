@@ -134,6 +134,23 @@
                         </div>
                     </div>
 
+                    <!--Nhập-->
+                    <div class="row mb-4">
+                        <h6 class="text-dark col-sm-2">Giá nhập kho</h6>
+                        <div class="col-sm-3">
+                            <input  name="import_price" value="{{old('import_price')}}"
+                                class="shadow @error('import_price') is-invalid @enderror form-control" />
+                            @error('import_price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>
+
+                                    <p class="text-dark">Vui lòng nhập giá hợp lệ!</p>
+                                </strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <!--Số lượng-->
                     <div class="row mb-4">
                         <h6 class="text-dark col-sm-2">Số lượng tồn kho</h6>

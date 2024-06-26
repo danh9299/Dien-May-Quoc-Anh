@@ -109,5 +109,6 @@
     <!-- Main Content -->
 </div>
 <!--Add-to-cart-->
-<script src="{{ asset('js/add-to-cart.js') }}">
+<script src="{{ asset('js/add-to-cart.js') }}"></script>
+
 @endsection

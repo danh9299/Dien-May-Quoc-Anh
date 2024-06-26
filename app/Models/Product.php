@@ -18,6 +18,7 @@ class Product extends Model
         'model',
         'price',
         'old_price',
+        'import_price',
         'quantity',
         'content',
         'specifications',

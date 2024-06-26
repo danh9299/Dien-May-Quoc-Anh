@@ -1,8 +1,10 @@
-@extends('main.master') @section('content')
+@extends('main.master') 
+@section('content')
 <?php
 use App\Models\Image;
-$slider_images = Image::where('group',2)->get();
-$long_images = Image::where('group',3)->get();
+
+$slider_images = Image::where('group', 2)->get();
+$long_images = Image::where('group', 3)->get();
 ?>
 <!-- Main Content -->
 <main class="row">
@@ -18,9 +20,9 @@ $long_images = Image::where('group',3)->get();
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                @if(count($slider_images)>0)
+                @if(count($slider_images) > 0)
                 @foreach($slider_images as $index => $slider_image)
-                <div class="carousel-item @if($index==0) active @endif">
+                <div class="carousel-item @if($index == 0) active @endif">
                     <img src="{{ asset('/img/slider-banner/' . $slider_image->image_link) }}" class="d-block w-100"
                         alt="..." />
                 </div>
@@ -57,12 +59,12 @@ $long_images = Image::where('group',3)->get();
 
 
 
-                        @if(count($tivis)>0)
+                        @if(count($tivis) > 0)
                         @foreach ($tivis as $tivi)
                         <!-- Product -->
 
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                            <a href="{{route('main.products.show',$tivi->id)}}">
+                            <a href="{{route('main.products.show', $tivi->id)}}">
                                 <div class="text-center mt-1 ">
                                     <img src="{{ asset($tivi->image_link) }}" class="border-0" alt="..." />
                                 </div>
@@ -71,7 +73,7 @@ $long_images = Image::where('group',3)->get();
                             <div class="card-body">
                                 <form class="add-to-cart-form">
                                     @csrf
-                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$tivi->id)}}">
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show', $tivi->id)}}">
                                         <h5 class="card-title">
                                             {{$tivi->name}}
                                         </h5>
@@ -122,11 +124,11 @@ $long_images = Image::where('group',3)->get();
                 </div>
                 <div class="container">
                     <div class="qa-home-product d-flex">
-                        @if(count($tulanhs)>0)
+                        @if(count($tulanhs) > 0)
                         @foreach ($tulanhs as $tulanh)
                         <!-- Product -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                            <a href="{{route('main.products.show',$tulanh->id)}}">
+                            <a href="{{route('main.products.show', $tulanh->id)}}">
                                 <div class="text-center mt-1 ">
                                     <img src="{{ asset($tulanh->image_link) }}" class="border-0" alt="..." />
                                 </div>
@@ -134,7 +136,7 @@ $long_images = Image::where('group',3)->get();
                             <div class="card-body">
                                 <form class="add-to-cart-form">
                                     @csrf
-                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$tulanh->id)}}">
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show', $tulanh->id)}}">
                                         <h5 class="card-title">
                                             {{$tulanh->name}}
                                         </h5>
@@ -184,11 +186,11 @@ $long_images = Image::where('group',3)->get();
                 </div>
                 <div class="container">
                     <div class="qa-home-product d-flex">
-                        @if(count($maygiats)>0)
+                        @if(count($maygiats) > 0)
                         @foreach ($maygiats as $maygiat)
                         <!-- Product -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                            <a href="{{route('main.products.show',$maygiat->id)}}">
+                            <a href="{{route('main.products.show', $maygiat->id)}}">
                                 <div class="text-center mt-1 ">
                                     <img src="{{ asset($maygiat->image_link) }}" class="border-0" alt="..." />
                                 </div>
@@ -196,7 +198,7 @@ $long_images = Image::where('group',3)->get();
                             <div class="card-body">
                                 <form class="add-to-cart-form">
                                     @csrf
-                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$maygiat->id)}}">
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show', $maygiat->id)}}">
                                         <h5 class="card-title">
                                             {{$maygiat->name}}
                                         </h5>
@@ -247,16 +249,16 @@ $long_images = Image::where('group',3)->get();
                 </div>
                 <div class="container">
                     <div class="qa-home-product d-flex">
-                        @if(count($dieuhoas)>0)
+                        @if(count($dieuhoas) > 0)
                         @foreach ($dieuhoas as $dieuhoa)
                         <!-- Product -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                            <a href="{{route('main.products.show',$dieuhoa->id)}}">
+                            <a href="{{route('main.products.show', $dieuhoa->id)}}">
                                 <img src="{{ asset($dieuhoa->image_link) }}" class="border-0" alt="..." /></a>
                             <div class="card-body">
                                 <form class="add-to-cart-form">
                                     @csrf
-                                    <a class="mt-1 mb-1" href="{{route('main.products.show',$dieuhoa->id)}}">
+                                    <a class="mt-1 mb-1" href="{{route('main.products.show', $dieuhoa->id)}}">
                                         <h5 class="card-title">
                                             {{$dieuhoa->name}}
                                         </h5>
@@ -298,5 +300,5 @@ $long_images = Image::where('group',3)->get();
 
 
 <!--Add-to-cart-->
-<script src="{{ asset('js/add-to-cart.js') }}">
+<script src="{{ asset('js/add-to-cart.js') }}"></script>
 @endsection

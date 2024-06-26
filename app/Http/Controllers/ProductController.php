@@ -241,6 +241,7 @@ class ProductController extends Controller
             'model' => 'required',
             'price' => 'required|numeric|max:999999999|min:500',
             'old_price' => 'nullable|max:999999999|numeric|min:500',
+            'import_price' => 'nullable|max:999999999|numeric|min:500',
             'quantity' => 'required|numeric|min:0',
             'image_link' => 'required|file|mimes:jpeg,png,webp,jpg,svg|max:7168',
             'image_list.*' => 'file|mimes:jpeg,png,webp,jpg,svg|max:7168',
@@ -254,10 +255,17 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->model = $request->model;
         $product->price = $request->price;
+        
         if (is_null($request->old_price)) {
             $product->old_price = $request->price;
         } else {
             $product->old_price = $request->old_price;
+
+        }
+        if (is_null($request->import_price)) {
+            $product->import_price = 0;
+        } else {
+            $product->import_price = $request->import_price;
 
         }
         $product->quantity = $request->quantity;
@@ -339,6 +347,7 @@ class ProductController extends Controller
         $rules = [
             'name' => 'required',
             'model' => 'required',
+            'import_price' => 'nullable|max:999999999|numeric|min:500',
             'price' => 'required|numeric|max:999999999|min:500',
             'old_price' => 'nullable|max:999999999|numeric|min:500',
             'quantity' => 'required|numeric|min:0',
@@ -368,6 +377,12 @@ class ProductController extends Controller
             $product->old_price = $request->price;
         } else {
             $product->old_price = $request->old_price;
+
+        }
+        if (is_null($request->import_price)) {
+            $product->import_price = 0;
+        } else {
+            $product->import_price = $request->import_price;
 
         }
         $product->quantity = $request->quantity;

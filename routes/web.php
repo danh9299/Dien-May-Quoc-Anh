@@ -19,6 +19,8 @@ use App\HTTP\Controllers\LoginController;
 use App\HTTP\Controllers\RegisterController;
 use App\HTTP\Controllers\SettingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +63,13 @@ Route::post('/register', [RegisterController::class, 'addnew'])->name('main.auth
 //Logout
 Route::get('/logout', [LoginController::class, 'logout'])->name('main.auth.logout');
 
+// Quên mật khẩu
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('main.auth.password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('main.auth.password.email');
 
+// Đặt lại mật khẩu
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('main.auth.password.update');
 
 
 Route::group(['middleware' => 'auth.user'], function () {

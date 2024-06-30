@@ -38,6 +38,7 @@
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-outline-dark">Đăng nhập</button>
+                        <a href="{{route('main.auth.password.request')}}" class="btn btn-outline-warning"> Quên mật khẩu?</a>
                     </div>
                 </form>
                 @if ($errors->has('username'))
@@ -46,6 +47,7 @@
             </div>
         </div>
     </div>
+
 
 </main>
 <!-- Main Content -->

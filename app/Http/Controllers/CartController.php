@@ -113,6 +113,9 @@ class CartController extends Controller
         $order->total_amount = $cart->items->sum(function ($item) {
             return $item->product->price * $item->quantity;
         });
+        $order->revenue = $order->total_amount - $cart->items->sum(function ($item) {
+            return $item->product->import_price * $item->quantity;
+        });
         $order->payment_method = $request->payment_method;
         $order->address = $request->address;
         $order->save();
@@ -206,4 +209,8 @@ public function markAsPayDone($orderId){
 
 
 }
+
+
+
+
 }

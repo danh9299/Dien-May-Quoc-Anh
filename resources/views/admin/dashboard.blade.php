@@ -3,6 +3,19 @@ use App\Models\Product;
 use App\Models\Order;
 $products = Product::orderBy('quantity', 'asc')->limit(10)->get();
 $orders = Order::orderBy('updated_at', 'desc')->limit(10)->get();
+
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+$year=Carbon::now()->year;
+$month = Carbon::now()->month;
+$startOfMonth = Carbon::create($year, $month, 1)->startOfMonth();
+$endOfMonth = Carbon::create($year, $month, 1)->endOfMonth();
+
+$totalRevenue = DB::table('orders')
+        ->where('payment_status', 'Đã thanh toán')
+        ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+        ->sum('revenue');
+
 ?>
 @extends('admin.master')
 @section('content')
@@ -13,7 +26,10 @@ $orders = Order::orderBy('updated_at', 'desc')->limit(10)->get();
 </div>
 <h2 class="mt-2 text-center ">--- CHÚ Ý ---</h2>
 
-
+<div class="container mt-3">
+    <!--Tổng doanh thu-->
+    <h3 class="mb-5">Tổng số doanh thu trong tháng:<strong> {{number_format($totalRevenue , 0, ',', '.')}} </strong></h3>
+</div>
 <div class="container mt-3">
     <!--Đơn đặt gần nhất-->
     <h4>10 đơn hàng được đặt gần đây nhất </h4>

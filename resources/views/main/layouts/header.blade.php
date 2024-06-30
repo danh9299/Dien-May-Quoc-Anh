@@ -37,11 +37,18 @@ $brands = Brand::all();
                         <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
                     </li>
                     <li>
+                        <a href="{{ route('main.auth.edit') }}">
+                            Quản lý thông tin
+                        </a>
+
+                    </li>
+                    <li>
                         <a href="{{ route('main.auth.logout') }}">
                             Đăng xuất
                         </a>
 
                     </li>
+
                 </ul>
                 @else
                 <ul class="qa-top-nav">
@@ -74,6 +81,12 @@ $brands = Brand::all();
                 <ul class="qa-top-nav">
                     <li>
                     <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('main.auth.edit') }}">
+                            Quản lý thông tin
+                        </a>
+
                     </li>
                     <li>
                         <a href="{{ route('main.auth.logout') }}">

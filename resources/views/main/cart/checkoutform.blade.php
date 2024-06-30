@@ -31,13 +31,18 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="form-group">
-            <label for="payment_method">Phương thức thanh toán:</label>
+        <div class="form-group mb-2">
+            <label for="address" class="mb-2">Địa chỉ nhận hàng:</label>
+            <textarea name="address"  class="form-control">{{$cart->user->address}}</textarea>
+        </div>
+        <div class="form-group mb-2">
+            <label for="payment_method" class="mb-2">Phương thức thanh toán:</label>
             <select class="form-control" id="payment_method" name="payment_method" required>
                 <option value="cod">Thanh toán khi nhận hàng</option>
                 <option value="bank_transfer">Chuyển khoản</option>
             </select>
         </div>
+
         <button class="btn btn-success mt-3 mb-3" type="submit">Tiến hành thanh toán</button>
     </form>
 </div>

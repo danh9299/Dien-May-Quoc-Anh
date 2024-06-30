@@ -483,6 +483,22 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index')->with('success', 'Xóa sản phẩm thành công!');
     }
+
+
+    public function duplicate(Product $product)
+    {
+   
+     
+        
+        // Tạo một bản sao của đối tượng product
+        $newProduct = $product->replicate();
+
+        // Lưu đối tượng mới vào cơ sở dữ liệu
+        $newProduct->save();
+
+        // Trả về kết quả hoặc điều hướng tới trang cần thiết
+        return redirect()->route('admin.products.index')->with('success', 'Nhân bản sản phẩm thành công!');
+    }
     public function export()
     {
         return Excel::download(new ProductsExport, 'dienmayquocanh-tat-ca-san-pham.xlsx');

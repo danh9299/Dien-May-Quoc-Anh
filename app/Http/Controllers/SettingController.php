@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Footer;
 use App\Models\Policy;
@@ -113,5 +113,30 @@ class SettingController extends Controller
         $policy->save();
         return redirect()->route('admin.settings.policy.return')->with('success', 'Cập nhật Chính sách thành công');
 
+    }
+
+    public function changePassword()
+    {
+        return view('admin.settings.account.changePassword');
+    }
+
+    public function changePasswordComplete(Request $request)
+    {
+      
+        $user = auth()->guard('admin')->user();
+      
+        if($request->new_password != $request->new_password_confirmation){
+            return redirect()->back()->with('error', 'Mật khẩu mới không khớp nhau');
+        }
+
+        if ( !Hash::check($request->current_password, $user->password) ) {
+            return redirect()->back()->with('error', 'Mật khẩu hiện tại không đúng.');
+        }
+      
+      
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi.');
     }
 }

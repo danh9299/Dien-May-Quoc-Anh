@@ -15,7 +15,7 @@ $orders = Order::orderBy('updated_at', 'desc')->limit(10)->get();
 
 
 <div class="container mt-3">
-    <!--Latest orders-->
+    <!--Đơn đặt gần nhất-->
     <h4>10 đơn hàng được đặt gần đây nhất </h4>
     <table class="table table-bordered table-warning table-hover">
         <thead>
@@ -54,7 +54,7 @@ $orders = Order::orderBy('updated_at', 'desc')->limit(10)->get();
         </tbody>
     </table>
 </div>
-<!--Products almost out of stock-->
+<!--Sản phẩm sắp hết hàng-->
 <div class="container mt-3">
     <h4>10 sản phẩm sau sắp hết hàng</h4>
     <table class="table-dark table-hover table table-bordered">

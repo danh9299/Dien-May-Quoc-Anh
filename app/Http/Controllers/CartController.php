@@ -110,19 +110,16 @@ class CartController extends Controller
   
         $order = new Order();
         $order->user_id = $user->id;
-        
         $order->total_amount = $cart->items->sum(function ($item) {
             return $item->product->price * $item->quantity;
         });
         $order->payment_method = $request->payment_method;
+        $order->address = $request->address;
         $order->save();
-      
-
-
         foreach ($cart->items as $item) {
             $orderItem = new OrderItem();
             $orderItem->order_id = $order->id;
-            $orderItem->product_id = $item->product_id;
+            $orderItem->product_name = $item->product->name;
             $product = $item->product;
             $product->quantity = $product->quantity - $item->quantity;
             $orderItem->quantity = $item->quantity;

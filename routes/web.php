@@ -62,9 +62,10 @@ Route::post('/register', [RegisterController::class, 'addnew'])->name('main.auth
 Route::get('/logout', [LoginController::class, 'logout'])->name('main.auth.logout');
 
 
-//Cart
+
 
 Route::group(['middleware' => 'auth.user'], function () {
+    //Cart
     Route::post('/cart/add', [CartController::class, 'addToCart'])->name('main.cart.add');
     Route::get('/cart', [CartController::class, 'viewCart'])->name('main.cart.view');
     Route::get('/checkout', [CartController::class, 'showCheckoutForm'])->name('main.cart.showCheckoutForm');
@@ -73,8 +74,13 @@ Route::group(['middleware' => 'auth.user'], function () {
     Route::get('/order/{order}', [CartController::class, 'viewOrder'])->name('main.orders.view');
     Route::get('/orders', [CartController::class, 'allOrders'])->name('main.orders.all-orders');
     Route::get('/vnpay_return', [PaymentController::class, 'vnpayReturn'])->name('main.vnpay_return');
-
     Route::post('/vnpay_payment',[PaymentController::class,'vnpay_payment'])->name('main.vnpay_payment');
+
+    //Info
+    Route::get('/info',[RegisterController::class,'edit'])->name('main.auth.edit');
+    Route::put('/info-update',[RegisterController::class,'update'])->name('main.auth.update');
+    Route::get('/changePassword',[RegisterController::class,'changePassword'])->name('main.auth.changePassword');
+    Route::put('/changePassword',[RegisterController::class,'changePasswordComplete'])->name('main.auth.changePasswordComplete');
 });
 
 //Admin pages
@@ -145,6 +151,8 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('/admin/products/export/', [ProductController::class, 'export'])->name('admin.products.export');
     Route::get('/admin/products/import/', [ProductController::class, 'formImport'])->name('admin.products.form-import');
     Route::post('/admin/products/import/', [ProductController::class, 'import'])->name('admin.products.import');
+    Route::get('/admin/products/{product}/duplicate/', [ProductController::class, 'duplicate'])->name('admin.products.duplicate');
+
     //Articles
     Route::get('/admin/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
     Route::get('/admin/articles/search', [ArticleController::class, 'search'])->name('admin.articles.search');
@@ -176,7 +184,8 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings.index');
     Route::get('/admin/settings/account/edit', [SettingController::class, 'editAccountInfo'])->name('admin.settings.account.edit');
     Route::put('/admin/settings/account/update', [SettingController::class, 'updateAccountInfo'])->name('admin.settings.account.update');
-
+    Route::get('/admin/changePassword',[SettingController::class,'changePassword'])->name('admin.settings.account.changePassword');
+    Route::put('/admin/changePassword',[SettingController::class,'changePasswordComplete'])->name('admin.settings.account.changePasswordComplete');
 
     //Orders
     Route::get('/admin/orders', [CartController::class, 'index'])->name('admin.orders.index');
@@ -186,6 +195,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::post('/orders/{order}/mark-as-paydone', [CartController::class, 'markAsPayDone'])->name('admin.orders.markAsPayDone');
     Route::post('/orders/{order}/mark-as-paynotdone', [CartController::class, 'markAsPayNotDone'])->name('admin.orders.markAsPayNotDone');
 
+   
    
 });
 //Admin toàn quyền

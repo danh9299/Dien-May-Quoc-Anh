@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::table('products', function (Blueprint $table) {
-            $table->integer('import_price')->default(0);
+        Schema::table('orders', function (Blueprint $table) {
+            //
+            $table->string('address')->default('Gọi điện cho khách xác nhận địa chỉ');
         });
     }
 
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
 };

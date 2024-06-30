@@ -53,25 +53,24 @@
             <p class="card-text">Họ và tên: {{ $order->user->name }}</p>
             <p class="card-text">Số điện thoại: {{ $order->user->phone_number }}</p>
             <p class="card-text">Email: {{ $order->user->email }}</p>
-
+            <p class="card-text">Địa chỉ nhận hàng: {{ $order->address }}</p>
+        
             <h5 class="card-title mt-4">Sản phẩm trong đơn hàng:</h5>
             <table class="table table-bordered border-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Tên sản phẩm</th>
-                        <th scope="col">Model</th>
+                       
                         <th scope="col">Số lượng</th>
                         <th scope="col">Giá</th>
                         <th scope="col">Thành tiền</th>
-
-
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($order->items as $item)
                         <tr>
-                            <td>{{ $item->product->name }}</td>
-                            <td>{{ $item->product->model }}</td>
+                            <td>{{ $item->product_name }}</td>
+                     
                             <td>{{ $item->quantity }}</td>
                             <td>{{ number_format($item->price, 0, ',', '.') }} VND</td>
                             <td>{{ number_format($item->quantity * $item->price, 0, ',', '.') }} VND</td>

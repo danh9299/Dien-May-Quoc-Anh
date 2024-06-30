@@ -97,4 +97,22 @@ class MemberController extends Controller
 
         return redirect()->route('admin.members.index')->with('success', 'Xóa thành viên thành công!');
     }
+
+    public function changeMemberPassword(Admin $member){
+        return view('admin.members.change-member-password',compact('member'));
+    }
+    public function changeMemberPasswordComplete(Request $request, Admin $member){
+        $member = Admin::find($request->hidden_id);
+      
+        if($request->new_password != $request->new_password_confirmation){
+            return redirect()->back()->with('error', 'Mật khẩu mới không khớp nhau');
+        }
+
+      
+        $member->password = bcrypt($request->new_password);
+        $member->save();
+
+        return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi.');
+       
+    }
 }

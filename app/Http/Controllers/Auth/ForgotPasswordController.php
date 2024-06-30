@@ -26,7 +26,7 @@ class ForgotPasswordController extends Controller
         if ($status === Password::RESET_LINK_SENT) {
             return redirect()->back()->with(['status' => __($status), 'email' => $request->email]);
         } else {
-            return back()->withErrors(['email' => [__($status)]]);
+            return redirect()->back()->with('status', 'Không tìm thấy email bạn yêu cầu hoặc có lỗi xảy ra!');
         }
     }
 }

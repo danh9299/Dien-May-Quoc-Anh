@@ -108,6 +108,11 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'admins' => [
+        'provider' => 'admins',
+        'table' => 'password_reset_tokens', // Bảng lưu trữ reset password
+        'expire' => 60,
+    ],
     ],
 
     /*

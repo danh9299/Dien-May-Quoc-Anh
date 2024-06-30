@@ -14,13 +14,15 @@ use App\HTTP\Controllers\BrandController;
 use App\HTTP\Controllers\ArticleController;
 use App\HTTP\Controllers\MemberController;
 use App\HTTP\Controllers\ImageController;
-use App\HTTP\Controllers\AdminForgotPasswordController;
+
 use App\HTTP\Controllers\LoginController;
 use App\HTTP\Controllers\RegisterController;
 use App\HTTP\Controllers\SettingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\AdminForgotPasswordController;
+use App\Http\Controllers\Auth\AdminResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -219,6 +221,11 @@ Route::group(['middleware' => 'check.admin.role'], function () {
     Route::put('admin/members/{member}/update', [MemberController::class, 'update'])->name('admin.members.update');
     Route::get('admin/members/{member}/delete', [MemberController::class, 'delete'])->name('admin.members.delete');
     Route::delete('admin/members/{member}/destroy', [MemberController::class, 'destroy'])->name('admin.members.destroy');
+   
+    //Thay mật khẩu thành viên
+    Route::get('/admin/members/{member}/change-member-password', [MemberController::class, 'changeMemberPassword'])->name('admin.members.changeMemberPassword');
+    Route::put('/admin/members/{member}/change-member-password',[MemberController::class,'changeMemberPasswordComplete'])->name('admin.members.changeMemberPasswordComplete');
+
 
     //Settings
     Route::get('/admin/settings/general/edit', [SettingController::class, 'editGeneral'])->name('admin.settings.general.edit');
@@ -234,6 +241,10 @@ Route::group(['middleware' => 'check.admin.role'], function () {
     Route::get('/admin/settings/return-policy/edit', [SettingController::class, 'editReturn'])->name('admin.settings.policy.return');
     Route::put('/admin/settings/return-policy/edit', [SettingController::class, 'updateReturn'])->name('admin.settings.policy.updateReturn');
 
+
+    
+    
+    
 });
 
 
@@ -242,7 +253,4 @@ Route::group(['middleware' => 'check.admin.role'], function () {
 //Login
 Route::get('/admin/login', [AdminLoginController::class, 'show'])->name('admin.auth.login.show');
 Route::post('/admin/login', [AdminLoginController::class, 'authenticate'])->name('admin.auth.login.authenticate');
-
-
-
 

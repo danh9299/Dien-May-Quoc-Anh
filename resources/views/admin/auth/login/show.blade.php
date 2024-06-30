@@ -41,7 +41,8 @@ $logo = Image::where('group', 1)->first();
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" id="adminpassword" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                    <button type="submit" class="btn btn-outline-danger">Đăng nhập</button>
+                    
                 </form>
                 @if ($errors->has('username'))
                     <span class="text-danger mt-2">{{ $errors->first('username') }}</span>

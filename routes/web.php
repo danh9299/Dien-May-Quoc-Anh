@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\BotManController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PolicyController;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +21,7 @@ use App\HTTP\Controllers\SettingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\AdminForgotPasswordController;
-use App\Http\Controllers\Auth\AdminResetPasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +71,9 @@ Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEm
 // Đặt lại mật khẩu
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('main.auth.password.update');
+
+//Chatbot
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 
 
 Route::group(['middleware' => 'auth.user'], function () {

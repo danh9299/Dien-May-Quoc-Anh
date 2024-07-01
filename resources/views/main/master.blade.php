@@ -21,6 +21,9 @@ $logo = Image::where('group', 1)->first();
 
     <!--Favicon thay logo trên tab-->
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/' . $logo->image_link) }}" />
+
+    <!--Font cho botman-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>
 
 <body>
@@ -36,6 +39,18 @@ $logo = Image::where('group', 1)->first();
     <!--Script cho category follow khi scroll-->
     <script src="{{ asset('js/category-to-sticky.js') }}"></script>
 
+
+    <!--Script widget của botman-->
+    <script>
+        var botmanWidget = {
+            aboutText: 'quocanh2017.ltd@gmail.com',
+            introMessage: "Bạn cần hỏi gì?",
+            title: 'Hệ Thống Trả Lời Tự Động',
+            mainColor: '#FC3A45',
+            placeholderText: 'Nhập câu hỏi của bạn..'
+        };
+    </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
     <!--Bundle-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

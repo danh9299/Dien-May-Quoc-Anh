@@ -97,6 +97,8 @@ Route::group(['middleware' => 'auth.user'], function () {
 
     //Reviews
     Route::post('/reviews', [ProductReviewController::class, 'store'])->name('main.reviews.store');
+    Route::get('/reviews/load-more', [ProductReviewController::class, 'loadMoreReviews'])->name('main.reviews.load-more');
+
 
 });
 

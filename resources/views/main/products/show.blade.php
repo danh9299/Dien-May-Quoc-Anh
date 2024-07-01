@@ -235,7 +235,7 @@
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
         <div>
-           
+
             <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" required></textarea>
         </div>
 
@@ -244,40 +244,68 @@
 </div>
 @else
 <div class="container">
-<p>Bạn phải <a href="{{route('main.auth.login')}}">đăng nhập</a> để nhận xét sản phẩm..</p>
+    <p>Bạn phải <a href="{{route('main.auth.login')}}">đăng nhập</a> để nhận xét sản phẩm..</p>
 </div>
 @endauth
-
 <!-- Hiển thị đánh giá sản phẩm -->
+<!-- Button trigger modal -->
+ <div class="mt-3 container mb-2">
+<h3>Đánh giá sản phẩm mới nhất:</h3>
+@if ($product->reviews->count() > 0)
+<div class="d-grid gap-2">
+    <button type="button" class="rounded-top-0 btn btn-danger border border-dark border-top-0" data-bs-toggle="modal"
+        data-bs-target="#reviews-modal">
+        Xem các đánh giá
+    </button>
+</div>
+</div>
+@else
+    <p>Chưa có đánh giá sản phẩm.</p>
 
-<div class="container mt-3">
-    @if ($product->reviews->count() > 0)
-    <h3>Đánh giá sản phẩm mới nhất:</h3>
-    @php
-    $reviews = $product->reviews->take(5); // Lấy 3 đánh giá mới nhất
-   
-    @endphp
-    @foreach ($reviews as $review)
+@endif
 
-    <div class="card mt-2 mb-2" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><strong>{{ $review->user->name }}</strong></h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">Ngày: {{$review->created_at}}</h6>
-            <p class="card-text">{{ $review->comment }}</p>
+<!-- Large modal -->
+ 
 
+<div class="modal fade" id="reviews-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Đánh giá sản phẩm mới nhất:</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <div class="qa-review-list">
+                    @php
+                    $reviews = $product->reviews->take(20);
+                    @endphp
+                    @foreach ($reviews as $review)
+                    <div class="card mt-2 mb-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{ $review->user->name }}</strong></h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Ngày: {{ $review->created_at }}</h6>
+                            <p class="card-text">{{ $review->comment }}</p>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
         </div>
     </div>
+    </div>
+    
 
 
 
-    @endforeach
-   
-    @else
-    <p>Chưa có đánh giá sản phẩm.</p>
-    @endif
-</div>
 
 
-<!--Add-to-cart-->
+<!-- Add-to-cart -->
 <script src="{{ asset('js/add-to-cart.js') }}"></script>
+
+
+
+
 @endsection

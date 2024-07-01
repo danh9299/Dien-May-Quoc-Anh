@@ -57,7 +57,7 @@ $footer = Footer::where('id',1)->first();
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-sm-2 col-5 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3">
+            <div class="col-lg-2 col-sm-2 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3">
                 <div class="row">
                 <div class="qa-footer-policy text-center">
                         <h3>Đường dẫn tắt</h3>
@@ -75,7 +75,7 @@ $footer = Footer::where('id',1)->first();
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-sm-2 col-5 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3">
+            <div class="col-lg-2 col-sm-2  ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3">
                 <div class="row">
                     <div class="qa-footer-policy text-center">
                         <h3>Chính sách</h3>
@@ -97,7 +97,7 @@ $footer = Footer::where('id',1)->first();
                 </div>
             </div>
 
-            <div class="col-lg-2 col-sm-2 col-4 me-auto mb-sm-0 mb-3">
+            <div class="col-lg-2 col-sm-2  me-auto mb-sm-0 mb-3">
                 <div class="row">
                     <div class="qa-social text-center">
                         <h3>Mạng xã hội</h3>

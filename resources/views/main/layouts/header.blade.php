@@ -82,12 +82,7 @@ $brands = Brand::all();
                     <li>
                     <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
                     </li>
-                    <li>
-                        <a href="{{ route('main.auth.edit') }}">
-                            Quản lý thông tin
-                        </a>
-
-                    </li>
+                 
                     <li>
                         <a href="{{ route('main.auth.logout') }}">
                             Đăng xuất
@@ -95,6 +90,11 @@ $brands = Brand::all();
 
                     </li>
                 </ul>
+                <div class="text-center">
+                <a href="{{ route('main.auth.edit') }}">
+                            Quản lý thông tin
+                        </a>
+                        </div>
                 @else
                 <ul class="qa-top-nav">
                     <li>

@@ -14,7 +14,7 @@ use App\HTTP\Controllers\BrandController;
 use App\HTTP\Controllers\ArticleController;
 use App\HTTP\Controllers\MemberController;
 use App\HTTP\Controllers\ImageController;
-
+use App\Http\Controllers\ProductReviewController;
 use App\HTTP\Controllers\LoginController;
 use App\HTTP\Controllers\RegisterController;
 use App\HTTP\Controllers\SettingController;
@@ -93,6 +93,11 @@ Route::group(['middleware' => 'auth.user'], function () {
     Route::put('/info-update',[RegisterController::class,'update'])->name('main.auth.update');
     Route::get('/changePassword',[RegisterController::class,'changePassword'])->name('main.auth.changePassword');
     Route::put('/changePassword',[RegisterController::class,'changePasswordComplete'])->name('main.auth.changePasswordComplete');
+
+
+    //Reviews
+    Route::post('/reviews', [ProductReviewController::class, 'store'])->name('main.reviews.store');
+
 });
 
 //Admin pages

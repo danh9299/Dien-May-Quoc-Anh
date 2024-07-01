@@ -84,7 +84,8 @@
                             <h3 for="qty">Số lượng:</h3>
                         </div>
                         <div class="col-lg-2 col-sm-6">
-                            <input type="number" id="qty" min="1" value="1" name="quantity" class="form-control" required>
+                            <input type="number" id="qty" min="1" value="1" name="quantity" class="form-control"
+                                required>
                         </div>
                     </div>
 
@@ -222,6 +223,61 @@
         @endif
     </div>
 </div>
+<hr>
+<!--Đánh giá-->
+<!-- Form để thêm đánh giá mới -->
+
+@auth
+<div class="container">
+    <h3>Thêm nhận xét:</h3>
+    <form action="{{ route('main.reviews.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        <div>
+           
+            <textarea class="form-control" name="comment" id="comment" cols="30" rows="5" required></textarea>
+        </div>
+
+        <button class="mt-1 mb-1 btn btn-dark" type="submit">Đánh giá</button>
+    </form>
+</div>
+@else
+<div class="container">
+<p>Bạn phải <a href="{{route('main.auth.login')}}">đăng nhập</a> để nhận xét sản phẩm..</p>
+</div>
+@endauth
+
+<!-- Hiển thị đánh giá sản phẩm -->
+
+<div class="container mt-3">
+    @if ($product->reviews->count() > 0)
+    <h3>Đánh giá sản phẩm mới nhất:</h3>
+    @php
+    $reviews = $product->reviews->take(5); // Lấy 3 đánh giá mới nhất
+   
+    @endphp
+    @foreach ($reviews as $review)
+
+    <div class="card mt-2 mb-2" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><strong>{{ $review->user->name }}</strong></h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Ngày: {{$review->created_at}}</h6>
+            <p class="card-text">{{ $review->comment }}</p>
+
+        </div>
+    </div>
+
+
+
+    @endforeach
+   
+    @else
+    <p>Chưa có đánh giá sản phẩm.</p>
+    @endif
+</div>
+
+
 <!--Add-to-cart-->
 <script src="{{ asset('js/add-to-cart.js') }}"></script>
 @endsection

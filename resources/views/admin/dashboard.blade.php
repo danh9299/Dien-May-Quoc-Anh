@@ -20,9 +20,9 @@ $totalRevenue = DB::table('orders')
 @extends('admin.master')
 @section('content')
 
-<h3 class="mt-2 px-5">Tổng quan</h3>
+<h1 class="mt-2 px-5">Tổng quan</h1>
 <div class="text-danger mt-1 px-5">
-    Chào mừng {{ auth()->guard('admin')->user()->name }} đến với trang Dashboard!
+    Quản trị viên đang sử dụng: {{ auth()->guard('admin')->user()->name }} 
 </div>
 <h2 class="mt-2 text-center ">--- CHÚ Ý ---</h2>
 

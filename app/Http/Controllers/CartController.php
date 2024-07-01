@@ -9,6 +9,8 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -88,11 +90,13 @@ class CartController extends Controller
         return view('main.orders.view', compact('order'));
     }
 
+
+
     public function allOrders()
     {
         $user = Auth::user();
-        $orders = Order::where('user_id', $user->id) ->orderBy('created_at', 'desc')->with('items.product')->get();
-   
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->with('items.product')->get();
+
         return view('main.orders.all-orders', compact('orders'));
     }
     public function checkout(Request $request)
@@ -105,9 +109,9 @@ class CartController extends Controller
         }
 
 
-      
 
-  
+
+
         $order = new Order();
         $order->user_id = $user->id;
         $order->total_amount = $cart->items->sum(function ($item) {
@@ -137,7 +141,7 @@ class CartController extends Controller
         if ($request->payment_method == 'bank_transfer') {
             // Lấy tổng số tiền cần thanh toán
             $total_amount = $order->total_amount;
-    
+
             // Điều hướng đến trang thanh toán, ví dụ như trang VNPAY
             return view('main.cart.redirect_to_payment', [
                 'total_amount' => $total_amount,
@@ -148,67 +152,91 @@ class CartController extends Controller
 
 
         return redirect()->route('main.orders.all-orders')->with('success', 'Đã tạo đơn hàng thành công.');
-  
+
     }
 
     //Admin
-    public function index(){
-        $orders = Order::orderBy('updated_at', 'desc')->paginate(10);
-        return view('admin.orders.index', ['orders' => $orders]);
+    public function index(Request $request)
+    {
+
+        $query = Order::query();
+        $totalRevenue = 0;
+        if ($request->has('month') && !empty($request->month)) {
+            $month = Carbon::parse($request->month);
+            $query->whereYear('created_at', $month->year)
+                ->whereMonth('created_at', $month->month);
+            $totalRevenue = $query->sum('revenue');
+        } else {
+            // Sử dụng tháng hiện tại
+            $month = Carbon::now();
+            $totalRevenue = $query->whereYear('created_at', $month->year)
+                ->whereMonth('created_at', $month->month)
+                ->sum('revenue');
+                
+        }
+        $orders = $query->orderBy('updated_at', 'desc')->paginate(10);
+        // Thêm điều kiện để chỉ lấy các đơn hàng đã thanh toán
+        $totalRevenue = $query->where('payment_status', 'Đã thanh toán')->sum('revenue');
+
+
+
+        return view('admin.orders.index', ['orders' => $orders,'month'=>$month, 'totalRevenue' => $totalRevenue]);
     }
     public function show(Order $order)
-{
-    $order->load('items.product'); // Load thông tin chi tiết sản phẩm trong đơn hàng
-    return view('admin.orders.show', compact('order'));
-}
-public function markAsDelivered($orderId)
-{
-    $order = Order::findOrFail($orderId);
-    
-    // Cập nhật trạng thái của đơn hàng thành "Đã giao"
-    $order->status = 'Đã giao';
-    $order->save();
+    {
+        $order->load('items.product'); // Load thông tin chi tiết sản phẩm trong đơn hàng
+        return view('admin.orders.show', compact('order'));
+    }
+    public function markAsDelivered($orderId)
+    {
+        $order = Order::findOrFail($orderId);
 
-    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành đã giao.');
-}
+        // Cập nhật trạng thái của đơn hàng thành "Đã giao"
+        $order->status = 'Đã giao';
+        $order->save();
 
-public function markAsUnDelivered($orderId)
-{
-    $order = Order::findOrFail($orderId);
-    
-    // Cập nhật trạng thái của đơn hàng thành "Đã giao"
-    $order->status = 'Chưa giao';
-    $order->save();
+        return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành đã giao.');
+    }
 
-    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành chưa giao.');
-}
+    public function markAsUnDelivered($orderId)
+    {
+        $order = Order::findOrFail($orderId);
 
+        // Cập nhật trạng thái của đơn hàng thành "Đã giao"
+        $order->status = 'Chưa giao';
+        $order->save();
 
-
-public function markAsPayNotDone($orderId){
-    $order = Order::findOrFail($orderId);
-    
-
-    $order->payment_status = 'Chưa thanh toán';
-    $order->save();
-
-    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành chưa thanh toán.');
+        return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành chưa giao.');
+    }
 
 
-}
+
+    public function markAsPayNotDone($orderId)
+    {
+        $order = Order::findOrFail($orderId);
 
 
-public function markAsPayDone($orderId){
-    $order = Order::findOrFail($orderId);
-    
+        $order->payment_status = 'Chưa thanh toán';
+        $order->save();
 
-    $order->payment_status = 'Đã thanh toán';
-    $order->save();
-
-    return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành đã thanh toán.');
+        return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành chưa thanh toán.');
 
 
-}
+    }
+
+
+    public function markAsPayDone($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+
+
+        $order->payment_status = 'Đã thanh toán';
+        $order->save();
+
+        return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành đã thanh toán.');
+
+
+    }
 
 
 

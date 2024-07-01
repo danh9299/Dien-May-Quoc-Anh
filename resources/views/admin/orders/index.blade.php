@@ -46,7 +46,7 @@
                         <td>{{ $order->created_at->format('d/m/Y H:i') }}</td>
                         <td>{{ $order->user->name }}</td>
                         <td>{{ $order->user->phone_number }}</td>
-                        <td>{{ $order->revenue }}</td>
+                        <td>{{ number_format( $order->revenue, 0, ',', '.') }} </td>
                         <td>{{ number_format($order->total_amount, 0, ',', '.') }} VND</td>
                         <td>@if ($order->payment_method == "cod")
                             Thanh toán khi nhận hàng

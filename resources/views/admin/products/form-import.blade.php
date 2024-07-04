@@ -2,8 +2,7 @@
 
 @section('content')
 
-@extends('admin.master')
-@section('content')
+
 <div class="row">
 
     <h3 class="mt-2 px-5">Nhập dữ liệu nhiều sản phẩm</h3>
@@ -45,4 +44,3 @@
 
 
 
-@endsection

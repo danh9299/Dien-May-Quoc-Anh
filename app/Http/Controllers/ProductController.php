@@ -7,6 +7,7 @@ use App\Models\Catalog;
 use App\Models\Type;
 use App\Models\Brand;
 use App\Models\Image;
+use App\Models\Article;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 use App\Exports\ProductsExport;
@@ -178,10 +179,20 @@ class ProductController extends Controller
                 });
             }
         });
+        $articles = Article::query();
+        // Combine conditions for all keywords
+        $articles->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
 
         $products = $products->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
-
-        return view('main.products.search', ['products' => $products]);
+        $articles = $articles->orderBy('updated_at', 'desc')->limit(10)->get();
+        return view('main.products.search', ['products' => $products,'articles'=>$articles]);
 
     }
 

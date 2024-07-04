@@ -205,7 +205,8 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::put('/admin/settings/account/update', [SettingController::class, 'updateAccountInfo'])->name('admin.settings.account.update');
     Route::get('/admin/changePassword',[SettingController::class,'changePassword'])->name('admin.settings.account.changePassword');
     Route::put('/admin/changePassword',[SettingController::class,'changePasswordComplete'])->name('admin.settings.account.changePasswordComplete');
-
+   
+    
     //Orders
     Route::get('/admin/orders', [CartController::class, 'index'])->name('admin.orders.index');
     Route::get('/orders/{order}', [CartController::class, 'show'])->name('admin.orders.show');
@@ -241,7 +242,12 @@ Route::group(['middleware' => 'check.admin.role'], function () {
     Route::put('/admin/settings/general/update', [SettingController::class, 'updateGeneral'])->name('admin.settings.general.update');
     Route::get('/admin/settings/network/edit', [SettingController::class, 'editNetwork'])->name('admin.settings.network.edit');
     Route::put('/admin/settings/network/update', [SettingController::class, 'updateNetwork'])->name('admin.settings.network.update');
-
+    Route::get('/admin/settings/list-users', [SettingController::class, 'listAllUsers'])->name('admin.settings.users.list-users');
+    Route::get('/admin/settings/search-users', [SettingController::class, 'searchUsers'])->name('admin.settings.users.search-users');
+    Route::get('/admin/settings/list-reviews', [SettingController::class, 'listAllProductReviews'])->name('admin.settings.reviews.list-reviews');
+    Route::get('/admin/settings/search-reviews', [SettingController::class, 'searchProductReviews'])->name('admin.settings.reviews.search-reviews');
+    Route::get('admin/settings/{review}/delete', [SettingController::class, 'deleteProductReview'])->name('admin.settings.reviews.delete');
+    Route::delete('admin/settings/{review}/destroy', [SettingController::class, 'destroyProductReview'])->name('admin.settings.reviews.destroy');
     //Policy
     Route::get('/admin/settings/secure-policy/edit', [SettingController::class, 'editSecure'])->name('admin.settings.policy.secure');
     Route::put('/admin/settings/secure-policy/edit', [SettingController::class, 'updateSecure'])->name('admin.settings.policy.updateSecure');
@@ -251,8 +257,9 @@ Route::group(['middleware' => 'check.admin.role'], function () {
     Route::put('/admin/settings/return-policy/edit', [SettingController::class, 'updateReturn'])->name('admin.settings.policy.updateReturn');
 
 
-    
-    
+    //Order
+    Route::get('admin/orders/{order}/delete', [CartController::class, 'deleteOrder'])->name('admin.orders.delete');
+    Route::delete('admin/orders/{order}/destroy', [CartController::class, 'destroyOrder'])->name('admin.orders.destroy');
     
 });
 

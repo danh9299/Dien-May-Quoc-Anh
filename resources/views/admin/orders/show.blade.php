@@ -92,6 +92,9 @@
                     <b>Chuyển khoản</b>
                 @endif
             </h5>
+            <h5 class="card-title mt-4">Hủy đơn hàng:
+            <a href="{{route('admin.orders.delete', $order->id)}}" class="btn btn-danger">Hủy đơn</a>
+            </h5>
 
 
             <div class="text-center">

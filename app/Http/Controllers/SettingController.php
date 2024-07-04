@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductReview;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Footer;
+use App\Models\User;
 use App\Models\Policy;
 
 class SettingController extends Controller
@@ -107,7 +109,7 @@ class SettingController extends Controller
     }
     public function updateReturn(Request $request)
     {
-        $policy = Policy::where('group','return')->first();
+        $policy = Policy::where('group', 'return')->first();
         $policy->content = $request->content;
 
         $policy->save();
@@ -122,21 +124,80 @@ class SettingController extends Controller
 
     public function changePasswordComplete(Request $request)
     {
-      
+
         $user = auth()->guard('admin')->user();
-      
-        if($request->new_password != $request->new_password_confirmation){
+
+        if ($request->new_password != $request->new_password_confirmation) {
             return redirect()->back()->with('error', 'Mật khẩu mới không khớp nhau');
         }
 
-        if ( !Hash::check($request->current_password, $user->password) ) {
+        if (!Hash::check($request->current_password, $user->password)) {
             return redirect()->back()->with('error', 'Mật khẩu hiện tại không đúng.');
         }
-      
-      
+
+
         $user->password = bcrypt($request->new_password);
         $user->save();
 
         return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi.');
+    }
+
+
+    public function listAllUsers()
+    {
+        $users = USER::orderBy('updated_at', 'desc')->paginate(10);
+        return view('admin.settings.users.list-users', ['users' => $users]);
+    }
+    public function searchUsers(Request $request)
+    {
+        $searchText = $request->input('search');
+        $keywords = explode(' ', $searchText);
+        $users = USER::query();
+        // Combine conditions for all keywords
+        $users->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(name, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%'])
+                        ->orWhereRaw("REPLACE(email, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%'])
+                        ->orWhereRaw("REPLACE(phone_number, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+        $users = $users->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+        return view('admin.settings.users.list-users', ['users' => $users]);
+    }
+    public function listAllProductReviews()
+    {
+        $reviews = ProductReview::orderBy('updated_at', 'desc')->paginate(10);
+        return view('admin.settings.reviews.list-reviews', ['reviews' => $reviews]);
+    }
+    public function searchProductReviews(Request $request)
+    {
+        $searchText = $request->input('search');
+        $keywords = explode(' ', $searchText);
+        $reviews = ProductReview::query();
+        // Combine conditions for all keywords
+        $reviews->where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $keywordWithoutSpace = str_replace(' ', '', $keyword);
+                $query->where(function ($subQuery) use ($keywordWithoutSpace) {
+                    $subQuery->whereRaw("REPLACE(comment, ' ', '') LIKE ?", ['%' . $keywordWithoutSpace . '%']);
+                });
+            }
+        });
+        $reviews = $reviews->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
+        return view('admin.settings.reviews.list-reviews', ['reviews' => $reviews]);
+    }
+    public function deleteProductReview(ProductReview $review)
+    {
+        return view('admin.settings.reviews.delete', compact('review'));
+    }
+    public function destroyProductReview(ProductReview $review)
+    {
+        //
+        $review->delete();
+
+        return redirect()->route('admin.settings.reviews.list-reviews')->with('success', 'Xóa đánh giá thành công!');
     }
 }

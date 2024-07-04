@@ -234,10 +234,18 @@ class CartController extends Controller
         $order->save();
 
         return redirect()->route('admin.orders.show', compact('order'))->with('success', 'Đã cập nhật trạng thái đơn hàng thành đã thanh toán.');
-
-
     }
+    public function deleteOrder(Order $order)
+    {
+        return view('admin.orders.delete', compact('order'));
+    }
+    public function destroyOrder(Order $order)
+    {
+        //
+        $order->delete();
 
+        return redirect()->route('admin.orders.index')->with('success', 'Hủy đơn thành công!');
+    }
 
 
 

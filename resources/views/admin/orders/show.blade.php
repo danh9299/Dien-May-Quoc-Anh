@@ -82,7 +82,9 @@
 
             <h5 class="card-title mt-4"><strong>Tổng tiền đơn hàng:</strong> {{ number_format($order->total_amount, 0, ',', '.') }} VND
             </h5>
+            @if (auth()->guard('admin')->user()->role == 1)
             <h5 class="card-text"><strong>Doanh thu:</strong> {{number_format($order->revenue, 0, ',', '.') }} VND</h5>
+            @endif
             <h5 class="card-title mt-4">Trạng thái: <b>{{$order->status}}</b>
             </h5>
             <h5 class="card-title mt-4">Phương thức thanh toán:
@@ -92,9 +94,11 @@
                     <b>Chuyển khoản</b>
                 @endif
             </h5>
+            @if (auth()->guard('admin')->user()->role == 1)
             <h5 class="card-title mt-4">Hủy đơn hàng:
             <a href="{{route('admin.orders.delete', $order->id)}}" class="btn btn-danger">Hủy đơn</a>
             </h5>
+            @endif
 
 
             <div class="text-center">

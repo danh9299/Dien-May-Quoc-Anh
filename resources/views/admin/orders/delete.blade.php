@@ -47,6 +47,7 @@
 
             <h5 class="card-title mt-4"><strong>Tổng tiền đơn hàng:</strong> {{ number_format($order->total_amount, 0, ',', '.') }} VND
             </h5>
+            
             <h5 class="card-text"><strong>Doanh thu:</strong> {{number_format($order->revenue, 0, ',', '.') }} VND</h5>
             <h5 class="card-title mt-4">Trạng thái: <b>{{$order->status}}</b>
             </h5>

@@ -74,7 +74,7 @@ class ProductController extends Controller
     }
     public function listNoBrand(Catalog $catalog, Request $request)
     {
-
+        
         $filter_brands = Brand::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();

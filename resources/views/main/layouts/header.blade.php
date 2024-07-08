@@ -3,10 +3,11 @@ use App\Models\Catalog;
 use App\Models\Brand;
 use App\Models\Image;
 use App\Models\Footer;
-$footer = Footer::where('id',1)->first();
 
-$logo = Image::where('group',1)->first();
-$main_catalogs = Catalog::where('parent_id',0)->get();
+$footer = Footer::where('id', 1)->first();
+
+$logo = Image::where('group', 1)->first();
+$main_catalogs = Catalog::where('parent_id', 0)->get();
 $brands = Brand::all();
 ?>
 
@@ -17,21 +18,21 @@ $brands = Brand::all();
             <div class="col-auto me-auto">
                 <ul class="qa-top-nav">
                     <li>
-                    <a href="tel:{{$footer->hotline1}}">{{$footer->hotline1}}</a>
+                        <a href="tel:{{$footer->hotline1}}">{{$footer->hotline1}}</a>
                     </li>
                     <li>
-                    <a href="tel:{{$footer->hotline2}}">{{$footer->hotline2}}</a>
+                        <a href="tel:{{$footer->hotline2}}">{{$footer->hotline2}}</a>
                     </li>
                     <li>
-                    <a href="tel:{{$footer->hotline3}}">{{$footer->hotline3}}</a>
+                        <a href="tel:{{$footer->hotline3}}">{{$footer->hotline3}}</a>
                     </li>
                     <li>
-                    <a href="tel:{{$footer->hotline4}}">{{$footer->hotline4}}</a>
+                        <a href="tel:{{$footer->hotline4}}">{{$footer->hotline4}}</a>
                     </li>
                 </ul>
             </div>
             <div class="col-auto">
-            @if (Auth::guard('web')->check())
+                @if (Auth::guard('web')->check())
                 <ul class="qa-top-nav">
                     <li>
                         <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
@@ -59,7 +60,7 @@ $brands = Brand::all();
                         <a href="{{route('main.auth.login')}}">Đăng nhập</a>
                     </li>
                 </ul>
-                
+
                 @endif
             </div>
         </div>
@@ -80,9 +81,9 @@ $brands = Brand::all();
                 @if (Auth::guard('web')->check())
                 <ul class="qa-top-nav">
                     <li>
-                    <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
+                        <a href="#">Xin chào {{ auth()->guard('web')->user()->name }}</a>
                     </li>
-                 
+
                     <li>
                         <a href="{{ route('main.auth.logout') }}">
                             Đăng xuất
@@ -91,10 +92,10 @@ $brands = Brand::all();
                     </li>
                 </ul>
                 <div class="text-center">
-                <a href="{{ route('main.auth.edit') }}">
-                            Quản lý thông tin
-                        </a>
-                        </div>
+                    <a href="{{ route('main.auth.edit') }}">
+                        Quản lý thông tin
+                    </a>
+                </div>
                 @else
                 <ul class="qa-top-nav">
                     <li>
@@ -104,7 +105,7 @@ $brands = Brand::all();
                         <a href="{{route('main.auth.login')}}">Đăng nhập</a>
                     </li>
                 </ul>
-                
+
                 @endif
             </div>
         </div>
@@ -123,12 +124,12 @@ $brands = Brand::all();
             </div>
             <!--Thanh tìm kiếm-->
             <div class="col-lg-5 mx-auto mt-4 mt-lg-0">
-           
+
                 <form method="GET" action="{{ route('main.search') }}">
                     <div class="form-group">
                         <div class="qa-search input-group">
                             <input type="text" name="search" class="form-control border-danger"
-                                placeholder="Nhập thông tin tìm kiếm..."  />
+                                placeholder="Nhập thông tin tìm kiếm..." />
                             <button type="submit" class="btn btn-danger">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-search" viewBox="0 0 16 16">
@@ -152,10 +153,13 @@ $brands = Brand::all();
                 </a>
                 <a href="{{route('main.orders.all-orders')}}" class="qa-header-cart">
                     Đơn hàng
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
-  <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z"/>
-  <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
-</svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-receipt" viewBox="0 0 16 16">
+                        <path
+                            d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z" />
+                        <path
+                            d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5" />
+                    </svg>
                 </a>
             </div>
         </div>
@@ -175,18 +179,19 @@ $brands = Brand::all();
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('main.home') }}">Trang chủ</a>
                         </li>
-                        @if(count($main_catalogs )>0)
+                        @if(count($main_catalogs) > 0)
                         @foreach($main_catalogs as $main_catalog)
-                        @if($main_catalog->id != 0)
+                        @if($main_catalog->id != 0 && $main_catalog->children->isEmpty())
                         <li class="nav-item dropdown">
-                            <a class="nav-link " href="{{route('main.products.list-no-brand',$main_catalog->id)}}"  
-                                >{{$main_catalog->catalog_name}}</a>
+                            <a class="nav-link "
+                                href="{{route('main.products.list-no-brand', $main_catalog->id)}}">{{$main_catalog->catalog_name}}</a>
 
                             <div class="dropdown-menu">
-                                @if(count($brands) >0)
+                                @if(count($brands) > 0)
                                 @foreach($brands as $brand)
                                 @if($brand->id != 0)
-                                <a class="dropdown-item" href="{{route('main.products.list-with-brand',['catalog_id' => $main_catalog->id, 'brand_id' => $brand->id])}}">
+                                <a class="dropdown-item"
+                                    href="{{route('main.products.list-with-brand', ['catalog_id' => $main_catalog->id, 'brand_id' => $brand->id])}}">
                                     <!--href="route('',gửi id brand và gửi id catalog_id sau đó select product where id và id)"-->
                                     {{$main_catalog->catalog_name}} {{$brand->name}}
                                 </a>
@@ -197,6 +202,25 @@ $brands = Brand::all();
 
                         </li>
                         @endif
+
+                        @if($main_catalog->id != 0 && $main_catalog->children->isEmpty() == false)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{$main_catalog->id}}"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{$main_catalog->catalog_name}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown{{$main_catalog->id}}">
+                                @foreach($main_catalog->children as $child)
+                                <a class="dropdown-item"
+                                    href="{{ route('main.products.list-no-brand', ['catalog' => $child->id]) }}">
+                                    {{ $child->catalog_name }}
+                                </a>
+                                @endforeach
+                            </div>
+                        </li>
+                        @endif
+
+
                         @endforeach
                         @endif
                     </ul>

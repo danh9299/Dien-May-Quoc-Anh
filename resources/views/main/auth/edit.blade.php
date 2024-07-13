@@ -19,7 +19,6 @@
             Cập nhật Thông tin cá nhân..
         </div>
         <div class="card-body">
-            <!--image-->
             <form method="post" action="{{route('main.auth.update')}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

@@ -1,18 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Type;
 use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         //
-        $types =  Type::orderBy('id', 'desc')->paginate(6);
+        $types = Type::orderBy('id', 'desc')->paginate(6);
         return view('admin.types.index', ['types' => $types]);
     }
     public function search(Request $request)
@@ -22,44 +21,36 @@ class TypeController extends Controller
         $types = Type::whereRaw("REPLACE(name, ' ', '') LIKE '%" . $searchTextWithoutSpace . "%'")->paginate(6);
         return view('admin.types.index', ['types' => $types]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
         return view('admin.types.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         //
         $request->validate([
             'name' => 'required',
-            
+
         ]);
         $type = new Type;
         $type->name = $request->name;
-        
+
 
         $type->save();
         return redirect()->route('admin.types.index')->with('success', 'Thêm mới phân loại thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Type $type)
     {
         //
@@ -74,30 +65,29 @@ class TypeController extends Controller
         //
         $request->validate([
             'name' => 'required',
-            
+
         ]);
 
         $type = Type::find($request->hidden_id);
         $type->name = $request->name;
-       
+
         $type->save();
 
         // Chuyển hướng về trang danh sách tạp chí
         return redirect()->route('admin.types.index')->with('success', 'Cập nhật phân loại thành công!');
-        
+
     }
-    public function delete(Type $type){
+    public function delete(Type $type)
+    {
         return view('admin.types.delete', compact('type'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Type $type)
     {
         //
-        if($type->products->isNotEmpty()){
-            $type->products()->update(['type_id'=>0]);
+        if ($type->products->isNotEmpty()) {
+            $type->products()->update(['type_id' => 0]);
         }
         $type->delete();
 

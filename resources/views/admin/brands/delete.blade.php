@@ -25,12 +25,12 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Tên Hãng</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" value="{{$brand->name}}"
-                                class="shadow form-control" readonly />
+                            <input type="text" name="name" value="{{$brand->name}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
 
-                   
+
                     <p>Bạn muốn xóa Hãng này chứ?</p>
                     <button type="submit" class="btn btn-danger">Có</button>
                     <a href="{{ route('admin.brands.index') }}" class="btn btn-secondary">Không</a>
@@ -40,10 +40,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

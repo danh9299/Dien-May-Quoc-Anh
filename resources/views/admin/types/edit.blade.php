@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                   
+
 
                     <div class="text-center">
                         <input type="hidden" name="hidden_id" value="{{ $type->id }}" />

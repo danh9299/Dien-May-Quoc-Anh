@@ -27,37 +27,42 @@
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Địa chỉ</label>
                         <div class="col-sm-9">
-                            <input type="text" name="address" value="{{$footer->address}}" class="shadow form-control"  />
+                            <input type="text" name="address" value="{{$footer->address}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" name="email" value="{{$footer->email}}" class="shadow form-control"  />
+                            <input type="email" name="email" value="{{$footer->email}}" class="shadow form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Hotline 1</label>
                         <div class="col-sm-9">
-                            <input type="text" name="hotline1" value="{{$footer->hotline1}}" class="shadow form-control"  />
+                            <input type="text" name="hotline1" value="{{$footer->hotline1}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Hotline 2</label>
                         <div class="col-sm-9">
-                            <input type="text" name="hotline2" value="{{$footer->hotline2}}" class="shadow form-control"  />
+                            <input type="text" name="hotline2" value="{{$footer->hotline2}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Hotline 3</label>
                         <div class="col-sm-9">
-                            <input type="text" name="hotline3" value="{{$footer->hotline3}}" class="shadow form-control"  />
+                            <input type="text" name="hotline3" value="{{$footer->hotline3}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Hotline 4</label>
                         <div class="col-sm-9">
-                            <input type="text" name="hotline4" value="{{$footer->hotline4}}" class="shadow form-control"  />
+                            <input type="text" name="hotline4" value="{{$footer->hotline4}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
                 </div>
@@ -72,5 +77,5 @@
             </form>
         </div>
     </div>
-    
+
     @endsection('content')

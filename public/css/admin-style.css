@@ -1,37 +1,41 @@
-body{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-.admin-sidebar{
-    height: 100vh;
-   width: 20%;
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.admin-content{
-    height: 100vh;
-   width: 100%;
-   overflow-y: scroll;
+.admin-sidebar {
+  height: 100vh;
+  width: 20%;
 }
-.admin-sidebar-navigations{
-    width: 100%;
-    height: 100%;
+
+.admin-content {
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
 }
-.admin-sidebar-navigations a{
-    text-decoration: none;
-    color:rgb(230, 230, 230);
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding-left:1rem;
+
+.admin-sidebar-navigations {
+  width: 100%;
+  height: 100%;
+}
+
+.admin-sidebar-navigations a {
+  text-decoration: none;
+  color: rgb(230, 230, 230);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-left: 1rem;
 }
 
 .admin-sidebar-navigations svg {
-    color:rgb(230, 230, 230);
+  color: rgb(230, 230, 230);
 }
 
-.admin-sidebar-navigations ul{
-    list-style:none;
-    
+.admin-sidebar-navigations ul {
+  list-style: none;
+
 }
-.admin-sidebar-navigations ul li:hover{
-    background-color:rgb(250, 61, 61);
+
+.admin-sidebar-navigations ul li:hover {
+  background-color: rgb(250, 61, 61);
 }
 
 
@@ -40,123 +44,136 @@ body{
 
 /* The sidebar menu  MOBILE*/
 .mobile-sidebar {
-    height: 100%;
-    width: 0; 
-    position: fixed;
-    z-index: 1; 
-    top: 0;
-    left: 0;
-    overflow-x: hidden; 
-    transition: 0.5s; 
-  }
-  
-  
-  /* Button for openning sidebar */
-  .openbtn {
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    border: none;
-  }
-  
-  .openbtn:hover {
-    background-color: #444;
-  }
-
-  /*button for closing sidebar*/
-  .closebtn {
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    border: none;
-    display: none;
-  }
-
-  .closebtn:hover {
-    background-color: #444;
-    
-  }
-  
-  
-
-  
-
-  @media screen and (max-height: 450px) {
-    .mobile-sidebar {padding-top: 15px;}
-    .mobile-sidebar a {font-size: 18px;}
-  }
-
-   @media screen and (max-width: 300px) {
-    .mobile-sidebar {padding-top: 12px;}
-    .mobile-sidebar a {font-size: 12px;}
-  }
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
 
 
-  /*admin image thumbnail*/
+/* Button for openning sidebar */
+.openbtn {
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  border: none;
+}
 
-  .admin-product-image{
-    max-width: 120px;
-    max-height: 120px;
+.openbtn:hover {
+  background-color: #444;
+}
+
+/*button for closing sidebar*/
+.closebtn {
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  border: none;
+  display: none;
+}
+
+.closebtn:hover {
+  background-color: #444;
+
+}
+
+
+
+
+
+@media screen and (max-height: 450px) {
+  .mobile-sidebar {
+    padding-top: 15px;
   }
 
-  .admin-product-add-import-export{
-    display:flex;
-    column-gap: 5px;
-    justify-content: end;
+  .mobile-sidebar a {
+    font-size: 18px;
   }
+}
+
+@media screen and (max-width: 300px) {
+  .mobile-sidebar {
+    padding-top: 12px;
+  }
+
+  .mobile-sidebar a {
+    font-size: 12px;
+  }
+}
+
+
+/*admin image thumbnail*/
+
+.admin-product-image {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.admin-product-add-import-export {
+  display: flex;
+  column-gap: 5px;
+  justify-content: end;
+}
 
 
 /* scrollbar height and width */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-  }
+  width: 5px;
+  height: 5px;
+}
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: rgb(226, 83, 83);
-  }
-  
+  background: rgb(226, 83, 83);
+}
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(226, 83, 83);;
-  }
-  
+  background: rgb(226, 83, 83);
+  ;
+}
+
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  background: #555;
+}
 
 
 
 
 /*admin product content editor*/
 
-.product-content-editor{
-  height: 1000px; 
+.product-content-editor {
+  height: 1000px;
   border: 1px solid black;
 }
-.product-specs-editor{
+
+.product-specs-editor {
   height: 700px;
 }
 
 
 
-#changeImage:hover{
-cursor: pointer;
+#changeImage:hover {
+  cursor: pointer;
 }
 
-#changeImages:hover{
+#changeImages:hover {
   cursor: pointer;
-  }
+}
 
 
 /*Class cho ảnh trong mục admim/images */
-.admin-home-images a{
+.admin-home-images a {
   text-decoration: none;
-  color:black;
+  color: black;
 }
-.admin-home-images a:hover{
-  cursor:pointer;
-  color:red;
+
+.admin-home-images a:hover {
+  cursor: pointer;
+  color: red;
 }

@@ -44,14 +44,14 @@
                     <!--Tác giả-->
                     <div class="row mb-4 ">
                         <h6 class="text-dark  mb-2">Tác giả</h6>
-                        <input type="text" name="author_id" value="{{$article->admin->id}}"
-                            class="shadow  form-control" hidden />
+                        <input type="text" name="author_id" value="{{$article->admin->id}}" class="shadow  form-control"
+                            hidden />
                         <div class="col-sm-10">
-                            <input type="text" name="" value="{{ $article->admin->name}}"
-                                class="shadow  form-control" readonly />
+                            <input type="text" name="" value="{{ $article->admin->name}}" class="shadow  form-control"
+                                readonly />
                         </div>
                     </div>
-                    <!--image-->
+                    <!--Ảnh-->
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Ảnh đại diện</h6>
                         <input type="file" style="display:none" name="image_link" id="image_link"
@@ -59,8 +59,8 @@
                             class="shadow @error('image_link') is-invalid @enderror form-control" />
                         <input type="text" id="image_link_check" style="display:none" name="image_link_check"
                             value="{{$article->image_link}}">
-                        <img id="previewImage" src="{{asset( $article->image_link) }}"
-                            class="mt-2 img-thumbnail" alt="Preview">
+                        <img id="previewImage" src="{{asset( $article->image_link) }}" class="mt-2 img-thumbnail"
+                            alt="Preview">
                         <a id="changeImage" class="text-danger mt-2" style="max-width:200px; "
                             onclick="chooseAnotherImage()">Xóa ảnh</a>
                         @error('image_link')
@@ -72,16 +72,12 @@
                         </span>
                         @enderror
                     </div>
-                    <!--content-->
+                    <!--Nội dung-->
                     <div class="row mb-4 ">
                         <h6 class="text-dark  mb-2">Nội dung tin tức</h6>
                         <textarea name="content" class="product-content-editor"
                             id="contenteditor">@if($errors->any()) {{old('content')}} @else {{$article->content}} @endif</textarea>
                     </div>
-
-                    
-
-
                     <div class="text-center">
                         <input type="hidden" name="hidden_id" value="{{ $article->id }}" />
                         <input type="submit" class="btn btn-primary" value="Cập nhật" />

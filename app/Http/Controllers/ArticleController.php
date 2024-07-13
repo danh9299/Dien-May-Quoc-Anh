@@ -7,21 +7,18 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function listAllArticles(){
+
+    public function listAllArticles()
+    {
         $articles = Article::orderBy('created_at', 'desc')->paginate(10);
         return view('main.articles.list-all-articles', ['articles' => $articles]);
     }
-    
-  /**
-     * Display the specified resource.
-     */
+
+
     public function show(Article $article)
     {
         //
-        
+
         return view('main.articles.show', compact('article'));
     }
 
@@ -29,14 +26,15 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $articles =  Article::orderBy('created_at', 'desc')->paginate(10);
+        $articles = Article::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.articles.index', ['articles' => $articles]);
     }
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $searchText = $request->input('search');
         $keywords = explode(' ', $searchText);
         $articles = Article::query();
-        // Combine conditions for all keywords
+
         $articles->where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
                 $keywordWithoutSpace = str_replace(' ', '', $keyword);
@@ -46,23 +44,19 @@ class ArticleController extends Controller
             }
         });
         $articles = $articles->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
-     
-return view('admin.articles.index', ['articles' => $articles]);
+
+        return view('admin.articles.index', ['articles' => $articles]);
     }
-    
-    /**
-     * Show the form for creating a new resource.
-     */
+
+
     public function create()
     {
         //
         return view('admin.articles.create');
-    
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         //
@@ -87,32 +81,28 @@ return view('admin.articles.index', ['articles' => $articles]);
         } else {
             $article->meta_description = $request->meta_description;
         }
-        
+
         $imageSaveLocation = public_path('img/article_images');
         $imageUrlSave = 'img/article_images';
         $mainImage = $request->file('image_link');
         $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
         $mainImage->move($imageSaveLocation, $mainImageName);
-        $article->image_link = $imageUrlSave.'/'.$mainImageName;
+        $article->image_link = $imageUrlSave . '/' . $mainImageName;
         $article->author_id = $request->author_id;
         $article->save();
         return redirect()->route('admin.articles.index')->with('success', 'Thêm mới Tin tức thành công');
     }
 
-  
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+
     public function edit(Article $article)
     {
         //
         return view('admin.articles.edit', compact('article'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Article $article)
     {
         //
@@ -120,12 +110,12 @@ return view('admin.articles.index', ['articles' => $articles]);
             'name' => 'required',
         ];
 
-        // Conditionally add 'image_link' rule
+
         $article = Article::find($request->hidden_id);
         if ($request->image_link_check != $article->image_link) {
             $rules['image_link'] = 'required|file|mimes:jpeg,png,webp,jpg,svg|max:7168';
         }
-      
+
 
         $validator = $request->validate($rules);
 
@@ -151,19 +141,18 @@ return view('admin.articles.index', ['articles' => $articles]);
             $mainImage = $request->file('image_link');
             $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
             $mainImage->move($imageSaveLocation, $mainImageName);
-            $article->image_link = $imageUrlSave.'/'.$mainImageName;
+            $article->image_link = $imageUrlSave . '/' . $mainImageName;
         } else {
             $article->image_link = $request->image_link_check;
         }
         $article->save();
         return redirect()->route('admin.articles.index')->with('success', 'Cập nhật Tin tức thành công');
     }
-    public function delete(Article $article){
+    public function delete(Article $article)
+    {
         return view('admin.articles.delete', compact('article'));
     }
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Article $article)
     {
         $article->delete();

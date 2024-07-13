@@ -115,7 +115,7 @@
 
 
                 </div>
-                <!-- Button trigger modal -->
+                <!-- Nút mở modal -->
                 <div class="d-grid gap-2">
                     <button type="button" class="rounded-top-0 btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#product-content-modal">
@@ -123,7 +123,7 @@
                     </button>
                 </div>
 
-                <!-- Large modal -->
+                <!-- modal lớn -->
                 <div class="modal fade" id="product-content-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl">
@@ -151,7 +151,7 @@
                 <div class="qa-product-specifications-size bg-secondary-subtle border  border-dark  overflow-hidden">
                     {!!
                     $product->specifications !!}</div>
-                <!-- Button trigger modal -->
+                <!-- Nút mở modal -->
                 <div class="d-grid gap-2">
                     <button type="button" class="rounded-top-0 btn btn-danger border  border-dark border-top-0"
                         data-bs-toggle="modal" data-bs-target="#product-specification-modal">
@@ -159,7 +159,7 @@
                     </button>
                 </div>
 
-                <!-- Large modal -->
+                <!-- modal lớn -->
                 <div class="modal fade" id="product-specification-modal" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog ">
@@ -182,7 +182,7 @@
         </div>
     </div>
 </main>
-<!-- Main Content -->
+
 
 
 
@@ -212,9 +212,7 @@
                 </span>
                 <br />
                 <span class="product-price">{{number_format($similar_product->price, 0, ',', '.')}} </span>
-                <button class="btn btn-outline-dark" type="button">
-                    Thêm vào giỏ
-                </button>
+               
             </div>
         </div>
         @endforeach
@@ -248,25 +246,23 @@
 </div>
 @endauth
 <!-- Hiển thị đánh giá sản phẩm -->
-<!-- Button trigger modal -->
- <div class="mt-3 container mb-2">
-<h3>Đánh giá sản phẩm mới nhất:</h3>
-@if ($product->reviews->count() > 0)
-<div class="d-grid gap-2">
-    <button type="button" class="rounded-top-0 btn btn-danger border border-dark border-top-0" data-bs-toggle="modal"
-        data-bs-target="#reviews-modal">
-        Xem các đánh giá
-    </button>
-</div>
+<!-- Nút mở modal -->
+<div class="mt-3 container mb-2">
+    <h3>Đánh giá sản phẩm mới nhất:</h3>
+    @if ($product->reviews->count() > 0)
+    <div class="d-grid gap-2">
+        <button type="button" class="rounded-top-0 btn btn-danger border border-dark border-top-0"
+            data-bs-toggle="modal" data-bs-target="#reviews-modal">
+            Xem các đánh giá
+        </button>
+    </div>
 </div>
 @else
-    <p>Chưa có đánh giá sản phẩm.</p>
+<p>Chưa có đánh giá sản phẩm.</p>
 
 @endif
 
-<!-- Large modal -->
- 
-
+<!-- Modal lớn -->
 <div class="modal fade" id="reviews-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
@@ -295,8 +291,8 @@
             </div>
         </div>
     </div>
-    </div>
-    
+</div>
+
 
 
 

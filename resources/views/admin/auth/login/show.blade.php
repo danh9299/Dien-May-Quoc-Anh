@@ -1,8 +1,7 @@
 <?php 
-    use App\Models\Image;
-
+use App\Models\Image;
 $logo = Image::where('group', 1)->first();
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +41,10 @@ $logo = Image::where('group', 1)->first();
                         <input type="password" name="password" class="form-control" id="adminpassword" required>
                     </div>
                     <button type="submit" class="btn btn-outline-danger">Đăng nhập</button>
-                    
+
                 </form>
                 @if ($errors->has('username'))
-                    <span class="text-danger mt-2">{{ $errors->first('username') }}</span>
+                <span class="text-danger mt-2">{{ $errors->first('username') }}</span>
                 @endif
 
             </div>
@@ -58,7 +57,7 @@ $logo = Image::where('group', 1)->first();
     <!--Bundle-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
 </body>
 
 </html>

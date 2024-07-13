@@ -1,11 +1,8 @@
 @extends('main.master')
 @section('content')
 <div class="col-12">
-    <!-- Main Content -->
+    <!-- Nội dung chính -->
     <main class="row">
-
-        <!-- Category Products -->
-
         <div class="col-md-2 col-sm-12 qa-filter-product p-4  mt-4">
             <!--Desktop-->
             <div class="d-lg-block d-none">
@@ -184,7 +181,7 @@
 
 
 
-        <!--List-->
+        <!--Danh sách-->
         <div class="col-md-10 col-sm-12">
             <div class="row">
                 <div class="col-12 py-3">
@@ -195,11 +192,11 @@
                     </div>
                     <div class="row qa-list-product px-1">
 
-                        <!-- Product -->
+                    
                         @if(count($products)>0)
 
                         @foreach ($products as $product)
-                        <!-- Product -->
+                     
                         <div class="mb-3  card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$product->id)}}">
                                 <div class="text-center mt-1 ">
@@ -229,13 +226,13 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- Product -->
+                     
                         @endforeach
 
                         @else
                         <p>Đang cập nhật</p>
                         @endif
-                        <!-- Product -->
+                    
 
 
                     </div>
@@ -279,12 +276,12 @@
                 </div>
             </div>
         </div>
-        <!-- Category Products -->
+      
 
 
 
     </main>
-    <!-- Main Content -->
+    <!-- Nội dung chính -->
 </div>
 
 <script src="{{asset('js/check_filter_price.js')}}"></script>

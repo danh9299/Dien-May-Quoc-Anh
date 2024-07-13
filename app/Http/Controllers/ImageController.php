@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         //
@@ -58,7 +56,7 @@ class ImageController extends Controller
         $longBanner3 = Image::where('id', 7)->first();
         $longBanner4 = Image::where('id', 8)->first();
 
-        //Validations
+        
         if ($request->image_link_check_banner1 != $longBanner1->image_link) {
             $validator = $request->validate([
 
@@ -96,7 +94,7 @@ class ImageController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
         }
-        //Image Location to store
+       
         $imageSaveLocation = public_path('img/long-banner');
 
         //Long banner 1
@@ -155,7 +153,7 @@ class ImageController extends Controller
         $slider2 = Image::where('id', 3)->first();
         $slider3 = Image::where('id', 4)->first();
 
-        //Validations
+       
         if ($request->image_link_check_banner1 != $slider1->image_link) {
             $validator = $request->validate([
 
@@ -185,7 +183,7 @@ class ImageController extends Controller
         }
 
        
-        //Image Location to store
+        
         $imageSaveLocation = public_path('img/slider-banner');
 
         //Slider 1
@@ -222,51 +220,5 @@ class ImageController extends Controller
         return redirect()->route('admin.images.slider-banners.edit')->with('success', 'Cập nhật Sliders thành công');
    
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Image $image)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Image $image)
-    {
-        //
-    }
+   
 }

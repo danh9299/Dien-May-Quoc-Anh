@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Policy extends Model
 {
     use HasFactory;
-    protected $table ="policies";
+    protected $table = "policies";
     protected $fillable = [
         'name',
         'group',

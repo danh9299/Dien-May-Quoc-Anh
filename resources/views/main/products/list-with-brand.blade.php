@@ -1,11 +1,8 @@
 @extends('main.master')
 @section('content')
 <div class="col-12">
-    <!-- Main Content -->
+    <!-- Nội dung chính -->
     <main class="row">
-
-        <!-- Category Products -->
-
         <div class="col-md-2 qa-filter-product p-4  mt-4">
             <!--Desktop-->
             <div class="d-lg-block d-none">
@@ -156,11 +153,11 @@
                     </div>
                     <div class="row qa-list-product px-1">
 
-                        <!-- Product -->
+
                         @if(count($products)>0)
 
                         @foreach ($products as $product)
-                        <!-- Product -->
+
                         <div class="mb-3  card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$product->id)}}">
                                 <div class="text-center mt-1 ">
@@ -170,19 +167,19 @@
                             </a>
 
                             <div class="card-body">
-                            <form class="add-to-cart-form">
-                            @csrf
-                                <a href="{{route('main.products.show',$product->id)}}">
-                                    <h5 class="card-title">
-                                        {{$product->name}}
-                                    </h5>
-                                </a>
-                                <span class="product-price-old">
-                                    {{number_format($product->old_price, 0, ',', '.')}}
-                                </span>
-                                <br />
-                                <span class="product-price"> {{number_format($product->price, 0, ',', '.')}}</span>
-                                <input type="number" value="1" name="quantity" hidden>
+                                <form class="add-to-cart-form">
+                                    @csrf
+                                    <a href="{{route('main.products.show',$product->id)}}">
+                                        <h5 class="card-title">
+                                            {{$product->name}}
+                                        </h5>
+                                    </a>
+                                    <span class="product-price-old">
+                                        {{number_format($product->old_price, 0, ',', '.')}}
+                                    </span>
+                                    <br />
+                                    <span class="product-price"> {{number_format($product->price, 0, ',', '.')}}</span>
+                                    <input type="number" value="1" name="quantity" hidden>
                                     <input type="number" value="{{$product->id}}" name="product_id" hidden>
                                     <button type="submit" class="mt-1  btn btn-outline-dark" type="button">
                                         Thêm vào giỏ
@@ -190,13 +187,13 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- Product -->
+
                         @endforeach
 
                         @else
                         <p>Đang cập nhật</p>
                         @endif
-                        <!-- Product -->
+
 
 
                     </div>
@@ -240,12 +237,12 @@
                 </div>
             </div>
         </div>
-        <!-- Category Products -->
+       
 
 
 
     </main>
-    <!-- Main Content -->
+    <!-- Nội dung chính -->
 </div>
 <script src="{{asset('js/check_filter_price.js')}}"></script>
 <!--Add-to-cart-->

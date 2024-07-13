@@ -187,7 +187,7 @@
                         </div>
                     </div>
 
-                    <!--content-->
+                    <!--Mô tả sản phẩm-->
                     <div class="row mb-4 ">
                         <h6 class="text-dark  mb-2">Nội dung sản phẩm</h6>
                         <textarea name="content" class="product-content-editor"
@@ -195,7 +195,7 @@
                     </div>
 
 
-                    <!--specifications-->
+                    <!--Thông số kỹ thuật-->
                     <div class="row mb-4 ">
                         <h6 class="text-dark mb-2">Thông số kỹ thuật</h6>
                         <textarea name="specifications" class="product-specs-editor"
@@ -204,7 +204,7 @@
 
 
 
-                    <!--image-->
+                    <!--Ảnh-->
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Ảnh đại diện sản phẩm</h6>
                         <input type="file" style="display:none" name="image_link" id="image_link"
@@ -226,7 +226,7 @@
                         @enderror
                     </div>
 
-                    <!--image list-->
+                    <!--Danh sách ảnh-->
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Các ảnh minh họa sản phẩm</h6>
                         <input style="@if($product->image_list != " []") display:none @endif" type="file" multiple

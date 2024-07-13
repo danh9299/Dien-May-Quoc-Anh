@@ -4,7 +4,6 @@
 <div class="row">
     <h3 class="mt-2 px-5">Thiết kế</h3>
     <div class="container mt-2 px-5  mb-2">
-        <!--All Posts-->
         @if($message = Session::get('success'))
 
         <div class="mt-5 alert alert-success">

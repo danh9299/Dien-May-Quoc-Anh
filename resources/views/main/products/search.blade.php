@@ -1,22 +1,19 @@
 @extends('main.master')
 @section('content')
 <div class="col-12">
-    <!-- Main Content -->
+    <!-- Nội dung chính-->
     <main class="row">
-
         <div class="col-12 px-5 ">
             <div class="row">
                 <div class="col-12 py-3">
-
                     <div class="row qa-list-product px-1">
-
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         @if(count($products)>0)
                         <div class="col-12 text-center text-uppercase">
                             <h2>Sản phẩm bạn tìm</h2>
                         </div>
                         @foreach ($products as $product)
-                        <!-- Product -->
+
                         <div class="mb-3  card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show',$product->id)}}">
                                 <div class="text-center mt-1 ">
@@ -24,7 +21,6 @@
                                         alt="..." />
                                 </div>
                             </a>
-
                             <div class="card-body">
                                 <a href="{{route('main.products.show',$product->id)}}">
                                     <h5 class="card-title">
@@ -46,12 +42,8 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- Product -->
                         @endforeach
                         @endif
-                        <!-- Product -->
-
-
                     </div>
                     @if(count($articles)>0)
                     <div class="row">
@@ -60,12 +52,8 @@
                         </div>
                     </div>
                     <div class="row qa-list-article px-5">
-
-                        <!-- article -->
                         @if(count($articles)>0)
-
                         @foreach ($articles as $article)
-                        <!-- article -->
                         <div class="mb-3  card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.articles.show',$article->id)}}">
                                 <div class="text-center mt-1 ">
@@ -73,7 +61,6 @@
                                         alt="..." />
                                 </div>
                             </a>
-
                             <div class="card-body">
                                 <a href="{{route('main.articles.show',$article->id)}}">
                                     <h5 class="card-title">
@@ -83,7 +70,6 @@
                                 <h6 class="card-title">
                                     {{$article->created_at}}
                                 </h6>
-
                                 <br />
                                 <p5>
                                     {{$article->meta_description}}
@@ -91,15 +77,12 @@
 
                             </div>
                         </div>
-                        <!-- article -->
+
                         @endforeach
 
                         @else
                         <p>Đang cập nhật</p>
                         @endif
-                        <!-- article -->
-
-
                     </div>
                     @endif
                     <nav aria-label="Page navigation">
@@ -116,7 +99,6 @@
                                     Trước</a>
                             </li>
                             @endif
-
                             {{-- Hiển thị trang hiện tại và các trang gần đó --}}
                             @for ($i = max(1, $products->currentPage() - 3); $i <= min($products->lastPage(),
                                 $products->currentPage() + 3); $i++)
@@ -124,7 +106,6 @@
                                     <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
                                 </li>
                                 @endfor
-
                                 {{-- Nút Trang kế tiếp --}}
                                 @if ($products->hasMorePages())
                                 <li class="page-item">
@@ -142,13 +123,12 @@
                 </div>
             </div>
         </div>
-        @if(count($products) <= 0 && count($articles) <=0 )
-        <h3 class="text-center mb-5 mt-5"> Xin lỗi chúng tôi không tìm thấy thông tin bạn cần tìm!</h3>
-            @endif 
-        </main>
-            <!-- Main Content -->
+        @if(count($products) <= 0 && count($articles) <=0 ) <h3 class="text-center mb-5 mt-5"> Xin lỗi chúng tôi không
+            tìm thấy thông tin bạn cần tìm!</h3>
+            @endif
+    </main>
+    <!-- Nội dung chính -->
 </div>
 <!--Add-to-cart-->
 <script src="{{ asset('js/add-to-cart.js') }}"></script>
-
 @endsection

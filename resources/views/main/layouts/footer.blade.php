@@ -59,7 +59,7 @@ $footer = Footer::where('id',1)->first();
             </div>
             <div class="col-lg-2 col-sm-2 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3">
                 <div class="row">
-                <div class="qa-footer-policy text-center">
+                    <div class="qa-footer-policy text-center">
                         <h3>Đường dẫn tắt</h3>
                     </div>
                     <div class="col-12">
@@ -70,7 +70,7 @@ $footer = Footer::where('id',1)->first();
                             <li>
                                 <a href="{{route('main.articles.list-all-articles')}}">Tin tức</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -91,7 +91,7 @@ $footer = Footer::where('id',1)->first();
                             <li>
                                 <a href="{{route('main.policies.securePolicy')}}">Chính sách bảo mật</a>
                             </li>
-                         
+
                         </ul>
                     </div>
                 </div>
@@ -108,21 +108,21 @@ $footer = Footer::where('id',1)->first();
                                 @if(is_null( $footer->link_instagram ))
                                 <a href="#">Instagram</a>
                                 @else
-                                <a href="{{$footer->link_instagram}}">Instagram</a> 
+                                <a href="{{$footer->link_instagram}}">Instagram</a>
                                 @endif
                             </li>
                             <li>
-                            @if(is_null( $footer->link_facebook ))
+                                @if(is_null( $footer->link_facebook ))
                                 <a href="#">Instagram</a>
                                 @else
-                                <a href="{{$footer->link_facebook}}">Facebook</a> 
+                                <a href="{{$footer->link_facebook}}">Facebook</a>
                                 @endif
                             </li>
                             <li>
-                            @if(is_null( $footer->link_tiktok ))
+                                @if(is_null( $footer->link_tiktok ))
                                 <a href="#">Tiktok</a>
                                 @else
-                                <a href="{{$footer->link_tiktok}}">Tikotk</a> 
+                                <a href="{{$footer->link_tiktok}}">Tikotk</a>
                                 @endif
                             </li>
                         </ul>

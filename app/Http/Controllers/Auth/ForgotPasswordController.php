@@ -22,7 +22,7 @@ class ForgotPasswordController extends Controller
             $request->only('email')
         );
 
-        // Check if the password reset link was sent successfully
+        
         if ($status === Password::RESET_LINK_SENT) {
             return redirect()->back()->with(['status' => __($status), 'email' => $request->email]);
         } else {

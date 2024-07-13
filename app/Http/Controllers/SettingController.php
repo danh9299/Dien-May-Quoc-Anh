@@ -153,7 +153,7 @@ class SettingController extends Controller
         $searchText = $request->input('search');
         $keywords = explode(' ', $searchText);
         $users = USER::query();
-        // Combine conditions for all keywords
+        
         $users->where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
                 $keywordWithoutSpace = str_replace(' ', '', $keyword);
@@ -177,7 +177,7 @@ class SettingController extends Controller
         $searchText = $request->input('search');
         $keywords = explode(' ', $searchText);
         $reviews = ProductReview::query();
-        // Combine conditions for all keywords
+        
         $reviews->where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
                 $keywordWithoutSpace = str_replace(' ', '', $keyword);

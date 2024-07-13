@@ -8,7 +8,7 @@
 </div>
 <div class="row">
     <h3 class="mt-2 px-5">Danh sách sản phẩm</h3>
-    <!--Alert message-->
+    <!--Thông báo-->
     @if($message = Session::get('success'))
     <div class="container px-3">
         <div class="mt-5 alert alert-success">
@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                <div class="col">
+                    <div class="col">
                         <a href="{{route('admin.products.create')}}" class="btn btn-primary">Thêm mới</a>
                     </div>
                     <div class="col">
@@ -57,8 +57,8 @@
                     @foreach($products as $product)
                     <tr>
 
-                        <th scope="row"><img src="{{ asset($product->image_link) }}"
-                                class="admin-product-image" alt="{{$product->model}}" /></th>
+                        <th scope="row"><img src="{{ asset($product->image_link) }}" class="admin-product-image"
+                                alt="{{$product->model}}" /></th>
                         <td>{{$product->name}}</td>
                         <td>{{$product->model}}</td>
                         <td>{{$product->brand->name}}</td>
@@ -82,7 +82,7 @@
                                 </svg></a>
                         </td>
                         <td>
-                            <!-- Button trigger modal -->
+                            <!-- Nút mở modal -->
                             <button class="btn btn-success btn-quick-edit" data-id="{{ $product->id }}"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
                                     class="bi bi-pencil" viewBox="0 0 16 16">
@@ -91,9 +91,13 @@
                                 </svg></button>
                         </td>
                         <td>
-                            <a class="btn btn-secondary" href="{{ route('admin.products.duplicate',$product->id) }}"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
-</svg></a>
+                            <a class="btn btn-secondary"
+                                href="{{ route('admin.products.duplicate',$product->id) }}"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                                    class="bi bi-copy" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                                </svg></a>
                         </td>
 
 
@@ -166,17 +170,17 @@
                     <div class="form-group mb-2">
                         <label for="quickEditProductName">Tên sản phẩm</label>
                         <input type="text" class="form-control" id="quickEditProductName" name="name" required>
-                       
+
                     </div>
                     <div class="form-group mb-2">
                         <label for="quickEditProductPrice">Giá</label>
                         <input type="number" class="form-control" id="quickEditProductPrice" name="price" required>
-                       
+
                     </div>
                     <div class="form-group mb-2">
                         <label for="quickEditProductModel">Model</label>
                         <input type="text" class="form-control" id="quickEditProductModel" name="model" required>
-                      
+
                     </div>
                     <hr>
                     <button type="submit" class="btn btn-primary">Lưu</button>

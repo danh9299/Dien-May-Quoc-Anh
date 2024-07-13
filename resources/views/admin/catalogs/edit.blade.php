@@ -5,7 +5,6 @@
 
 <div class="row">
     <h3 class="mt-2 px-5">Sửa danh mục</h3>
-
     <div class="container mt-2 px-5  mb-2">
         <div class="card shadow">
             <div class="card-header">
@@ -57,13 +56,6 @@
                 </form>
             </div>
         </div>
-
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

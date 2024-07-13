@@ -4,7 +4,6 @@
 <div class="row">
     <h3 class="mt-2 px-5">Danh mục sản phẩm</h3>
     <div class="container mt-2 px-5  mb-2">
-        <!--All Posts-->
         @if($message = Session::get('success'))
 
         <div class="mt-5 alert alert-success">
@@ -30,9 +29,9 @@
                 </div>
             </div>
             <div class="card-body">
-               
+
                 <table class="table table-hover">
-                @if(!empty($catalogs) && count($catalogs)>0)
+                    @if(!empty($catalogs) && count($catalogs)>0)
                     <thead>
                         <tr>
                             <th scope="col">Tên danh mục</th>
@@ -45,7 +44,7 @@
                         @foreach($catalogs as $catalog)
                         @if($catalog->id !=0)
                         <tr>
-                           
+
                             <td>{{ $catalog->catalog_name }}</td>
                             <td>{{ $catalog->parent->catalog_name }}</td>
 
@@ -80,44 +79,42 @@
                 </table>
 
                 <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {{-- Nút Trang trước --}}
-        @if ($catalogs->onFirstPage())
-            <li class="page-item disabled">
-                <span class="page-link">&laquo; Trước</span>
-            </li>
-        @else
-            <li class="page-item">
-                <a class="page-link" href="{{ $catalogs->previousPageUrl() }}" aria-label="Trang trước">&laquo; Trước</a>
-            </li>
-        @endif
+                    <ul class="pagination justify-content-center">
+                        {{-- Nút Trang trước --}}
+                        @if ($catalogs->onFirstPage())
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo; Trước</span>
+                        </li>
+                        @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $catalogs->previousPageUrl() }}"
+                                aria-label="Trang trước">&laquo; Trước</a>
+                        </li>
+                        @endif
 
-        {{-- Hiển thị trang hiện tại và các trang gần đó --}}
-        @for ($i = max(1, $catalogs->currentPage() - 3); $i <= min($catalogs->lastPage(), $catalogs->currentPage() + 3); $i++)
-            <li class="page-item {{ $i == $catalogs->currentPage() ? 'active' : '' }}">
-                <a class="page-link" href="{{ $catalogs->url($i) }}">{{ $i }}</a>
-            </li>
-        @endfor
+                        {{-- Hiển thị trang hiện tại và các trang gần đó --}}
+                        @for ($i = max(1, $catalogs->currentPage() - 3); $i <= min($catalogs->lastPage(),
+                            $catalogs->currentPage() + 3); $i++)
+                            <li class="page-item {{ $i == $catalogs->currentPage() ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $catalogs->url($i) }}">{{ $i }}</a>
+                            </li>
+                            @endfor
 
-        {{-- Nút Trang kế tiếp --}}
-        @if ($catalogs->hasMorePages())
-            <li class="page-item">
-                <a class="page-link" href="{{ $catalogs->nextPageUrl() }}" aria-label="Trang tiếp">Sau &raquo;</a>
-            </li>
-        @else
-            <li class="page-item disabled">
-                <span class="page-link">Sau &raquo;</span>
-            </li>
-        @endif
-    </ul>
-</nav>
-
-
-
+                            {{-- Nút Trang kế tiếp --}}
+                            @if ($catalogs->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $catalogs->nextPageUrl() }}" aria-label="Trang tiếp">Sau
+                                    &raquo;</a>
+                            </li>
+                            @else
+                            <li class="page-item disabled">
+                                <span class="page-link">Sau &raquo;</span>
+                            </li>
+                            @endif
+                    </ul>
+                </nav>
             </div>
-
         </div>
-
     </div>
 </div>
 @endsection

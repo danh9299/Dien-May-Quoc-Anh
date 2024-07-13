@@ -1,4 +1,4 @@
-@extends('main.master') 
+@extends('main.master')
 @section('content')
 <?php
 use App\Models\Image;
@@ -6,7 +6,7 @@ use App\Models\Image;
 $slider_images = Image::where('group', 2)->get();
 $long_images = Image::where('group', 3)->get();
 ?>
-<!-- Main Content -->
+<!-- Nội dung chính -->
 <main class="row">
     <!--Slider cho banner-->
     <div class="slider container">
@@ -61,7 +61,7 @@ $long_images = Image::where('group', 3)->get();
 
                         @if(count($tivis) > 0)
                         @foreach ($tivis as $tivi)
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
 
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show', $tivi->id)}}">
@@ -92,7 +92,7 @@ $long_images = Image::where('group', 3)->get();
                             </div>
                         </div>
 
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         @endforeach
                         @else
                         <p>Đang cập nhật</p>
@@ -126,7 +126,7 @@ $long_images = Image::where('group', 3)->get();
                     <div class="qa-home-product d-flex">
                         @if(count($tulanhs) > 0)
                         @foreach ($tulanhs as $tulanh)
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show', $tulanh->id)}}">
                                 <div class="text-center mt-1 ">
@@ -155,7 +155,7 @@ $long_images = Image::where('group', 3)->get();
                                 </form>
                             </div>
                         </div>
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         @endforeach
                         @else
                         <p>Đang cập nhật</p>
@@ -188,7 +188,7 @@ $long_images = Image::where('group', 3)->get();
                     <div class="qa-home-product d-flex">
                         @if(count($maygiats) > 0)
                         @foreach ($maygiats as $maygiat)
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show', $maygiat->id)}}">
                                 <div class="text-center mt-1 ">
@@ -217,7 +217,7 @@ $long_images = Image::where('group', 3)->get();
                                 </form>
                             </div>
                         </div>
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         @endforeach
                         @else
                         <p>Đang cập nhật</p>
@@ -251,7 +251,7 @@ $long_images = Image::where('group', 3)->get();
                     <div class="qa-home-product d-flex">
                         @if(count($dieuhoas) > 0)
                         @foreach ($dieuhoas as $dieuhoa)
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show', $dieuhoa->id)}}">
                                 <img src="{{ asset($dieuhoa->image_link) }}" class="border-0" alt="..." /></a>
@@ -277,7 +277,7 @@ $long_images = Image::where('group', 3)->get();
                                 </form>
                             </div>
                         </div>
-                        <!-- Product -->
+                        <!-- Sản phẩm -->
                         @endforeach
                         @else
                         <p>Đang cập nhật</p>
@@ -289,7 +289,7 @@ $long_images = Image::where('group', 3)->get();
     </div>
     <!-- Điều hòa-->
 </main>
-<!-- Main Content -->
+<!-- Nội dung chính -->
 
 <!--Long banner-->
 @if($long_images->has(3))
@@ -299,6 +299,6 @@ $long_images = Image::where('group', 3)->get();
 @endif
 
 
-<!--Add-to-cart-->
+<!--Thêm vào giỏ-->
 <script src="{{ asset('js/add-to-cart.js') }}"></script>
 @endsection

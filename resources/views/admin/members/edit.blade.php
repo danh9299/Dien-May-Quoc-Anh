@@ -50,11 +50,12 @@
                         <label class="col-sm-2 col-label-form">Email thành viên</label>
                         <div class="col-sm-10">
                             <input type="email" name="email" value="{{$member->email}}"
-                                class="shadow @error('email') is-invalid @enderror form-control" required/>
+                                class="shadow @error('email') is-invalid @enderror form-control" required />
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>
-                                    <p class="text-danger">Email bạn vừa nhập đã tồn tại! Vui lòng chọn email khác hoặc giữ nguyên email hiện có</p>
+                                    <p class="text-danger">Email bạn vừa nhập đã tồn tại! Vui lòng chọn email khác hoặc
+                                        giữ nguyên email hiện có</p>
                                 </strong>
                             </span>
                             @enderror
@@ -64,7 +65,8 @@
                         <label class="col-sm-2 col-label-form">Quyền thành viên</label>
                         <div class="col-sm-10">
                             <select name="role" class="form-select @error('role') is-invalid @enderror">
-                                <option value="2" @if($member->role == 2) selected @endif >Quyền quản trị giới hạn</option>
+                                <option value="2" @if($member->role == 2) selected @endif >Quyền quản trị giới hạn
+                                </option>
                                 <option value="1" @if($member->role == 1) selected @endif >Toàn quyền quản trị</option>
                             </select>
                         </div>
@@ -81,10 +83,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

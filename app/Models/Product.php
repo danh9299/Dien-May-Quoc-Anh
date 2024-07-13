@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-       
+
         'catalog_id',
         'type_id',
         'feature_id',
@@ -46,7 +46,7 @@ class Product extends Model
         return $this->belongsTo(Type::class, 'type_id');
     }
     public function reviews()
-{
-    return $this->hasMany(ProductReview::class);
-}
+    {
+        return $this->hasMany(ProductReview::class);
+    }
 }

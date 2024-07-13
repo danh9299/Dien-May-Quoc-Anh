@@ -104,7 +104,7 @@ Route::group(['middleware' => 'check.admin'], function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    //Danh mục
+    //Catalogs - Danh mục
     Route::get('/admin/catalogs', [CatalogController::class, 'index'])->name('admin.catalogs.index');
     Route::get('/admin/catalogs/search', [CatalogController::class, 'search'])->name('admin.catalogs.search');
     Route::get('/admin/catalogs/create', [CatalogController::class, 'create'])->name('admin.catalogs.create');
@@ -114,7 +114,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('admin/catalogs/{catalog}/delete', [CatalogController::class, 'delete'])->name('admin.catalogs.delete');
     Route::delete('admin/catalogs/{catalog}/delete', [CatalogController::class, 'destroy'])->name('admin.catalogs.destroy');
 
-    //Brands
+    //Brands - Hãng
     Route::get('/admin/brands', [BrandController::class, 'index'])->name('admin.brands.index');
     Route::get('/admin/brands/search', [BrandController::class, 'search'])->name('admin.brands.search');
     Route::get('/admin/brands/create', [BrandController::class, 'create'])->name('admin.brands.create');
@@ -124,7 +124,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('admin/brands/{brand}/delete', [BrandController::class, 'delete'])->name('admin.brands.delete');
     Route::delete('admin/brands/{brand}/delete', [BrandController::class, 'destroy'])->name('admin.brands.destroy');
 
-    //Types
+    //Types - Phân loại
     Route::get('/admin/types', [TypeController::class, 'index'])->name('admin.types.index');
     Route::get('/admin/types/search', [TypeController::class, 'search'])->name('admin.types.search');
     Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
@@ -134,7 +134,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('admin/types/{type}/delete', [TypeController::class, 'delete'])->name('admin.types.delete');
     Route::delete('admin/types/{type}/delete', [TypeController::class, 'destroy'])->name('admin.types.destroy');
 
-    //Features
+    //Features - Thiết kế
     Route::get('/admin/features', [FeatureController::class, 'index'])->name('admin.features.index');
     Route::get('/admin/features/search', [FeatureController::class, 'search'])->name('admin.features.search');
     Route::get('/admin/features/create', [FeatureController::class, 'create'])->name('admin.features.create');
@@ -144,7 +144,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::get('admin/features/{feature}/delete', [FeatureController::class, 'delete'])->name('admin.features.delete');
     Route::delete('admin/features/{feature}/delete', [FeatureController::class, 'destroy'])->name('admin.features.destroy');
 
-    //Products
+    //Products - Sản phẩm
     Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products.index');
     Route::get('/admin/products/search', [ProductController::class, 'search'])->name('admin.products.search');
     Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
@@ -160,7 +160,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::post('/admin/products/import/', [ProductController::class, 'import'])->name('admin.products.import');
     Route::get('/admin/products/{product}/duplicate/', [ProductController::class, 'duplicate'])->name('admin.products.duplicate');
 
-    //Articles
+    //Articles - Tin tức
     Route::get('/admin/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
     Route::get('/admin/articles/search', [ArticleController::class, 'search'])->name('admin.articles.search');
     Route::get('/admin/articles/create', [ArticleController::class, 'create'])->name('admin.articles.create');
@@ -171,13 +171,13 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::delete('admin/articles/{article}/delete', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
 
 
-    //Errors
+    //Errors - Trang lỗi
     Route::get('/admin/errors/no-role', function () {
         return view('admin.errors.no-role');
     })->name('admin.errors.no-role');
 
 
-    //Images
+    //Images - Ảnh
     Route::get('/admin/images', [ImageController::class, 'index'])->name('admin.images.index');
     Route::get('/admin/images/logo/', [ImageController::class, 'editLogo'])->name('admin.images.logo.edit');
     Route::put('/admin/images/logo/', [ImageController::class, 'updateLogo'])->name('admin.images.logo.update');
@@ -187,7 +187,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::put('/admin/images/slider-banners/', [ImageController::class, 'updateSliderBanners'])->name('admin.images.slider-banners.update');
 
 
-    //Settings
+    //Settings - Cài đặt
     Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings.index');
     Route::get('/admin/settings/account/edit', [SettingController::class, 'editAccountInfo'])->name('admin.settings.account.edit');
     Route::put('/admin/settings/account/edit', [SettingController::class, 'updateAccountInfo'])->name('admin.settings.account.update');
@@ -195,7 +195,7 @@ Route::group(['middleware' => 'check.admin'], function () {
     Route::put('/admin/changePassword',[SettingController::class,'changePasswordComplete'])->name('admin.settings.account.changePasswordComplete');
    
     
-    //Orders
+    //Orders - Đơn hàng
     Route::get('/admin/orders', [CartController::class, 'index'])->name('admin.orders.index');
     Route::get('/admin/orders/{order}', [CartController::class, 'show'])->name('admin.orders.show');
     Route::post('/admin/orders/{order}/mark-as-delivered', [CartController::class, 'markAsDelivered'])->name('admin.orders.markAsDelivered');
@@ -254,7 +254,7 @@ Route::group(['middleware' => 'check.admin.role'], function () {
 
 
 
-//Login
+//Login - Đăng nhập admin
 Route::get('/admin/login', [AdminLoginController::class, 'show'])->name('admin.auth.login.show');
 Route::post('/admin/login', [AdminLoginController::class, 'authenticate'])->name('admin.auth.login.authenticate');
 

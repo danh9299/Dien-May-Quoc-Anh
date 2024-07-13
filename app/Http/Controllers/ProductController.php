@@ -16,7 +16,7 @@ use App\Imports\ProductsImport;
 
 class ProductController extends Controller
 {
-    //HOME
+
 
     public function HomePageGetAll()
     {
@@ -65,16 +65,16 @@ class ProductController extends Controller
             $productsQuery->where('price', '<=', $request->max_price);
         }
         // Sử dụng truy vấn đã áp dụng bộ lọc để phân trang và lấy sản phẩm
-        // Order by updated_at in descending order
+
         $productsQuery->orderBy('updated_at', 'desc');
 
-        // Paginate the results
+
         $products = $productsQuery->paginate(10);
         return view('main.products.list-all-products', compact('products', 'filter_brands', 'filter_types', 'filter_features'));
     }
     public function listNoBrand(Catalog $catalog, Request $request)
     {
-        
+
         $filter_brands = Brand::whereHas('products', function ($query) use ($catalog) {
             $query->where('catalog_id', $catalog->id);
         })->get();
@@ -169,7 +169,7 @@ class ProductController extends Controller
         $searchText = $request->input('search');
         $keywords = explode(' ', $searchText);
         $products = Product::query();
-        // Combine conditions for all keywords
+       
         $products->where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
                 $keywordWithoutSpace = str_replace(' ', '', $keyword);
@@ -180,7 +180,7 @@ class ProductController extends Controller
             }
         });
         $articles = Article::query();
-        // Combine conditions for all keywords
+        
         $articles->where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
                 $keywordWithoutSpace = str_replace(' ', '', $keyword);
@@ -192,7 +192,7 @@ class ProductController extends Controller
 
         $products = $products->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
         $articles = $articles->orderBy('updated_at', 'desc')->limit(10)->get();
-        return view('main.products.search', ['products' => $products,'articles'=>$articles]);
+        return view('main.products.search', ['products' => $products, 'articles' => $articles]);
 
     }
 
@@ -208,7 +208,6 @@ class ProductController extends Controller
         $searchText = $request->input('search');
         $keywords = explode(' ', $searchText);
         $products = Product::query();
-        // Combine conditions for all keywords
         $products->where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
                 $keywordWithoutSpace = str_replace(' ', '', $keyword);
@@ -221,14 +220,7 @@ class ProductController extends Controller
         $products = $products->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
         return view('admin.products.index', ['products' => $products]);
     }
-    /**
-     * Display the specified resource.
-     */
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         //
@@ -239,11 +231,6 @@ class ProductController extends Controller
 
         return view('admin.products.create', ['catalogs' => $catalogs, 'brands' => $brands, 'features' => $features, 'types' => $types]);
     }
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -266,7 +253,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->model = $request->model;
         $product->price = $request->price;
-        
+
         if (is_null($request->old_price)) {
             $product->old_price = $request->price;
         } else {
@@ -305,8 +292,8 @@ class ProductController extends Controller
         $imageSaveUrl = 'img/product_images';
 
         $mainImage = $request->file('image_link');
-        $mainImageName = time() . '_' . $product->model ;
-        $mainImageName = preg_replace('/[^A-Za-z0-9]/', '', $mainImageName). '.' . $mainImage->getClientOriginalExtension();
+        $mainImageName = time() . '_' . $product->model;
+        $mainImageName = preg_replace('/[^A-Za-z0-9]/', '', $mainImageName) . '.' . $mainImage->getClientOriginalExtension();
         $mainImage->move($imageSaveLocation, $mainImageName);
         $product->image_link = $imageSaveUrl . '/' . $mainImageName;
 
@@ -315,8 +302,8 @@ class ProductController extends Controller
             $imageListNames = [];
             $count = 1;
             foreach ($imageList as $image) {
-                $imageName = time() . '_' . $product->model . '_' . $count ;
-                $imageName = preg_replace('/[^A-Za-z0-9]/', '', $imageName). '.' . $image->getClientOriginalExtension();
+                $imageName = time() . '_' . $product->model . '_' . $count;
+                $imageName = preg_replace('/[^A-Za-z0-9]/', '', $imageName) . '.' . $image->getClientOriginalExtension();
                 $image->move($imageSaveLocation, $imageName);
                 $imageListNames[] = $imageSaveUrl . '/' . $imageName;
                 $count = $count + 1;
@@ -332,12 +319,6 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Thêm mới Sản phẩm thành công');
     }
 
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Product $product)
     {
         //
@@ -348,9 +329,7 @@ class ProductController extends Controller
         return view('admin.products.edit', compact(['product', 'catalogs', 'brands', 'features', 'types']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, Product $product)
     {
         //
@@ -365,7 +344,7 @@ class ProductController extends Controller
 
         ];
 
-        // Conditionally add 'image_link' rule
+        
         $product = Product::find($request->hidden_id);
         if ($request->image_link_check != $product->image_link) {
             $rules['image_link'] = 'required|file|mimes:jpeg,png,webp,jpg,svg|max:7168';
@@ -423,8 +402,8 @@ class ProductController extends Controller
 
         if ($request->image_link_check != $product->image_link) {
             $mainImage = $request->file('image_link');
-            $mainImageName = time() . '_' . $product->model ;
-            $mainImageName = preg_replace('/[^A-Za-z0-9]/', '', $mainImageName). '.' . $mainImage->getClientOriginalExtension();
+            $mainImageName = time() . '_' . $product->model;
+            $mainImageName = preg_replace('/[^A-Za-z0-9]/', '', $mainImageName) . '.' . $mainImage->getClientOriginalExtension();
             $mainImage->move($imageSaveLocation, $mainImageName);
             $product->image_link = $imageSaveUrl . '/' . $mainImageName;
         } else {
@@ -437,8 +416,8 @@ class ProductController extends Controller
                 $imageListNames = [];
                 $count = 1;
                 foreach ($imageList as $image) {
-                    $imageName = time() . '_' . $product->model . '_' . $count ;
-                    $imageName = preg_replace('/[^A-Za-z0-9]/', '', $imageName). '.' . $image->getClientOriginalExtension();
+                    $imageName = time() . '_' . $product->model . '_' . $count;
+                    $imageName = preg_replace('/[^A-Za-z0-9]/', '', $imageName) . '.' . $image->getClientOriginalExtension();
                     $image->move($imageSaveLocation, $imageName);
                     $imageListNames[] = $imageSaveUrl . '/' . $imageName;
                     $count = $count + 1;
@@ -480,9 +459,7 @@ class ProductController extends Controller
         return response()->json(['message' => 'Cập nhật thành công!']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function delete(Product $product)
     {
         return view('admin.products.delete', compact('product'));
@@ -498,9 +475,9 @@ class ProductController extends Controller
 
     public function duplicate(Product $product)
     {
-   
-     
-        
+
+
+
         // Tạo một bản sao của đối tượng product
         $newProduct = $product->replicate();
 
@@ -523,13 +500,13 @@ class ProductController extends Controller
     {
         try {
             if ($request->hasFile('file')) {
-                
+
 
                 $file = $request->file('file');
-                
+
                 // Đặt tên mới cho file
                 $fileName = time() . '_' . $file->getClientOriginalName();
-               
+
                 // Di chuyển file vào thư mục lưu trữ (nếu muốn)
                 $file->move(public_path('import-products'), $fileName);
 
@@ -546,11 +523,11 @@ class ProductController extends Controller
             } else {
                 return redirect()->back()->with('error', 'Không có file được gửi lên!');
             }
-        
-    } catch (\Exception $e) {
-         //Nếu có ngoại lệ, chuyển hướng người dùng đến trang form import kèm thông báo lỗi
-        return redirect()->back()->with('error', 'Có lỗi xảy ra trong quá trình import. Hãy kiểm tra lại định dạng file hoặc các trường dữ liệu trong file nhập của bạn! ');
-    }
+
+        } catch (\Exception $e) {
+            //Nếu có ngoại lệ, chuyển hướng người dùng đến trang form import kèm thông báo lỗi
+            return redirect()->back()->with('error', 'Có lỗi xảy ra trong quá trình import. Hãy kiểm tra lại định dạng file hoặc các trường dữ liệu trong file nhập của bạn! ');
+        }
     }
 
 }

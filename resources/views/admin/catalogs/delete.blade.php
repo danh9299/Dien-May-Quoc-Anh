@@ -19,7 +19,8 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Mã danh mục</label>
                         <div class="col-sm-10">
-                            <input type="text" name="id" value="{{$catalog->id}}" class="shadow form-control" readonly />
+                            <input type="text" name="id" value="{{$catalog->id}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -35,7 +36,8 @@
                         <div class="col-sm-10">
 
                             @if($catalog->parent_id !=0)
-                            <input class="form-control shadow"  type="text" value="{{$catalog->parent->catalog_name}}" readonly>
+                            <input class="form-control shadow" type="text" value="{{$catalog->parent->catalog_name}}"
+                                readonly>
                             @else
                             <input class="form-control shadow" value="Không có danh mục cha" readonly />
                             @endif
@@ -50,10 +52,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

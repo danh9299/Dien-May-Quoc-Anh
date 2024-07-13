@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 
 class FeatureController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         //
@@ -32,18 +30,14 @@ class FeatureController extends Controller
         $features = $features->orderBy('updated_at', 'desc')->paginate(10)->appends(['search' => $searchText]);
          return view('admin.features.index', ['features' => $features]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         //
         return view('admin.features.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         //
@@ -59,26 +53,20 @@ class FeatureController extends Controller
         return redirect()->route('admin.features.index')->with('success', 'Thêm mới Thiết kế thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Feature $feature)
     {
         //
         return view('admin.features.edit', compact('feature'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, Feature $feature)
     {
         //
@@ -100,9 +88,7 @@ class FeatureController extends Controller
         return view('admin.features.delete', compact('feature'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Feature $feature)
     {
         //

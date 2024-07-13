@@ -19,7 +19,6 @@
             Cập nhật Logo cho website..
         </div>
         <div class="card-body">
-            <!--image-->
             <form method="post" action="{{route('admin.images.logo.update')}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

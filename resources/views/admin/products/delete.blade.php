@@ -12,21 +12,23 @@
                 Xóa sản phẩm {{$product->name}}..
             </div>
             <div class="card-body">
-                <form method="post" action="{{ route('admin.products.destroy',$product->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.products.destroy',$product->id)}}"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('delete')
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Ảnh sản phẩm</label>
                         <div class="col-sm-10">
-                        <img src="{{ asset($product->image_link) }}"
-                                class="admin-product-image" alt="{{$product->model}}" readonly/>
+                            <img src="{{ asset($product->image_link) }}" class="admin-product-image"
+                                alt="{{$product->model}}" readonly />
                         </div>
                     </div>
-                   
+
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Model sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" name="model" value="{{$product->model}}" class="shadow form-control" readonly />
+                            <input type="text" name="model" value="{{$product->model}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -39,29 +41,29 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Hãng</label>
                         <div class="col-sm-10">
-                            <input type="text" name="brand_id" value="{{$product->brand->name}}" class="shadow form-control"
-                                readonly />
+                            <input type="text" name="brand_id" value="{{$product->brand->name}}"
+                                class="shadow form-control" readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Danh mục</label>
                         <div class="col-sm-10">
-                            <input type="text" name="catalog_id" value="{{$product->catalog->catalog_name}}" class="shadow form-control"
-                                readonly />
+                            <input type="text" name="catalog_id" value="{{$product->catalog->catalog_name}}"
+                                class="shadow form-control" readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Phân loại</label>
                         <div class="col-sm-10">
-                            <input type="text" name="type_id" value="{{$product->type->name}}" class="shadow form-control"
-                                readonly />
+                            <input type="text" name="type_id" value="{{$product->type->name}}"
+                                class="shadow form-control" readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Thiết kế</label>
                         <div class="col-sm-10">
-                            <input type="text" name="feature_id" value="{{$product->feature->name}}" class="shadow form-control"
-                                readonly />
+                            <input type="text" name="feature_id" value="{{$product->feature->name}}"
+                                class="shadow form-control" readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -82,10 +84,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

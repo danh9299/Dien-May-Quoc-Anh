@@ -19,16 +19,15 @@
             Cập nhật Chính sách đổi trả..
         </div>
         <div class="card-body">
-            <!--image-->
+            
             <form method="post" action="{{route('admin.settings.policy.updateReturn')}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                 <!--content-->
-                 <div class="row mb-4 ">
-                        <h6 class="text-dark  mb-2">Nội dung chính sách đổi trả</h6>
-                        <textarea name="content" 
-                            id="contenteditor"> {{$policy->content}} </textarea>
-                    </div>
+               
+                <div class="row mb-4 ">
+                    <h6 class="text-dark  mb-2">Nội dung chính sách đổi trả</h6>
+                    <textarea name="content" id="contenteditor"> {{$policy->content}} </textarea>
+                </div>
 
 
                 <div class="text-center">
@@ -40,5 +39,5 @@
             </form>
         </div>
     </div>
-    
+
     @endsection('content')

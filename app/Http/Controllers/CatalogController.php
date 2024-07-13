@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         //
@@ -34,9 +32,7 @@ class CatalogController extends Controller
           return view('admin.catalogs.index', ['catalogs' => $catalogs]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         //
@@ -45,9 +41,7 @@ class CatalogController extends Controller
         return view('admin.catalogs.create', ['catalogs' => $catalogs]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         //
@@ -63,17 +57,13 @@ class CatalogController extends Controller
         return redirect()->route('admin.catalogs.index')->with('success', 'Thêm mới danh mục thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(Catalog $catalog)
     {
         //
@@ -82,9 +72,7 @@ class CatalogController extends Controller
         return view('admin.catalogs.edit', compact('catalog', 'catalogs'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, Catalog $catalog)
     {
         //
@@ -102,9 +90,7 @@ class CatalogController extends Controller
         return redirect()->route('admin.catalogs.index')->with('success', 'Cập nhật danh mục thành công!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
 
     public function delete(Catalog $catalog)
     {

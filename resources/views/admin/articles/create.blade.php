@@ -48,7 +48,7 @@
                                 class="shadow  form-control" readonly />
                         </div>
                     </div>
-                    <!--image-->
+                    <!--Ảnh-->
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Ảnh đại diện</h6>
                         <div class="col-sm-10">
@@ -67,7 +67,7 @@
                         @enderror
                     </div>
 
-                    <!--content-->
+                    <!--Mô tả sản phẩm-->
                     <div class="row mb-4 ">
                         <h6 class="text-dark  mb-2">Nội dung tin tức</h6>
                         <textarea name="content" id="contenteditor">{{old('content')}}</textarea>

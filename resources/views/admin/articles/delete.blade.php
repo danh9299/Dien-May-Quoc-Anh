@@ -16,14 +16,13 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('delete')
-                    
+
                     <!--Tên sản phẩm-->
                     <div class="row mb-3">
                         <h6 class="text-dark col-sm-2 col-h6-form">Tiêu đề</h6>
                         <div class="col-sm-10">
-                            <input type="text" name="name"
-                                value="{{$article->name}}"
-                                class="shadow form-control" readonly/>
+                            <input type="text" name="name" value="{{$article->name}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
 
@@ -32,7 +31,6 @@
                         <h6 class="text-dark col-sm-2 col-h6-form">Mô tả ngắn</h6>
                         <div class="col-sm-10">
                             <textarea readonly name="meta_description" maxlength="155"
-                                
                                 class="form-control"> {{ $article->meta_description }} </textarea>
                         </div>
                     </div>
@@ -42,20 +40,17 @@
                         <input type="text" name="author_id" value="{{ $article->admin->id}}"
                             class="shadow  form-control" hidden />
                         <div class="col-sm-10">
-                            <input type="text" name="" value="{{ $article->admin->name}}"
-                                class="shadow  form-control" readonly />
+                            <input type="text" name="" value="{{ $article->admin->name}}" class="shadow  form-control"
+                                readonly />
                         </div>
                     </div>
-                    <!--image-->
+                    <!--Ảnh-->
                     <div class="row col-5 mb-4 ">
                         <h6 class="text-dark mb-2">Ảnh đại diện</h6>
-                      
-                        <img id="previewImage" src="{{asset( $article->image_link) }}"
-                            class="mt-2 img-thumbnail" alt="Preview">
-                    </div>
 
-                   
-                    
+                        <img id="previewImage" src="{{asset( $article->image_link) }}" class="mt-2 img-thumbnail"
+                            alt="Preview">
+                    </div>
                     <p>Bạn muốn xóa tin tức này chứ?</p>
                     <button type="submit" class="btn btn-danger">Có</button>
                     <a href="{{ route('admin.articles.index') }}" class="btn btn-secondary">Không</a>

@@ -19,18 +19,19 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Mã Thiết kế</label>
                         <div class="col-sm-10">
-                            <input type="text" name="id" value="{{$feature->id}}" class="shadow form-control" readonly />
+                            <input type="text" name="id" value="{{$feature->id}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Tên Thiết kế</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" value="{{$feature->name}}"
-                                class="shadow form-control" readonly />
+                            <input type="text" name="name" value="{{$feature->name}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
 
-                   
+
                     <p>Bạn muốn xóa Thiết kế này chứ?</p>
                     <button type="submit" class="btn btn-danger">Có</button>
                     <a href="{{ route('admin.features.index') }}" class="btn btn-secondary">Không</a>
@@ -40,10 +41,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

@@ -4,7 +4,7 @@
 <div class="row">
     <h3 class="mt-2 px-5">Tin tức</h3>
     <div class="container mt-2 px-5  mb-2">
-       
+
         @if($message = Session::get('success'))
 
         <div class="mt-5 alert alert-success">
@@ -30,9 +30,9 @@
                 </div>
             </div>
             <div class="card-body">
-               
+
                 <table class="table table-hover">
-                @if(!empty($articles) && count($articles)>0)
+                    @if(!empty($articles) && count($articles)>0)
                     <thead>
                         <tr>
                             <th scope="col">Hình ảnh</th>
@@ -46,10 +46,10 @@
                         @foreach($articles as $article)
                         @if($article->id !=0)
                         <tr>
-                        <th scope="row"><img src="{{ asset($article->image_link) }}"
-                                class="admin-product-image" alt="{{$article->name}}" /></th>
+                            <th scope="row"><img src="{{ asset($article->image_link) }}" class="admin-product-image"
+                                    alt="{{$article->name}}" /></th>
                             <td>{{ $article->name }}</td>
-                            
+
                             <td>{{ $article->admin->name }}</td>
 
                             <td><a href="{{route('admin.articles.edit', $article->id)}}" class="btn btn-warning"><svg
@@ -83,37 +83,40 @@
                 </table>
 
                 <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {{-- Nút Trang trước --}}
-        @if ($articles->onFirstPage())
-            <li class="page-item disabled">
-                <span class="page-link">&laquo; Trước</span>
-            </li>
-        @else
-            <li class="page-item">
-                <a class="page-link" href="{{ $articles->previousPageUrl() }}" aria-label="Trang trước">&laquo; Trước</a>
-            </li>
-        @endif
+                    <ul class="pagination justify-content-center">
+                        {{-- Nút Trang trước --}}
+                        @if ($articles->onFirstPage())
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo; Trước</span>
+                        </li>
+                        @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $articles->previousPageUrl() }}"
+                                aria-label="Trang trước">&laquo; Trước</a>
+                        </li>
+                        @endif
 
-        {{-- Hiển thị trang hiện tại và các trang gần đó --}}
-        @for ($i = max(1, $articles->currentPage() - 3); $i <= min($articles->lastPage(), $articles->currentPage() + 3); $i++)
-            <li class="page-item {{ $i == $articles->currentPage() ? 'active' : '' }}">
-                <a class="page-link" href="{{ $articles->url($i) }}">{{ $i }}</a>
-            </li>
-        @endfor
+                        {{-- Hiển thị trang hiện tại và các trang gần đó --}}
+                        @for ($i = max(1, $articles->currentPage() - 3); $i <= min($articles->lastPage(),
+                            $articles->currentPage() + 3); $i++)
+                            <li class="page-item {{ $i == $articles->currentPage() ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $articles->url($i) }}">{{ $i }}</a>
+                            </li>
+                            @endfor
 
-        {{-- Nút Trang kế tiếp --}}
-        @if ($articles->hasMorePages())
-            <li class="page-item">
-                <a class="page-link" href="{{ $articles->nextPageUrl() }}" aria-label="Trang tiếp">Sau &raquo;</a>
-            </li>
-        @else
-            <li class="page-item disabled">
-                <span class="page-link">Sau &raquo;</span>
-            </li>
-        @endif
-    </ul>
-</nav>
+                            {{-- Nút Trang kế tiếp --}}
+                            @if ($articles->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $articles->nextPageUrl() }}" aria-label="Trang tiếp">Sau
+                                    &raquo;</a>
+                            </li>
+                            @else
+                            <li class="page-item disabled">
+                                <span class="page-link">Sau &raquo;</span>
+                            </li>
+                            @endif
+                    </ul>
+                </nav>
 
 
 

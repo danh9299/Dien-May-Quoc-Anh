@@ -33,7 +33,7 @@
         </table>
         <div class="form-group mb-2">
             <label for="address" class="mb-2">Địa chỉ nhận hàng:</label>
-            <textarea name="address"  class="form-control">{{$cart->user->address}}</textarea>
+            <textarea name="address" class="form-control">{{$cart->user->address}}</textarea>
         </div>
         <div class="form-group mb-2">
             <label for="payment_method" class="mb-2">Phương thức thanh toán:</label>

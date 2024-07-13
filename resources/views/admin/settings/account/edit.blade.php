@@ -5,19 +5,19 @@
     <h3 class="mt-2 px-5">Quản lý Thông tin cá nhân</h3>
 </div>
 <div class="mt-2 mb-5 px-5 container">
-@if($message = Session::get('success'))
+    @if($message = Session::get('success'))
 
-<div class="mt-5 alert alert-success">
-    {{ $message }}
-</div>
-@endif
+    <div class="mt-5 alert alert-success">
+        {{ $message }}
+    </div>
+    @endif
 
-<div class="card">
-<div class="card-header">
+    <div class="card">
+        <div class="card-header">
             Cập nhật Thông tin cá nhân..
         </div>
         <div class="card-body">
-             <!--image-->
+            <!--image-->
             <form method="post" action="{{route('admin.settings.account.update')}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -66,7 +66,8 @@
 
                     <input type="submit" class="btn btn-primary" value="Cập nhật" />
                     <a href="{{route('admin.settings.index')}}" class="btn btn-secondary">Trở lại</a>
-                    <a href="{{route('admin.settings.account.changePassword')}}" class="btn btn-warning">Thay mật khẩu</a>
+                    <a href="{{route('admin.settings.account.changePassword')}}" class="btn btn-warning">Thay mật
+                        khẩu</a>
                 </div>
 
             </form>
@@ -77,12 +78,3 @@
 
 
 @endsection('content')
-
-
-
-    
-
-   
-       
-           
-          

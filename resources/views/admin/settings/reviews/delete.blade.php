@@ -16,26 +16,24 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('delete')
-                   
+
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Tên người đánh giá</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{$review->user->name}}"
-                                class="shadow form-control" readonly />
+                            <input type="text" value="{{$review->user->name}}" class="shadow form-control" readonly />
                         </div>
                     </div>
                     <div class="row mb-4">
                         <label class="col-sm-2 col-label-form">Sản phẩm</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{$review->product->name}}"
-                                class="shadow form-control" readonly />
+                            <input type="text" value="{{$review->product->name}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
                     <div class="row mb-4">
                         <label class="col-sm-2 col-label-form">Đánh giá</label>
                         <div class="col-sm-10">
-                            <input type="text" value="{{$review->comment}}"
-                                class="shadow form-control" readonly />
+                            <input type="text" value="{{$review->comment}}" class="shadow form-control" readonly />
                         </div>
                     </div>
                     <p>Bạn muốn xóa đánh giá này chứ?</p>

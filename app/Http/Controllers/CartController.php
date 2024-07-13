@@ -172,7 +172,7 @@ class CartController extends Controller
             $totalRevenue = $query->whereYear('created_at', $month->year)
                 ->whereMonth('created_at', $month->month)
                 ->sum('revenue');
-                
+
         }
         $orders = $query->orderBy('updated_at', 'desc')->paginate(10);
         // Thêm điều kiện để chỉ lấy các đơn hàng đã thanh toán
@@ -180,7 +180,7 @@ class CartController extends Controller
 
 
 
-        return view('admin.orders.index', ['orders' => $orders,'month'=>$month, 'totalRevenue' => $totalRevenue]);
+        return view('admin.orders.index', ['orders' => $orders, 'month' => $month, 'totalRevenue' => $totalRevenue]);
     }
     public function show(Order $order)
     {

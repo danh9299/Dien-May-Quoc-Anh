@@ -27,22 +27,25 @@
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Facebook</label>
                         <div class="col-sm-9">
-                            <input type="text" name="link_facebook" value="{{$footer->link_facebook}}" class="shadow form-control"  />
+                            <input type="text" name="link_facebook" value="{{$footer->link_facebook}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Instagram</label>
                         <div class="col-sm-9">
-                            <input type="text" name="link_instagram" value="{{$footer->link_instagram}}" class="shadow form-control"  />
+                            <input type="text" name="link_instagram" value="{{$footer->link_instagram}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-3 col-label-form">Tiktok</label>
                         <div class="col-sm-9">
-                            <input type="text" name="link_tiktok" value="{{$footer->link_tiktok}}" class="shadow form-control"  />
+                            <input type="text" name="link_tiktok" value="{{$footer->link_tiktok}}"
+                                class="shadow form-control" />
                         </div>
                     </div>
-                    
+
                 </div>
 
 
@@ -55,5 +58,5 @@
             </form>
         </div>
     </div>
-    
+
     @endsection('content')

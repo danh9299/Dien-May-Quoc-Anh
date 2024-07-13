@@ -23,12 +23,11 @@
             <form method="post" action="{{route('admin.settings.policy.updateService')}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                 <!--content-->
-                 <div class="row mb-4 ">
-                        <h6 class="text-dark  mb-2">Nội dung điều khoản dịch vụ</h6>
-                        <textarea name="content" 
-                            id="contenteditor"> {{$policy->content}} </textarea>
-                    </div>
+                <!--content-->
+                <div class="row mb-4 ">
+                    <h6 class="text-dark  mb-2">Nội dung điều khoản dịch vụ</h6>
+                    <textarea name="content" id="contenteditor"> {{$policy->content}} </textarea>
+                </div>
 
 
                 <div class="text-center">
@@ -40,5 +39,5 @@
             </form>
         </div>
     </div>
-    
+
     @endsection('content')

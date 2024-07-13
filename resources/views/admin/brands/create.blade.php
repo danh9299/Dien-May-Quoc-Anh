@@ -40,10 +40,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

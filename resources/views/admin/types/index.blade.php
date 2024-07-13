@@ -86,8 +86,8 @@
                         </li>
                         @else
                         <li class="page-item">
-                            <a class="page-link" href="{{ $types->previousPageUrl() }}"
-                                aria-label="Trang trước">&laquo; Trước</a>
+                            <a class="page-link" href="{{ $types->previousPageUrl() }}" aria-label="Trang trước">&laquo;
+                                Trước</a>
                         </li>
                         @endif
 

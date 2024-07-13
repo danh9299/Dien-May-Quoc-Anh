@@ -17,16 +17,17 @@
                         <button type="submit" class="btn btn-dark">Lọc</button>
                     </div>
                     <!-- Hiển thị tổng doanh thu -->
-                 
+
                     <div class="col-8 text-end">
-                    @if (auth()->guard('admin')->user()->role == 1)
+                        @if (auth()->guard('admin')->user()->role == 1)
                         <h4>Tổng doanh thu tháng {{$month->month}}.{{$month->year}}:
-                            <strong>{{ number_format($totalRevenue, 0, ',', '.') }} VND</strong></h4>
-                            @else
-                    <h3>Thông tin các đơn hàng tháng {{$month->month}}.{{$month->year}}</h3>
-                    @endif
+                            <strong>{{ number_format($totalRevenue, 0, ',', '.') }} VND</strong>
+                        </h4>
+                        @else
+                        <h3>Thông tin các đơn hàng tháng {{$month->month}}.{{$month->year}}</h3>
+                        @endif
                     </div>
-                   
+
                 </div>
             </form>
 

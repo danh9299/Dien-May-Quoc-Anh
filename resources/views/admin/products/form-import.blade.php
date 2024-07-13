@@ -22,25 +22,26 @@
             Tải lên file và ấn Nhập để nhập dữ liệu sản phẩm..
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.products.import') }}" class="mt-2 mb-2" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.products.import') }}" class="mt-2 mb-2" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                <div class="col-5">
-                <input type="file" class="form-control" name="file"></div>
-                <div class="col-3">
-                <button class="btn btn-success" type="submit">Nhập</button></div></div>
+                    <div class="col-5">
+                        <input type="file" class="form-control" name="file">
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-success" type="submit">Nhập</button>
+                    </div>
+                </div>
             </form>
-            <p5 class="text-danger"><b>Lưu ý:</b> Các sản phẩm không có giá trị trong cột <u>id</u> sẽ được tạo mới. 
+            <p5 class="text-danger"><b>Lưu ý:</b> Các sản phẩm không có giá trị trong cột <u>id</u> sẽ được tạo mới.
                 <br> Các sản phẩm có giá trị trong cột <u>id</u> sẽ được cập nhật nội dung!
-            <br> Vui lòng nhập đúng định dạng cho giá trị các cột. Tránh các dấu kí tự hay khoảng trống không cần thiết!
-        </p5>
+                <br> Vui lòng nhập đúng định dạng cho giá trị các cột. Tránh các dấu kí tự hay khoảng trống không cần
+                thiết!
+            </p5>
         </div>
     </div>
 </div>
 
 
 @endsection
-
-
-
-

@@ -25,10 +25,10 @@
         referrerpolicy="origin"></script>
     <script>
     tinymce.init({
-        selector: '#contenteditor', 
+        selector: '#contenteditor',
         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | align lineheight | checklist numlist bullist  | emoticons charmap | removeformat',
-        
+
     });
     </script>
 </head>
@@ -42,8 +42,8 @@
             <!--Sidebar-->
             @include('admin.layouts.sidebar')
         </div>
+        <!--Nội dung chính-->
         <div class="admin-content">
-            <!-- Main content -->
             @yield('content')
         </div>
     </div>

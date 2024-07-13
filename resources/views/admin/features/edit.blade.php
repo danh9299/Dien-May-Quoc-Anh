@@ -12,13 +12,15 @@
                 Sửa Thiết kế {{$feature->name}}..
             </div>
             <div class="card-body">
-                <form method="post" action="{{ route('admin.features.update',$feature->id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.features.update',$feature->id)}}"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">
                         <label class="col-sm-2 col-label-form">Mã Thiết kế</label>
                         <div class="col-sm-10">
-                            <input type="text" name="id" value="{{$feature->id}}" class="shadow form-control" readonly />
+                            <input type="text" name="id" value="{{$feature->id}}" class="shadow form-control"
+                                readonly />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -37,7 +39,7 @@
                         </div>
                     </div>
 
-                   
+
 
                     <div class="text-center">
                         <input type="hidden" name="hidden_id" value="{{ $feature->id }}" />
@@ -49,10 +51,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

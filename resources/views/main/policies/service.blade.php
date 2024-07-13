@@ -1,7 +1,7 @@
 @extends('main.master')
 @section('content')
 
-<!-- Main Content -->
+
 <main class="row">
     <!--Đường liên kết tới sản phẩm-->
     <div class="container mt-2 qa-product-show-links">
@@ -30,7 +30,7 @@
         </div>
     </div>
 </main>
-<!-- Main Content -->
+
 
 
 

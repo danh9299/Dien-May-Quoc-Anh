@@ -31,8 +31,9 @@ $logo = Image::where('group', 1)->first();
     @include('main.layouts.header')
 
 
-    <!-- Main content -->
+    <!-- Phần nội dung chính -->
     @yield('content')
+
     <!--Footer-->
     @include('main.layouts.footer')
 
@@ -42,19 +43,19 @@ $logo = Image::where('group', 1)->first();
 
     <!--Script widget của botman-->
     <script>
-        var botmanWidget = {
-            aboutText: 'quocanh2017.ltd@gmail.com',
-            introMessage: "Bạn cần hỏi gì?",
-            title: 'Hệ Thống Trả Lời Tự Động',
-            mainColor: '#FC3A45',
-            placeholderText: 'Nhập câu hỏi của bạn..'
-        };
+    var botmanWidget = {
+        aboutText: 'quocanh2017.ltd@gmail.com',
+        introMessage: "Bạn cần hỏi gì?",
+        title: 'Hệ Thống Trả Lời Tự Động',
+        mainColor: '#FC3A45',
+        placeholderText: 'Nhập câu hỏi của bạn..'
+    };
     </script>
     <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
     <!--Bundle-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     </script>
 

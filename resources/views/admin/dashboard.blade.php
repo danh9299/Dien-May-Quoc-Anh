@@ -22,13 +22,14 @@ $totalRevenue = DB::table('orders')
 
 <h1 class="mt-2 px-5">Tổng quan</h1>
 <div class="text-danger mt-1 px-5">
-    Quản trị viên đang sử dụng: {{ auth()->guard('admin')->user()->name }} 
+    Quản trị viên đang sử dụng: {{ auth()->guard('admin')->user()->name }}
 </div>
 <h2 class="mt-2 text-center ">--- CHÚ Ý ---</h2>
 
 <div class="container mt-3">
     <!--Tổng doanh thu-->
-    <h3 class="mb-5">Tổng số doanh thu trong tháng:<strong> {{number_format($totalRevenue , 0, ',', '.')}} </strong></h3>
+    <h3 class="mb-5">Tổng số doanh thu trong tháng:<strong> {{number_format($totalRevenue , 0, ',', '.')}} </strong>
+    </h3>
 </div>
 <div class="container mt-3">
     <!--Đơn đặt gần nhất-->
@@ -61,10 +62,11 @@ $totalRevenue = DB::table('orders')
                     @else
                     Chuyển khoản
                     @endif</td>
-            <td>{{$order->status}}</td>
-                    <td>
-                
-                <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-primary">Xem</a></td>
+                <td>{{$order->status}}</td>
+                <td>
+
+                    <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-primary">Xem</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

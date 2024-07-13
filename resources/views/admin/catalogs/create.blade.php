@@ -53,10 +53,4 @@
 
     </div>
 </div>
-
-
-
-
-
-
 @endsection('content')

@@ -7,24 +7,23 @@
     <div class="container mt-2 qa-product-show-links">
         <ul>
             <li><a href="{{route('main.home')}}"> Trang chủ </a> ></li>
-            <li><a href="#"> Tin tức</a>  > </li>
-            <li> <a href="#" >{{$article->name}} </a> </li>
+            <li><a href="#"> Tin tức</a> > </li>
+            <li> <a href="#">{{$article->name}} </a> </li>
 
         </ul>
     </div>
     <!--Thông tin chính về sản phẩm-->
     <div class="container px-5">
         <div class="row">
-            <!-- Product Images -->
+
             <div class="col-lg-6 col-md-5 col-sm-12 mb-3">
-            <img  src="{{asset( $article->image_link) }}"
-                            class="mt-2 img-thumbnail" alt="Preview">
+                <img src="{{asset( $article->image_link) }}" class="mt-2 img-thumbnail" alt="Preview">
             </div>
-            <!-- Product Name và price -->
+
             <div class="col-lg-6 col-md-5 col-sm-12 mb-3  px-5">
                 <h1>{{$article->name}}</h1>
                 <ul>
-                   
+
                     <li>Tác giả: <b>{{$article->admin->name}}</b></li>
                     <li>Ngày đăng:
                         <b>
@@ -33,8 +32,8 @@
                     </li>
                     <li>Lần sửa cuối: <b>{{$article->updated_at}}</b></li>
                 </ul>
-               
-            
+
+
             </div>
         </div>
     </div>
@@ -52,7 +51,7 @@
 
 
                 </div>
-                <!-- Button trigger modal -->
+                <!-- Nút mở modal -->
                 <div class="d-grid gap-2">
                     <button type="button" class="rounded-top-0 btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#product-content-modal">
@@ -60,7 +59,7 @@
                     </button>
                 </div>
 
-                <!-- Large modal -->
+                <!--  modal lớn -->
                 <div class="modal fade" id="product-content-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-xl">
@@ -80,12 +79,12 @@
                     </div>
                 </div>
             </div>
-        
-            </div>
+
         </div>
     </div>
+    </div>
 </main>
-<!-- Main Content -->
+
 
 
 

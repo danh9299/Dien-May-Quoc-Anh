@@ -85,7 +85,7 @@ class PaymentController extends Controller
         } else {
             echo json_encode($returnData);
         }
-        // vui lòng tham khảo thêm tại code demo
+        // 
         return redirect()->away($vnp_Url);
     }
 
@@ -96,7 +96,7 @@ class PaymentController extends Controller
         // Kiểm tra xác thực phản hồi từ VNPAY (nếu cần)
         // Xử lý dữ liệu nhận được từ VNPAY
         $vnp_ResponseCode = $request->get('vnp_ResponseCode');
-        $vnp_TxnRef = $request->get('vnp_TxnRef'); // Mã đơn hàng trong hệ thống của bạn
+        $vnp_TxnRef = $request->get('vnp_TxnRef'); // Mã đơn hàng trong hệ thống
         $vnp_Amount = $request->get('vnp_Amount');
 
         // Tìm đơn hàng tương ứng trong cơ sở dữ liệu

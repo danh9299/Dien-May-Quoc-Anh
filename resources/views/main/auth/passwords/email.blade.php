@@ -3,10 +3,14 @@
 @section('content')
 <div class="container">
     <h3 class="text-center mt-5">Quên mật khẩu</h3>
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
+    @if (session('status') === 'success')
+    <div class="alert alert-success">
+        Vui lòng kiểm tra đường dẫn cài lại mật khẩu trong email!
+    </div>
+    @elseif (session('status') === 'error')
+    <div class="alert alert-danger">
+        {{ session('message') }}
+    </div>
     @endif
     <form method="POST" action="{{ route('main.auth.password.email') }}">
         @csrf

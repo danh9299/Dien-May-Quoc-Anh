@@ -27,7 +27,7 @@ class ResetPasswordController extends Controller
         ]);
       
         $user = User::where('email', $request->email)->first();
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
         return redirect()->route('main.auth.login')->with('success', 'Mật khẩu đã được thay đổi.');
     }

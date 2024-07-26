@@ -231,7 +231,7 @@ $long_images = Image::where('group', 3)->get();
 
     <!--Long banner-->
 
-    @if($long_images->has(2)))
+    @if($long_images->has(2))
     <div class="container-fluid">
         <img src="{{ asset('/img/long-banner/' . $long_images->get(2)->image_link) }}" class="img-fluid" />
     </div>
@@ -254,7 +254,10 @@ $long_images = Image::where('group', 3)->get();
                         <!-- Sản phẩm -->
                         <div class="card mx-2 border border-dark col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                             <a href="{{route('main.products.show', $dieuhoa->id)}}">
-                                <img src="{{ asset($dieuhoa->image_link) }}" class="border-0" alt="..." /></a>
+                                <div class="text-center mt-1 ">
+                                    <img src="{{ asset($dieuhoa->image_link) }}" class="border-0" alt="..." />
+                                </div>
+                            </a>
                             <div class="card-body">
                                 <form class="add-to-cart-form">
                                     @csrf

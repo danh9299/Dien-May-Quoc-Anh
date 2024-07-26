@@ -174,10 +174,9 @@ class CartController extends Controller
                 ->sum('revenue');
 
         }
-        $orders = $query->orderBy('updated_at', 'desc')->paginate(10);
+        $orders = $query->orderBy('updated_at', 'desc')->paginate(6);
         // Thêm điều kiện để chỉ lấy các đơn hàng đã thanh toán
         $totalRevenue = $query->where('payment_status', 'Đã thanh toán')->sum('revenue');
-
 
 
         return view('admin.orders.index', ['orders' => $orders, 'month' => $month, 'totalRevenue' => $totalRevenue]);
